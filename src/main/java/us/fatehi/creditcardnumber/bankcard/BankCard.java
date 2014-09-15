@@ -246,8 +246,7 @@ public class BankCard
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
-  /*
-   * (non-Javadoc)
+  /**
    * @see java.lang.Object#hashCode()
    */
   @Override
