@@ -53,7 +53,42 @@ public class ExpirationDate
    */
   public ExpirationDate()
   {
-    this(null);
+    this((String) null);
+  }
+
+  /**
+   * Expiration date from year and month.
+   *
+   * @param year
+   *        Year
+   * @param month
+   *        Month
+   */
+  public ExpirationDate(final Date date)
+  {
+    super(null);
+    if (date != null)
+    {
+      expirationDate = YearMonth.of(date.getYear() + 1900, date.getMonth() + 1);
+    }
+    else
+    {
+      expirationDate = null;
+    }
+  }
+
+  /**
+   * Expiration date from year and month.
+   *
+   * @param year
+   *        Year
+   * @param month
+   *        Month
+   */
+  public ExpirationDate(final int year, final int month)
+  {
+    super(null);
+    expirationDate = YearMonth.of(year, month);
   }
 
   /**
