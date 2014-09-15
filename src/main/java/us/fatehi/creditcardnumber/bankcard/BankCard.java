@@ -41,7 +41,6 @@ public class BankCard
   private final AccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
-  private final ServiceCode serviceCode;
 
   /**
    * No bank card.
@@ -70,8 +69,7 @@ public class BankCard
    * @param expirationDate
    *        Card expiration date
    */
-  public BankCard(final AccountNumber pan,
-                  final ExpirationDate expirationDate)
+  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate)
   {
     this(pan, expirationDate, null);
   }
@@ -89,26 +87,6 @@ public class BankCard
   public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name)
-  {
-    this(pan, expirationDate, name, null);
-  }
-
-  /**
-   * Construct a bank card from the constituent parts.
-   *
-   * @param pan
-   *        Primary account number
-   * @param expirationDate
-   *        Card expiration date
-   * @param name
-   *        Cardholder name
-   * @param serviceCode
-   *        Service code
-   */
-  public BankCard(final AccountNumber pan,
-                  final ExpirationDate expirationDate,
-                  final Name name,
-                  final ServiceCode serviceCode)
   {
     if (pan != null)
     {
@@ -136,18 +114,10 @@ public class BankCard
     {
       this.expirationDate = new ExpirationDate();
     }
-
-    if (serviceCode != null)
-    {
-      this.serviceCode = serviceCode;
-    }
-    else
-    {
-      this.serviceCode = new ServiceCode();
-    }
   }
 
-  /**
+  /*
+   * (non-Javadoc)
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -199,18 +169,17 @@ public class BankCard
     {
       return false;
     }
-    if (serviceCode == null)
-    {
-      if (other.serviceCode != null)
-      {
-        return false;
-      }
-    }
-    else if (!serviceCode.equals(other.serviceCode))
-    {
-      return false;
-    }
     return true;
+  }
+
+  /**
+   * Gets the primary account number for the card.
+   *
+   * @return Primary account number.
+   */
+  public AccountNumber getAccountNumber()
+  {
+    return pan;
   }
 
   /**
@@ -250,26 +219,6 @@ public class BankCard
   }
 
   /**
-   * Gets the primary account number for the card.
-   *
-   * @return Primary account number.
-   */
-  public AccountNumber getAccountNumber()
-  {
-    return pan;
-  }
-
-  /**
-   * Gets the service code.
-   *
-   * @return Service code.
-   */
-  public ServiceCode getServiceCode()
-  {
-    return serviceCode;
-  }
-
-  /**
    * Checks whether the card expiration date is available.
    *
    * @return True if the card expiration date is available.
@@ -279,7 +228,8 @@ public class BankCard
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
-  /**
+  /*
+   * (non-Javadoc)
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -291,7 +241,6 @@ public class BankCard
              + (expirationDate == null? 0: expirationDate.hashCode());
     result = prime * result + (name == null? 0: name.hashCode());
     result = prime * result + (pan == null? 0: pan.hashCode());
-    result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
     return result;
   }
 
@@ -315,16 +264,6 @@ public class BankCard
   public boolean hasPrimaryAccountNumber()
   {
     return pan != null && pan.hasPrimaryAccountNumber();
-  }
-
-  /**
-   * Checks whether the card service code is available.
-   *
-   * @return True if the card service code is available.
-   */
-  public boolean hasServiceCode()
-  {
-    return serviceCode != null && serviceCode.hasServiceCode();
   }
 
   /**
@@ -372,18 +311,6 @@ public class BankCard
     {
       buffer.append("  Name: ");
       buffer.append(getName()).append(NEWLINE);
-    }
-    if (hasServiceCode())
-    {
-      final ServiceCode serviceCode = getServiceCode();
-      buffer.append("  Service Code: ");
-      buffer.append(NEWLINE);
-      buffer.append("    ");
-      buffer.append(serviceCode.getServiceCode1()).append(NEWLINE);
-      buffer.append("    ");
-      buffer.append(serviceCode.getServiceCode2()).append(NEWLINE);
-      buffer.append("    ");
-      buffer.append(serviceCode.getServiceCode3()).append(NEWLINE);
     }
 
     return buffer.toString();

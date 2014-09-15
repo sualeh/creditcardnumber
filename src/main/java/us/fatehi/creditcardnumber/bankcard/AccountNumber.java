@@ -27,7 +27,7 @@ public interface AccountNumber
 {
 
   /**
-   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
+   * Whether the account number exceeds the maximum length.
    */
   public abstract boolean exceedsMaximumLength();
 
