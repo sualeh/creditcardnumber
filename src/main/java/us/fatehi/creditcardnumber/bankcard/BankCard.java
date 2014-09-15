@@ -174,13 +174,20 @@ public class BankCard
   }
 
   /**
-   * Gets the primary account number for the card.
+   * Gets the primary account number for the card, if available.
    *
    * @return Primary account number.
    */
-  public PrimaryAccountNumber getAccountNumber()
+  public String getAccountNumber()
   {
-    return pan;
+    if (pan.hasPrimaryAccountNumber())
+    {
+      return pan.getAccountNumber();
+    }
+    else
+    {
+      return null;
+    }
   }
 
   /**
@@ -217,6 +224,16 @@ public class BankCard
   public Name getName()
   {
     return name;
+  }
+
+  /**
+   * Gets the primary account number for the card.
+   *
+   * @return Primary account number.
+   */
+  public PrimaryAccountNumber getPrimaryAccountNumber()
+  {
+    return pan;
   }
 
   /**
