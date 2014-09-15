@@ -35,7 +35,7 @@ import org.threeten.bp.temporal.ChronoUnit;
 /**
  * Parses and represents a card expiration date.
  */
-public class ExpirationDate
+public final class ExpirationDate
   extends BaseRawData
 {
 

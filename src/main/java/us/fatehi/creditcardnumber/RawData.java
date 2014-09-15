@@ -27,23 +27,23 @@ public interface RawData
 {
 
   /**
-   * Whether the track data exceeds the maximum length allowed.
+   * Whether the raw data exceeds the maximum length allowed.
    *
    * @return True if too long
    */
   boolean exceedsMaximumLength();
 
   /**
-   * Raw track data.
+   * Raw data.
    *
-   * @return Raw track data
+   * @return Raw data
    */
   String getRawData();
 
   /**
-   * Whether raw track data is present.
+   * Whether raw data is present.
    *
-   * @return True if raw track data is available.
+   * @return True if raw data is available.
    */
   boolean hasRawData();
 

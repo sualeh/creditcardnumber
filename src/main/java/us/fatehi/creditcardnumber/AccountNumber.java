@@ -29,7 +29,7 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 /**
  * Parses and represents the primary account number of the bank card.
  */
-public class AccountNumber
+public final class AccountNumber
   extends BaseRawData
   implements PrimaryAccountNumber
 {
@@ -100,11 +100,8 @@ public class AccountNumber
     return true;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see
-   * us.fatehi.creditcardnumber.bankcard.AccountNumber#exceedsMaximumLength
-   * ()
+  /**
+   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
@@ -112,11 +109,8 @@ public class AccountNumber
     return trimToEmpty(getRawData()).length() > 19;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see
-   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getAccountNumber
-   * ()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getAccountNumber()
    */
   @Override
   public String getAccountNumber()
@@ -124,21 +118,14 @@ public class AccountNumber
     return accountNumber;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
-   * getAccountNumberLength()
-   */
   @Override
   public int getAccountNumberLength()
   {
     return length(accountNumber);
   }
 
-  /*
-   * (non-Javadoc)
-   * @see
-   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getCardBrand()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getCardBrand()
    */
   @Override
   public CardBrand getCardBrand()
@@ -146,10 +133,8 @@ public class AccountNumber
     return cardBrand;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
-   * getIssuerIdentificationNumber()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getIssuerIdentificationNumber()
    */
   @Override
   public String getIssuerIdentificationNumber()
@@ -157,11 +142,8 @@ public class AccountNumber
     return left(accountNumber, 6);
   }
 
-  /*
-   * (non-Javadoc)
-   * @see
-   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getLastFourDigits
-   * ()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getLastFourDigits()
    */
   @Override
   public String getLastFourDigits()
@@ -169,10 +151,8 @@ public class AccountNumber
     return right(accountNumber, 4);
   }
 
-  /*
-   * (non-Javadoc)
-   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
-   * getMajorIndustryIdentifier()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getMajorIndustryIdentifier()
    */
   @Override
   public MajorIndustryIdentifier getMajorIndustryIdentifier()
@@ -193,10 +173,8 @@ public class AccountNumber
     return result;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
-   * hasPrimaryAccountNumber()
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#hasPrimaryAccountNumber()
    */
   @Override
   public boolean hasPrimaryAccountNumber()

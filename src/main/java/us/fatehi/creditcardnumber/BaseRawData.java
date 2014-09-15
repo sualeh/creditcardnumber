@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 
 import javax.xml.crypto.Data;
 
-public abstract class BaseRawData
+abstract class BaseRawData
   implements RawData
 {
 

@@ -21,7 +21,6 @@ package us.fatehi.creditcardnumber;
 
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.apache.commons.lang3.math.NumberUtils.toInt;
 
 import java.io.BufferedReader;
 import java.io.IOException;

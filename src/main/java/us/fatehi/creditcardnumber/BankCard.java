@@ -29,7 +29,7 @@ import org.threeten.bp.format.DateTimeFormatter;
  * Represents a bank card, and contains information about the card
  * number, cardholder's name, expiration date, and service code.
  */
-public class BankCard
+public final class BankCard
   implements Serializable
 {
 
@@ -308,7 +308,7 @@ public class BankCard
       buffer.append("  Primary Account Number: ");
       buffer.append(pan).append(NEWLINE);
       buffer.append("  Primary Account Number (Secure): ");
-      buffer.append(new AccountNumberInfo(pan)).append(NEWLINE);      
+      buffer.append(new AccountNumberInfo(pan)).append(NEWLINE);
       buffer.append("    MII: ");
       buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
       buffer.append("    IIN: ");

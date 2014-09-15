@@ -27,7 +27,7 @@ import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 /**
  * Parses and represents the cardholder's name.
  */
-public class Name
+public final class Name
   extends BaseRawData
 {
 

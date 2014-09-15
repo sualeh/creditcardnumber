@@ -22,6 +22,16 @@ package us.fatehi.creditcardnumber;
 
 import java.io.Serializable;
 
+/**
+ * Represents a bank card number.
+ * 
+ * @see <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank
+ *      card number</a>
+ * @see <a
+ *      href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
+ *      do you detect Credit card type based on number?</a>
+ * @author Sualeh Fatehi
+ */
 public interface PrimaryAccountNumber
   extends Serializable
 {
