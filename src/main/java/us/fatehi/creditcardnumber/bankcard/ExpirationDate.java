@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic  Parser
+ * Credit Card Number
  * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -58,7 +58,7 @@ public class ExpirationDate
 
   /**
    * Expiration date parsed from raw track data.
-   * 
+   *
    * @param rawExpirationDate
    *        Raw track data for expiration date.
    */
@@ -123,7 +123,7 @@ public class ExpirationDate
 
   /**
    * Gets the card expiration date.
-   * 
+   *
    * @return Card expiration date.
    */
   public YearMonth getExpirationDate()
@@ -133,7 +133,7 @@ public class ExpirationDate
 
   /**
    * Gets the card expiration date, as a java.util.Date object.
-   * 
+   *
    * @return Card expiration date.
    */
   public Date getExpirationDateAsDate()
@@ -155,7 +155,7 @@ public class ExpirationDate
 
   /**
    * Checks whether the card expiration date is available.
-   * 
+   *
    * @return True if the card expiration date is available.
    */
   public boolean hasExpirationDate()
@@ -178,7 +178,7 @@ public class ExpirationDate
 
   /**
    * Whether the card has expired.
-   * 
+   *
    * @return True if the the card has expired.
    */
   public boolean isExpired()

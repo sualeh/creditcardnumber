@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic  Parser
+ * Credit Card Number
  * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *

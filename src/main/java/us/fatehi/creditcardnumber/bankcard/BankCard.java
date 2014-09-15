@@ -38,7 +38,7 @@ public class BankCard
   protected static final DateTimeFormatter formatter = DateTimeFormatter
     .ofPattern("MMMM yyyy");
 
-  private final AccountNumber pan;
+  private final PrimaryAccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
 
@@ -56,7 +56,7 @@ public class BankCard
    * @param pan
    *        Primary account number
    */
-  public BankCard(final AccountNumber pan)
+  public BankCard(final PrimaryAccountNumber pan)
   {
     this(pan, null);
   }
@@ -69,7 +69,8 @@ public class BankCard
    * @param expirationDate
    *        Card expiration date
    */
-  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate)
+  public BankCard(final PrimaryAccountNumber pan,
+                  final ExpirationDate expirationDate)
   {
     this(pan, expirationDate, null);
   }
@@ -84,7 +85,7 @@ public class BankCard
    * @param name
    *        Cardholder name
    */
-  public BankCard(final AccountNumber pan,
+  public BankCard(final PrimaryAccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name)
   {
@@ -94,7 +95,7 @@ public class BankCard
     }
     else
     {
-      this.pan = new PrimaryAccountNumber();
+      this.pan = new AccountNumber();
     }
 
     if (name != null)
@@ -177,7 +178,7 @@ public class BankCard
    *
    * @return Primary account number.
    */
-  public AccountNumber getAccountNumber()
+  public PrimaryAccountNumber getAccountNumber()
   {
     return pan;
   }
@@ -297,7 +298,7 @@ public class BankCard
       buffer.append("    Card Brand: ");
       buffer.append(pan.getCardBrand()).append(NEWLINE);
       buffer.append("    Passes Luhn Check: ");
-      buffer.append(pan.isPassesLuhnCheck()? "Yes": "No").append(NEWLINE);
+      buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
     }
     if (hasExpirationDate())
     {

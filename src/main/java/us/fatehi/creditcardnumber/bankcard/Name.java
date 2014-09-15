@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic  Parser
+ * Credit Card Number
  * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -46,23 +46,8 @@ public class Name
   }
 
   /**
-   * Name from first and last.
-   * 
-   * @param firstName
-   *        First name.
-   * @param lastName
-   *        Last name.
-   */
-  public Name(String firstName, String lastName)
-  {
-    super(null);
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  /**
    * Name from raw magnetic track data.
-   * 
+   *
    * @param rawName
    *        Raw magnetic track data for name.
    */
@@ -73,6 +58,21 @@ public class Name
     final String[] splitName = trimToEmpty(rawName).split("/");
     firstName = name(splitName, 1);
     lastName = name(splitName, 0);
+  }
+
+  /**
+   * Name from first and last.
+   *
+   * @param firstName
+   *        First name.
+   * @param lastName
+   *        Last name.
+   */
+  public Name(final String firstName, final String lastName)
+  {
+    super(null);
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   /**
@@ -130,7 +130,7 @@ public class Name
 
   /**
    * Gets the first name.
-   * 
+   *
    * @return First name.
    */
   public String getFirstName()
@@ -140,7 +140,7 @@ public class Name
 
   /**
    * Gets the full name.
-   * 
+   *
    * @return full name.
    */
   public String getFullName()
@@ -163,7 +163,7 @@ public class Name
 
   /**
    * Gets the last name.
-   * 
+   *
    * @return Last name.
    */
   public String getLastName()
@@ -173,7 +173,7 @@ public class Name
 
   /**
    * Checks whether the first name is available.
-   * 
+   *
    * @return True if the first name is available.
    */
   public boolean hasFirstName()
@@ -183,7 +183,7 @@ public class Name
 
   /**
    * Checks whether the full name (first and last) is available.
-   * 
+   *
    * @return True if the full name is available.
    */
   public boolean hasFullName()
@@ -206,7 +206,7 @@ public class Name
 
   /**
    * Checks whether the last name is available.
-   * 
+   *
    * @return True if the last name is available.
    */
   public boolean hasLastName()
@@ -216,7 +216,7 @@ public class Name
 
   /**
    * Checks whether the name (either first or last) is available.
-   * 
+   *
    * @return True if the name is available.
    */
   public boolean hasName()

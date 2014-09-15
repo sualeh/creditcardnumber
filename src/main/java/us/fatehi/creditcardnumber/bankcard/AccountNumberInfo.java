@@ -21,7 +21,7 @@ package us.fatehi.creditcardnumber.bankcard;
 
 
 public class AccountNumberInfo
-  implements AccountNumber
+  implements PrimaryAccountNumber
 {
 
   private static final long serialVersionUID = 2002490292247684624L;
@@ -34,7 +34,7 @@ public class AccountNumberInfo
   private final int accountNumberLength;
   private final boolean exceedsMaximumLength;
 
-  public AccountNumberInfo(final AccountNumber accountNumber)
+  public AccountNumberInfo(final PrimaryAccountNumber accountNumber)
   {
     if (accountNumber != null)
     {
@@ -43,7 +43,7 @@ public class AccountNumberInfo
         .getIssuerIdentificationNumber();
       lastFourDigits = accountNumber.getLastFourDigits();
       cardBrand = accountNumber.getCardBrand();
-      passesLuhnCheck = accountNumber.isPassesLuhnCheck();
+      passesLuhnCheck = accountNumber.passesLuhnCheck();
       accountNumberLength = accountNumber.getAccountNumberLength();
       exceedsMaximumLength = accountNumber.exceedsMaximumLength();
     }
@@ -108,7 +108,7 @@ public class AccountNumberInfo
   }
 
   @Override
-  public boolean isPassesLuhnCheck()
+  public boolean passesLuhnCheck()
   {
     return passesLuhnCheck;
   }

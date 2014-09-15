@@ -80,7 +80,7 @@ public class Main
       }
       if (!isBlank(line))
       {
-        final AccountNumber pan = new PrimaryAccountNumber(line);
+        final PrimaryAccountNumber pan = new AccountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }

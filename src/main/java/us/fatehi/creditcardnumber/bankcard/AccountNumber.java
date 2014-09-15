@@ -20,80 +20,229 @@
 package us.fatehi.creditcardnumber.bankcard;
 
 
-import java.io.Serializable;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.left;
+import static org.apache.commons.lang3.StringUtils.length;
+import static org.apache.commons.lang3.StringUtils.right;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import us.fatehi.creditcardnumber.BaseRawData;
 
-public interface AccountNumber
-  extends Serializable
+/**
+ * Parses and represents the primary account number of the bank card.
+ */
+public class AccountNumber
+  extends BaseRawData
+  implements PrimaryAccountNumber
 {
 
-  /**
-   * Whether the account number exceeds the maximum length.
-   */
-  public abstract boolean exceedsMaximumLength();
+  private static final long serialVersionUID = -7012531091389412459L;
+
+  private final String accountNumber;
+  private final CardBrand cardBrand;
+  private final MajorIndustryIdentifier majorIndustryIdentifier;
+  private final boolean passesLuhnCheck;
 
   /**
-   * Gets the primary account number of the bank card.
-   *
-   * @return Primary account number.
+   * No primary account number of the bank card.
    */
-  public abstract String getAccountNumber();
+  public AccountNumber()
+  {
+    this(null);
+  }
 
   /**
-   * The length of the PAN.
+   * Parses the primary account number of the bank card. Can accept card
+   * numbers with spaces or dashes.
    *
-   * @return The length of the PAN
+   * @param rawAccountNumber
+   *        Raw primary account number from the magnetic track data.
    */
-  public abstract int getAccountNumberLength();
+  public AccountNumber(final String rawAccountNumber)
+  {
+    super(rawAccountNumber);
+
+    accountNumber = non_digit.matcher(trimToEmpty(rawAccountNumber))
+      .replaceAll("");
+    passesLuhnCheck = luhnCheck();
+    majorIndustryIdentifier = MajorIndustryIdentifier.from(accountNumber);
+    cardBrand = CardBrand.from(accountNumber);
+  }
 
   /**
-   * Gets the the card brand.
-   *
-   * @return Card brand.
+   * @see java.lang.Object#equals(java.lang.Object)
    */
-  public abstract CardBrand getCardBrand();
+  @Override
+  public boolean equals(final Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (!(obj instanceof AccountNumber))
+    {
+      return false;
+    }
+    final AccountNumber other = (AccountNumber) obj;
+    if (accountNumber == null)
+    {
+      if (other.accountNumber != null)
+      {
+        return false;
+      }
+    }
+    else if (!accountNumber.equals(other.accountNumber))
+    {
+      return false;
+    }
+    return true;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see
+   * us.fatehi.creditcardnumber.bankcard.AccountNumber#exceedsMaximumLength
+   * ()
+   */
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return trimToEmpty(getRawData()).length() > 19;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see
+   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getAccountNumber
+   * ()
+   */
+  @Override
+  public String getAccountNumber()
+  {
+    return accountNumber;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
+   * getAccountNumberLength()
+   */
+  @Override
+  public int getAccountNumberLength()
+  {
+    return length(accountNumber);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see
+   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getCardBrand()
+   */
+  @Override
+  public CardBrand getCardBrand()
+  {
+    return cardBrand;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
+   * getIssuerIdentificationNumber()
+   */
+  @Override
+  public String getIssuerIdentificationNumber()
+  {
+    return left(accountNumber, 6);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see
+   * us.fatehi.creditcardnumber.bankcard.AccountNumber#getLastFourDigits
+   * ()
+   */
+  @Override
+  public String getLastFourDigits()
+  {
+    return right(accountNumber, 4);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
+   * getMajorIndustryIdentifier()
+   */
+  @Override
+  public MajorIndustryIdentifier getMajorIndustryIdentifier()
+  {
+    return majorIndustryIdentifier;
+  }
 
   /**
-   * The first six digits of the PAN are taken from the IIN, or Issuer
-   * Identification Number, belonging to the issuing bank (IINs were
-   * previously known as BIN — Bank Identification Numbers — so you may
-   * see references to that terminology in some documents). These six
-   * digits are subject to an international standard, ISO/IEC 7812, and
-   * can be used to determine the type of card from the number.
-   *
-   * @return IIN, or Issuer Identification Number
+   * @see java.lang.Object#hashCode()
    */
-  public abstract String getIssuerIdentificationNumber();
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+             + (accountNumber == null? 0: accountNumber.hashCode());
+    return result;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see us.fatehi.creditcardnumber.bankcard.AccountNumber#
+   * hasPrimaryAccountNumber()
+   */
+  @Override
+  public boolean hasPrimaryAccountNumber()
+  {
+    return !isBlank(accountNumber);
+  }
 
   /**
-   * The last 4 digits of the PAN, for card identification purposes.
-   *
-   * @return Last 4 digits of PAN
+   * @see us.fatehi.creditcardnumber.bankcard.PrimaryAccountNumber#isPassesLuhnCheck
+   *      ()
    */
-  public abstract String getLastFourDigits();
+  @Override
+  public boolean passesLuhnCheck()
+  {
+    return passesLuhnCheck;
+  }
 
   /**
-   * The first digit of a credit card number is the Major Industry
-   * Identifier (MII) (see ISO/IEC 7812), which represents the category
-   * of entity which issued the card.
-   *
-   * @return MII.
+   * @see java.lang.Object#toString()
    */
-  public abstract MajorIndustryIdentifier getMajorIndustryIdentifier();
+  @Override
+  public String toString()
+  {
+    return accountNumber;
+  }
 
-  /**
-   * Checks whether the primary account number for the card is
-   * available.
-   *
-   * @return True if the primary account number for the card is
-   *         available.
-   */
-  public abstract boolean hasPrimaryAccountNumber();
+  private boolean luhnCheck()
+  {
 
-  /**
-   * Checks whether the primary account number passes the Luhn check.
-   *
-   * @return True if the primary account number passes the Luhn check.
-   */
-  public abstract boolean isPassesLuhnCheck();
+    final int length = accountNumber.length();
+    int sum = 0;
+    boolean alternate = false;
+    for (int i = length - 1; i >= 0; i--)
+    {
+      int digit = Character.digit(accountNumber.charAt(i), 10);
+      if (alternate)
+      {
+        digit = digit * 2;
+        digit = digit > 9? digit - 9: digit;
+      }
+      sum = sum + digit;
+      alternate = !alternate;
+    }
+    final boolean passesLuhnCheck = sum % 10 == 0;
+    return passesLuhnCheck;
+  }
 
 }

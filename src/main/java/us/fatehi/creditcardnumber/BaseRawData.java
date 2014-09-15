@@ -1,6 +1,6 @@
 /*
  *
- * Magnetic  Parser
+ * Credit Card Number
  * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
@@ -23,6 +23,8 @@ package us.fatehi.creditcardnumber;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.util.regex.Pattern;
+
+import javax.xml.crypto.Data;
 
 public abstract class BaseRawData
   implements RawData
