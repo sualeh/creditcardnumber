@@ -17,13 +17,12 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber.bankcard;
+package us.fatehi.creditcardnumber;
 
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
-import us.fatehi.creditcardnumber.BaseRawData;
 
 /**
  * Parses and represents the cardholder's name.

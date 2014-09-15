@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import us.fatehi.creditcardnumber.bankcard.Name;
+import us.fatehi.creditcardnumber.Name;
 
 public class NameTest
 {

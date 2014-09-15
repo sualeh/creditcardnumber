@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.threeten.bp.YearMonth;
 
-import us.fatehi.creditcardnumber.bankcard.ExpirationDate;
+import us.fatehi.creditcardnumber.ExpirationDate;
 
 public class ExpirationDateTest
 {

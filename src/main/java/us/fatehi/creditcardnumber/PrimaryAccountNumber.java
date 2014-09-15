@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber.bankcard;
+package us.fatehi.creditcardnumber;
 
 
 import java.io.Serializable;

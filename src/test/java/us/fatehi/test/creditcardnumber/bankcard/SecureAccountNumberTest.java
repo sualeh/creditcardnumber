@@ -25,11 +25,11 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import us.fatehi.creditcardnumber.bankcard.PrimaryAccountNumber;
-import us.fatehi.creditcardnumber.bankcard.AccountNumberInfo;
-import us.fatehi.creditcardnumber.bankcard.CardBrand;
-import us.fatehi.creditcardnumber.bankcard.MajorIndustryIdentifier;
-import us.fatehi.creditcardnumber.bankcard.AccountNumber;
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.AccountNumberInfo;
+import us.fatehi.creditcardnumber.CardBrand;
+import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 
 public class SecureAccountNumberTest
 {

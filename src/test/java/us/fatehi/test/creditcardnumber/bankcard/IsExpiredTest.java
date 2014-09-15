@@ -28,7 +28,7 @@ import org.threeten.bp.YearMonth;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.ChronoUnit;
 
-import us.fatehi.creditcardnumber.bankcard.ExpirationDate;
+import us.fatehi.creditcardnumber.ExpirationDate;
 
 public class IsExpiredTest
 {

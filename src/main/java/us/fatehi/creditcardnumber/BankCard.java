@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber.bankcard;
+package us.fatehi.creditcardnumber;
 
 
 import java.io.Serializable;
@@ -191,7 +191,7 @@ public class BankCard
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.bankcard.Name#getFullName()
+   * @see us.fatehi.creditcardnumber.Name#getFullName()
    */
   public String getCardHolderName()
   {
@@ -209,7 +209,7 @@ public class BankCard
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.bankcard.ExpirationDate#getExpirationDateAsDate()
+   * @see us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsDate()
    */
   public Date getExpirationDateAsDate()
   {

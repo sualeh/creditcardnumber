@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber.bankcard;
+package us.fatehi.creditcardnumber;
 
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -25,7 +25,6 @@ import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.length;
 import static org.apache.commons.lang3.StringUtils.right;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import us.fatehi.creditcardnumber.BaseRawData;
 
 /**
  * Parses and represents the primary account number of the bank card.
@@ -206,7 +205,7 @@ public class AccountNumber
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.bankcard.PrimaryAccountNumber#isPassesLuhnCheck
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isPassesLuhnCheck
    *      ()
    */
   @Override

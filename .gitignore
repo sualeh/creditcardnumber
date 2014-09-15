@@ -3,5 +3,3 @@
 .classpath
 *.launch
 /target
-src/main/java/com
-/bin

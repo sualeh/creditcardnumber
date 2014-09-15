@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber.bankcard;
+package us.fatehi.creditcardnumber;
 
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
@@ -31,8 +31,6 @@ import org.threeten.bp.YearMonth;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.ChronoUnit;
-
-import us.fatehi.creditcardnumber.BaseRawData;
 
 /**
  * Parses and represents a card expiration date.

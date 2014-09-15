@@ -27,10 +27,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import us.fatehi.creditcardnumber.bankcard.AccountNumber;
-import us.fatehi.creditcardnumber.bankcard.BankCard;
-import us.fatehi.creditcardnumber.bankcard.PrimaryAccountNumber;
-
 /**
  * Credit Card Number console application.
  */
