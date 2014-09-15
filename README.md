@@ -1,6 +1,6 @@
-# Magnetic Track Parser
+# Credit Card Number
 
-*Magnetic Track Parser* is a Java 7 library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
+*Credit Card Number* is a Java 7 library that can parse magnetic track data from a bank issued credit card, such as might be returned from a USB magnetic card stripe reader. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
 
 See the article on [Magnetic stripe card] on Wikipedia for information about the format of track data.
 
@@ -12,7 +12,7 @@ You can download the [jar on the Maven Central Repository].
 
 ## Maven Build
 
-To use *Magnetic Track Parser* in your Maven build, include the following dependency. No repositories references are needed, since the jars are in the Maven Central Repository.
+To use *Credit Card Number* in your Maven build, include the following dependency. No repositories references are needed, since the jars are in the Maven Central Repository.
 ```xml
 <dependency>
     <groupId>us.fatehi</groupId>

@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -37,7 +37,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = null;
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawTrackData());
+    assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue(!pan.hasPrimaryAccountNumber());
   }
 
@@ -46,7 +46,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "\t\t";
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawTrackData());
+    assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue(!pan.hasPrimaryAccountNumber());
   }
 
@@ -55,7 +55,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "5266092201416173";
     final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawTrackData());
+    assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue("Should not pass Luhn check", !pan.isPassesLuhnCheck());
     check(rawAccountNumber, pan, rawAccountNumber);
   }
@@ -83,7 +83,7 @@ public class PrimaryAccountNumberTest
                      final PrimaryAccountNumber pan,
                      final String accountNumber)
   {
-    assertEquals(rawAccountNumber, pan.getRawTrackData());
+    assertEquals(rawAccountNumber, pan.getRawData());
     assertEquals(accountNumber, pan.getAccountNumber());
     assertEquals(CardBrand.MasterCard, pan.getCardBrand());
     assertEquals(MajorIndustryIdentifier.mii_5,

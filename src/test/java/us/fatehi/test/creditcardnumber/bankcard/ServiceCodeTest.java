@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -38,7 +38,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = null;
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should not have service code", !serviceCode.hasServiceCode());
   }
 
@@ -47,7 +47,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "\t\t";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should not have service code", !serviceCode.hasServiceCode());
   }
 
@@ -56,7 +56,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "AQW";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should not have service code", !serviceCode.hasServiceCode());
   }
 
@@ -65,7 +65,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "101";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should have service code", serviceCode.hasServiceCode());
     assertEquals(ServiceCode1.v_1, serviceCode.getServiceCode1());
     assertEquals(ServiceCode2.v_0, serviceCode.getServiceCode2());
@@ -77,7 +77,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "222 ";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should have service code", serviceCode.hasServiceCode());
     assertEquals(ServiceCode1.v_2, serviceCode.getServiceCode1());
     assertEquals(ServiceCode2.v_2, serviceCode.getServiceCode2());
@@ -89,7 +89,7 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "52525";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawTrackData());
+    assertEquals(rawServiceCode, serviceCode.getRawData());
     assertTrue("Should have service code", serviceCode.hasServiceCode());
     assertEquals(ServiceCode1.v_5, serviceCode.getServiceCode1());
     assertEquals(ServiceCode2.v_2, serviceCode.getServiceCode2());

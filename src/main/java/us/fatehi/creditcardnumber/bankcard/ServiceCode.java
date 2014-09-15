@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -21,8 +21,8 @@ package us.fatehi.creditcardnumber.bankcard;
 
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import us.fatehi.creditcardnumber.BaseTrackData;
-import us.fatehi.creditcardnumber.TrackData;
+import us.fatehi.creditcardnumber.BaseRawData;
+import us.fatehi.creditcardnumber.RawData;
 
 /**
  * @see <a
@@ -31,7 +31,7 @@ import us.fatehi.creditcardnumber.TrackData;
  * @author Sualeh Fatehi
  */
 public class ServiceCode
-  extends BaseTrackData
+  extends BaseRawData
 {
 
   private static final long serialVersionUID = -5127753346282374841L;
@@ -100,12 +100,12 @@ public class ServiceCode
   }
 
   /**
-   * @see TrackData#exceedsMaximumLength()
+   * @see RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return trimToEmpty(getRawTrackData()).length() > 3;
+    return trimToEmpty(getRawData()).length() > 3;
   }
 
   /**

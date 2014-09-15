@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -23,13 +23,13 @@ package us.fatehi.creditcardnumber.bankcard;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
-import us.fatehi.creditcardnumber.BaseTrackData;
+import us.fatehi.creditcardnumber.BaseRawData;
 
 /**
  * Parses and represents the cardholder's name.
  */
 public class Name
-  extends BaseTrackData
+  extends BaseRawData
 {
 
   private static final long serialVersionUID = 5843389621643018055L;
@@ -43,6 +43,21 @@ public class Name
   public Name()
   {
     this(null);
+  }
+
+  /**
+   * Name from first and last.
+   * 
+   * @param firstName
+   *        First name.
+   * @param lastName
+   *        Last name.
+   */
+  public Name(String firstName, String lastName)
+  {
+    super(null);
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   /**
@@ -105,12 +120,12 @@ public class Name
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.TrackData#exceedsMaximumLength()
+   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return trimToEmpty(getRawTrackData()).length() > 26;
+    return trimToEmpty(getRawData()).length() > 26;
   }
 
   /**

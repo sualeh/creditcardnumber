@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -64,7 +64,7 @@ public class IsExpiredTest
   {
     final String rawExpirationDate = formatter.format(expectedExpirationDate);
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should have expiration date",
                expirationDate.hasExpirationDate());
     assertTrue(isExpired? expirationDate.isExpired(): !expirationDate

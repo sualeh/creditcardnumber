@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -32,13 +32,13 @@ import org.threeten.bp.ZoneId;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.temporal.ChronoUnit;
 
-import us.fatehi.creditcardnumber.BaseTrackData;
+import us.fatehi.creditcardnumber.BaseRawData;
 
 /**
  * Parses and represents a card expiration date.
  */
 public class ExpirationDate
-  extends BaseTrackData
+  extends BaseRawData
 {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter
@@ -113,12 +113,12 @@ public class ExpirationDate
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.TrackData#exceedsMaximumLength()
+   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
   {
-    return trimToEmpty(getRawTrackData()).length() > 4;
+    return trimToEmpty(getRawData()).length() > 4;
   }
 
   /**

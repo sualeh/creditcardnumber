@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Credit Card Number
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -30,15 +30,15 @@ import org.threeten.bp.format.DateTimeFormatter;
  * number, cardholder's name, expiration date, and service code.
  */
 public class BankCard
-implements Serializable
+  implements Serializable
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
   protected static final DateTimeFormatter formatter = DateTimeFormatter
-      .ofPattern("MMMM yyyy");
+    .ofPattern("MMMM yyyy");
 
-  private final PrimaryAccountNumber pan;
+  private final AccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
@@ -57,7 +57,7 @@ implements Serializable
    * @param pan
    *        Primary account number
    */
-  public BankCard(final PrimaryAccountNumber pan)
+  public BankCard(final AccountNumber pan)
   {
     this(pan, null);
   }
@@ -70,7 +70,7 @@ implements Serializable
    * @param expirationDate
    *        Card expiration date
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate)
   {
     this(pan, expirationDate, null);
@@ -86,7 +86,7 @@ implements Serializable
    * @param name
    *        Cardholder name
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name)
   {
@@ -105,7 +105,7 @@ implements Serializable
    * @param serviceCode
    *        Service code
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name,
                   final ServiceCode serviceCode)
@@ -214,15 +214,6 @@ implements Serializable
   }
 
   /**
-   * @return
-   * @see us.fatehi.creditcardnumber.bankcard.PrimaryAccountNumber#getAccountNumber()
-   */
-  public String getAccountNumber()
-  {
-    return pan.getAccountNumber();
-  }
-
-  /**
    * @see us.fatehi.creditcardnumber.bankcard.Name#getFullName()
    */
   public String getCardHolderName()
@@ -263,7 +254,7 @@ implements Serializable
    *
    * @return Primary account number.
    */
-  public PrimaryAccountNumber getPrimaryAccountNumber()
+  public AccountNumber getAccountNumber()
   {
     return pan;
   }
@@ -297,7 +288,7 @@ implements Serializable
     final int prime = 31;
     int result = 1;
     result = prime * result
-        + (expirationDate == null? 0: expirationDate.hashCode());
+             + (expirationDate == null? 0: expirationDate.hashCode());
     result = prime * result + (name == null? 0: name.hashCode());
     result = prime * result + (pan == null? 0: pan.hashCode());
     result = prime * result + (serviceCode == null? 0: serviceCode.hashCode());
@@ -373,7 +364,7 @@ implements Serializable
     {
       buffer.append("  Expiration Date: ");
       buffer.append(formatter.format(expirationDate.getExpirationDate()))
-      .append(NEWLINE);
+        .append(NEWLINE);
       buffer.append("    Is Expired: ");
       buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
     }

@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -36,7 +36,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = null;
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue(!expirationDate.hasExpirationDate());
   }
 
@@ -45,7 +45,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "\t\t";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -55,7 +55,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "AQW";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -65,7 +65,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "11";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -75,7 +75,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "8888";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -85,7 +85,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "121212";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -95,7 +95,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "1313";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should not have expiration date",
                !expirationDate.hasExpirationDate());
   }
@@ -105,7 +105,7 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "1212";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawTrackData());
+    assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should have expiration date",
                expirationDate.hasExpirationDate());
     assertEquals(YearMonth.of(2012, 12), expirationDate.getExpirationDate());

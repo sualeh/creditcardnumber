@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -20,50 +20,31 @@
 package us.fatehi.creditcardnumber;
 
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import java.io.Serializable;
 
-import java.util.regex.Pattern;
-
-public abstract class BaseTrackData
-  implements TrackData
+public interface RawData
+  extends Serializable
 {
 
-  private static final long serialVersionUID = 7821463290736676016L;
-
-  protected static final Pattern non_digit = Pattern.compile("[^0-9]");
-
-  private final String rawTrackData;
-
-  protected BaseTrackData(final String rawTrackData)
-  {
-    this.rawTrackData = rawTrackData;
-  }
+  /**
+   * Whether the track data exceeds the maximum length allowed.
+   *
+   * @return True if too long
+   */
+  boolean exceedsMaximumLength();
 
   /**
-   * @see TrackData#getRawTrackData()
+   * Raw track data.
+   *
+   * @return Raw track data
    */
-  @Override
-  public String getRawTrackData()
-  {
-    return rawTrackData;
-  }
+  String getRawData();
 
   /**
-   * @see TrackData#hasRawTrackData()
+   * Whether raw track data is present.
+   *
+   * @return True if raw track data is available.
    */
-  @Override
-  public boolean hasRawTrackData()
-  {
-    return !isBlank(rawTrackData);
-  }
-
-  /**
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString()
-  {
-    return rawTrackData;
-  }
+  boolean hasRawData();
 
 }

@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Magnetic  Parser
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -35,7 +35,7 @@ public class NameTest
   {
     final String rawName = null;
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertTrue("Should not have name", !name.hasName());
   }
 
@@ -44,7 +44,7 @@ public class NameTest
   {
     final String rawName = "\t\t";
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertTrue("Should not have name", !name.hasName());
   }
 
@@ -53,7 +53,7 @@ public class NameTest
   {
     final String rawName = " /                        ";
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertTrue("Should not have name", !name.hasName());
   }
 
@@ -63,7 +63,7 @@ public class NameTest
     final String rawName = "SUALEH";
     final Name name = new Name(rawName);
     assertTrue("Should have name", name.hasName());
-    assertEquals("SUALEH", name.getRawTrackData());
+    assertEquals("SUALEH", name.getRawData());
     assertEquals("", name.getFirstName());
     assertEquals("Sualeh", name.getLastName());
     assertEquals("Sualeh", name.getFullName());
@@ -75,7 +75,7 @@ public class NameTest
     final String rawName = "FATEHI/SUALEH";
     final Name name = new Name(rawName);
     assertTrue("Does not have name", name.hasName());
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertEquals("Sualeh", name.getFirstName());
     assertEquals("Fatehi", name.getLastName());
     assertEquals("Sualeh Fatehi", name.getFullName());
@@ -87,7 +87,7 @@ public class NameTest
     final String rawName = "FATEHI/SUALEH             ";
     final Name name = new Name(rawName);
     assertTrue("Does not have name", name.hasName());
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertEquals("Sualeh", name.getFirstName());
     assertEquals("Fatehi", name.getLastName());
     assertEquals("Sualeh Fatehi", name.getFullName());
@@ -99,7 +99,7 @@ public class NameTest
     final String rawName = "MICHAELS OPEN VALUE CARD  ";
     final Name name = new Name(rawName);
     assertTrue("Should have name", name.hasName());
-    assertEquals(rawName, name.getRawTrackData());
+    assertEquals(rawName, name.getRawData());
     assertEquals("", name.getFirstName());
     assertEquals("Michaels Open Value Card", name.getLastName());
     assertEquals("Michaels Open Value Card", name.getFullName());

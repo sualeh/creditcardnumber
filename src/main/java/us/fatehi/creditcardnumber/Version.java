@@ -1,7 +1,7 @@
 /*
  *
- * Magnetic Track Parser
- * https://github.com/sualeh/magnetictrackparser
+ * Credit Card Number
+ * https://github.com/sualeh/credit_card_number
  * Copyright (c) 2014, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
@@ -28,7 +28,7 @@ public class Version
 
   public static void main(final String[] arguments)
   {
-    final Package pkg = Package.getPackage("us.fatehi.magnetictrack");
+    final Package pkg = Package.getPackage("us.fatehi.creditcardnumber");
     if (pkg != null)
     {
       System.out.println(String.format("%s, v%s%n%s",
