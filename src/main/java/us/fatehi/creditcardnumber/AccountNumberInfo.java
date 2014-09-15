@@ -32,7 +32,7 @@ public final class AccountNumberInfo
   private final CardBrand cardBrand;
   private final boolean passesLuhnCheck;
   private final int accountNumberLength;
-  private final boolean exceedsMaximumLength;
+  private final boolean isLengthValid;
 
   public AccountNumberInfo(final PrimaryAccountNumber accountNumber)
   {
@@ -45,7 +45,7 @@ public final class AccountNumberInfo
       cardBrand = accountNumber.getCardBrand();
       passesLuhnCheck = accountNumber.passesLuhnCheck();
       accountNumberLength = accountNumber.getAccountNumberLength();
-      exceedsMaximumLength = accountNumber.exceedsMaximumLength();
+      isLengthValid = accountNumber.isLengthValid();
     }
     else
     {
@@ -55,17 +55,8 @@ public final class AccountNumberInfo
       cardBrand = CardBrand.unknown;
       passesLuhnCheck = false;
       accountNumberLength = -1;
-      exceedsMaximumLength = false;
+      isLengthValid = false;
     }
-  }
-
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#exceedsMaximumLength()
-   */
-  @Override
-  public boolean exceedsMaximumLength()
-  {
-    return exceedsMaximumLength;
   }
 
   /**
@@ -129,6 +120,15 @@ public final class AccountNumberInfo
   public boolean hasPrimaryAccountNumber()
   {
     return false;
+  }
+
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isValidLength()
+   */
+  @Override
+  public boolean isLengthValid()
+  {
+    return isLengthValid;
   }
 
   /**

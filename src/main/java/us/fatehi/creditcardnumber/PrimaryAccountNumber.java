@@ -30,16 +30,13 @@ import java.io.Serializable;
  * @see <a
  *      href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
  *      do you detect Credit card type based on number?</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
+ *      Algorithm</a>
  * @author Sualeh Fatehi
  */
 public interface PrimaryAccountNumber
   extends Serializable
 {
-
-  /**
-   * Whether the account number exceeds the maximum length.
-   */
-  public abstract boolean exceedsMaximumLength();
 
   /**
    * Gets the primary account number of the bank card.
@@ -98,6 +95,11 @@ public interface PrimaryAccountNumber
    *         available.
    */
   public abstract boolean hasPrimaryAccountNumber();
+
+  /**
+   * Whether the account number has a valid length.
+   */
+  public abstract boolean isLengthValid();
 
   /**
    * Checks whether the primary account number passes the Luhn check.
