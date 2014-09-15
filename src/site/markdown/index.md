@@ -4,8 +4,7 @@
 
 ## Download
 
-You can download the 
-[jar on the Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22credit_card_number%22).
+You can [download the jar on the Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22credit_card_number%22).
 
 ## Maven Build
 
