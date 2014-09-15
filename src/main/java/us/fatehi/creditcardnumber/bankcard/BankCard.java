@@ -308,12 +308,16 @@ public class BankCard
     {
       buffer.append("  Primary Account Number: ");
       buffer.append(pan).append(NEWLINE);
+      buffer.append("  Primary Account Number (Secure): ");
+      buffer.append(new AccountNumberInfo(pan)).append(NEWLINE);      
       buffer.append("    MII: ");
       buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
       buffer.append("    IIN: ");
       buffer.append(pan.getIssuerIdentificationNumber()).append(NEWLINE);
       buffer.append("    Card Brand: ");
       buffer.append(pan.getCardBrand()).append(NEWLINE);
+      buffer.append("    Last Four Digits: ");
+      buffer.append(pan.getLastFourDigits()).append(NEWLINE);
       buffer.append("    Passes Luhn Check: ");
       buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
     }

@@ -40,27 +40,12 @@ public class Main
   public static void main(final String[] args)
     throws Exception
   {
-    Version.main(new String[0]);
-
     final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     while (true)
     {
-      System.out.println("1. Get bank card information from card number");
-      System.out.println("0. Quit");
-      System.out.print("Choice: ");
-      final int choice = toInt(in.readLine(), 0);
-      switch (choice)
-      {
-        case 0:
-          System.exit(0);
-          break;
-        case 1:
-          getBankCardInformation(in);
-          break;
-        default:
-          break;
-      }
+      System.out.println("Press Ctrl-C to quit");
+      getBankCardInformation(in);
     }
 
   }
@@ -70,14 +55,8 @@ public class Main
   {
     while (true)
     {
-      System.out.println("(Type 0 to return to main menu)");
       System.out.print("Bank Card Number: ");
       final String line = in.readLine();
-      final int choice = toInt(line, -1);
-      if (choice == 0)
-      {
-        return;
-      }
       if (!isBlank(line))
       {
         final PrimaryAccountNumber pan = new AccountNumber(line);
