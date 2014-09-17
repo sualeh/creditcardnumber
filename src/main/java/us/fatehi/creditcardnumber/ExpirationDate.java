@@ -21,7 +21,9 @@ package us.fatehi.creditcardnumber;
 
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static us.fatehi.creditcardnumber.Utility.non_digit;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.threeten.bp.Instant;
@@ -37,6 +39,7 @@ import org.threeten.bp.temporal.ChronoUnit;
  */
 public final class ExpirationDate
   extends BaseRawData
+  implements Serializable
 {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter

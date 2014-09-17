@@ -25,6 +25,7 @@ import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.length;
 import static org.apache.commons.lang3.StringUtils.right;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static us.fatehi.creditcardnumber.Utility.non_digit;
 
 import java.util.Arrays;
 
@@ -191,6 +192,16 @@ public final class AccountNumber
   public boolean isLengthValid()
   {
     return Arrays.asList(13, 14, 15, 16, 19).contains(getAccountNumberLength());
+  }
+
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isPrimaryAccountNumberValid()
+   */
+  @Override
+  public boolean isPrimaryAccountNumberValid()
+  {
+    return hasPrimaryAccountNumber() && isLengthValid() && passesLuhnCheck()
+           && cardBrand != null && cardBrand != CardBrand.Unknown;
   }
 
   /**

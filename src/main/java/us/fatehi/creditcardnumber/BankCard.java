@@ -176,7 +176,7 @@ public final class BankCard
   /**
    * Gets the primary account number for the card, if available.
    *
-   * @return Primary account number.
+   * @return Primary account number. Null if not available.
    */
   public String getAccountNumber()
   {
@@ -309,15 +309,17 @@ public final class BankCard
       buffer.append(pan).append(NEWLINE);
       buffer.append("  Primary Account Number (Secure): ");
       buffer.append(new AccountNumberInfo(pan)).append(NEWLINE);
-      buffer.append("    MII: ");
+      buffer.append("    Major Industry Identifier: ");
       buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
-      buffer.append("    IIN: ");
+      buffer.append("    Issuer Identification Number: ");
       buffer.append(pan.getIssuerIdentificationNumber()).append(NEWLINE);
       buffer.append("    Card Brand: ");
       buffer.append(pan.getCardBrand()).append(NEWLINE);
       buffer.append("    Last Four Digits: ");
       buffer.append(pan.getLastFourDigits()).append(NEWLINE);
-      buffer.append("    Passes Luhn Check: ");
+      buffer.append("    Passes Luhn Check? ");
+      buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
+      buffer.append("    Is Primary Account Number Valid? ");
       buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
     }
     if (hasExpirationDate())

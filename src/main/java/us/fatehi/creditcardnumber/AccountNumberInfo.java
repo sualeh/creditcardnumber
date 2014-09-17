@@ -33,6 +33,7 @@ public final class AccountNumberInfo
   private final boolean passesLuhnCheck;
   private final int accountNumberLength;
   private final boolean isLengthValid;
+  private final boolean isPrimaryAccountNumberValid;
 
   public AccountNumberInfo(final PrimaryAccountNumber accountNumber)
   {
@@ -46,16 +47,18 @@ public final class AccountNumberInfo
       passesLuhnCheck = accountNumber.passesLuhnCheck();
       accountNumberLength = accountNumber.getAccountNumberLength();
       isLengthValid = accountNumber.isLengthValid();
+      isPrimaryAccountNumberValid = accountNumber.isPrimaryAccountNumberValid();
     }
     else
     {
       majorIndustryIdentifier = MajorIndustryIdentifier.unknown;
       issuerIdentificationNumber = "";
       lastFourDigits = "";
-      cardBrand = CardBrand.unknown;
+      cardBrand = CardBrand.Unknown;
       passesLuhnCheck = false;
       accountNumberLength = -1;
       isLengthValid = false;
+      isPrimaryAccountNumberValid = false;
     }
   }
 
@@ -129,6 +132,15 @@ public final class AccountNumberInfo
   public boolean isLengthValid()
   {
     return isLengthValid;
+  }
+
+  /**
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isPrimaryAccountNumberValid()
+   */
+  @Override
+  public boolean isPrimaryAccountNumberValid()
+  {
+    return isPrimaryAccountNumberValid;
   }
 
   /**

@@ -23,15 +23,20 @@ package us.fatehi.creditcardnumber;
 import java.util.regex.Pattern;
 
 /**
+ * Card network that issued the bank card.
+ *
  * @see <a
  *      href="http://www.regular-expressions.info/creditcard.html">Finding
  *      or Verifying Credit Card Numbers</a>
+ * @see <a
+ *      href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
+ *      do you detect Credit card type based on number?</a>
  * @author Sualeh Fatehi
  */
 public enum CardBrand
 {
 
-  unknown(Pattern.compile("^unknown$")),
+  Unknown(Pattern.compile("^unknown$")),
   Visa(Pattern.compile("^4[0-9]{6,}$")),
   // MasterCard numbers start with the numbers 51 through 55, but this
   // will only detect MasterCard credit cards; there are other cards
@@ -51,7 +56,7 @@ public enum CardBrand
   {
     if (accountNumber == null)
     {
-      return unknown;
+      return Unknown;
     }
     for (final CardBrand cardBrand: values())
     {
@@ -60,7 +65,7 @@ public enum CardBrand
         return cardBrand;
       }
     }
-    return unknown;
+    return Unknown;
   }
 
   private final Pattern pattern;

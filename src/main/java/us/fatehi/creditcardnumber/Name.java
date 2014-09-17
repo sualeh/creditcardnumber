@@ -31,8 +31,6 @@ public final class Name
   extends BaseRawData
 {
 
-  private static final long serialVersionUID = 5843389621643018055L;
-
   private final String firstName;
   private final String lastName;
 

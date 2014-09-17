@@ -20,28 +20,11 @@
 package us.fatehi.creditcardnumber;
 
 
-public interface RawData
+import java.util.regex.Pattern;
+
+public interface Utility
 {
 
-  /**
-   * Whether the raw data exceeds the maximum length allowed.
-   *
-   * @return True if too long
-   */
-  boolean exceedsMaximumLength();
-
-  /**
-   * Raw data.
-   *
-   * @return Raw data
-   */
-  String getRawData();
-
-  /**
-   * Whether raw data is present.
-   *
-   * @return True if raw data is available.
-   */
-  boolean hasRawData();
+  Pattern non_digit = Pattern.compile("[^0-9]");
 
 }

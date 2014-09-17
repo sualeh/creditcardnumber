@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>us.fatehi</groupId>
 	<artifactId>credit_card_number</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<packaging>jar</packaging>
 	<name>Credit Card Number</name>
 	<description>Credit Card Number is a Java 7 library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.</description>
@@ -65,7 +65,7 @@
 		</dependency>
 	</dependencies>
 	<properties>
-		<project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<skip.signing.artifacts>true</skip.signing.artifacts>
 	</properties>
 	<build>

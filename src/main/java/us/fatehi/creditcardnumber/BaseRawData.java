@@ -22,17 +22,11 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-import java.util.regex.Pattern;
-
 import javax.xml.crypto.Data;
 
 abstract class BaseRawData
   implements RawData
 {
-
-  private static final long serialVersionUID = 7821463290736676016L;
-
-  protected static final Pattern non_digit = Pattern.compile("[^0-9]");
 
   private final String rawData;
 

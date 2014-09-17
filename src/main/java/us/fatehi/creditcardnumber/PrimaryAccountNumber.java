@@ -24,14 +24,9 @@ import java.io.Serializable;
 
 /**
  * Represents a bank card number.
- * 
+ *
  * @see <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank
  *      card number</a>
- * @see <a
- *      href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
- *      do you detect Credit card type based on number?</a>
- * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
- *      Algorithm</a>
  * @author Sualeh Fatehi
  */
 public interface PrimaryAccountNumber
@@ -39,7 +34,7 @@ public interface PrimaryAccountNumber
 {
 
   /**
-   * Gets the primary account number of the bank card.
+   * Gets the primary account number (PAN) of the bank card.
    *
    * @return Primary account number.
    */
@@ -72,7 +67,8 @@ public interface PrimaryAccountNumber
   public abstract String getIssuerIdentificationNumber();
 
   /**
-   * The last 4 digits of the PAN, for card identification purposes.
+   * The last 4 digits of the primary account number (PAN), for card
+   * identification purposes.
    *
    * @return Last 4 digits of PAN
    */
@@ -102,9 +98,18 @@ public interface PrimaryAccountNumber
   public abstract boolean isLengthValid();
 
   /**
+   * Whether the primary account number (PAN) is valid.
+   *
+   * @return True if the primary account number (PAN) is valids
+   */
+  public abstract boolean isPrimaryAccountNumberValid();
+
+  /**
    * Checks whether the primary account number passes the Luhn check.
    *
    * @return True if the primary account number passes the Luhn check.
+   * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
+   *      Algorithm</a>
    */
   public abstract boolean passesLuhnCheck();
 
