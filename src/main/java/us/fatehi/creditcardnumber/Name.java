@@ -24,13 +24,18 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
+import java.io.Serializable;
+
 /**
  * Parses and represents the cardholder's name.
  */
 public final class Name
   extends BaseRawData
+  implements Serializable
 {
 
+  private static final long serialVersionUID = 6735627336462134892L;
+  
   private final String firstName;
   private final String lastName;
 
