@@ -53,5 +53,6 @@ Bank Card Information:
 
 If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
 ```
-final PrimaryAccountNumber pan = new AccountNumberInfo(new AccountNumber("5266-0922-0141-6174"));
+final PrimaryAccountNumber pan = 
+  new AccountNumberInfo(new AccountNumber("5266-0922-0141-6174"));
 ```
