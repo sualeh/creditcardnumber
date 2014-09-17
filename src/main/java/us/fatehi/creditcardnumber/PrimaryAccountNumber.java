@@ -57,7 +57,7 @@ public interface PrimaryAccountNumber
   /**
    * The first six digits of the PAN are taken from the IIN, or Issuer
    * Identification Number, belonging to the issuing bank (IINs were
-   * previously known as BIN — Bank Identification Numbers — so you may
+   * previously known as BIN (Bank Identification Numbers) so you may
    * see references to that terminology in some documents). These six
    * digits are subject to an international standard, ISO/IEC 7812, and
    * can be used to determine the type of card from the number.
