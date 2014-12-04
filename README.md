@@ -1,6 +1,6 @@
 # Credit Card Number
 
-*Credit Card Number* is a Java 7 library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
+*Credit Card Number* is a Java 6 library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Maven is needed for a build.
 
 The goal of this project is to use publicly available documentation to create a reliable Java library to provide information about credit card numbers.
 
@@ -22,7 +22,7 @@ To use *Credit Card Number* in your Maven build, include the following dependenc
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>1.1</version>
+    <version>1.3</version>
 </dependency>
 ```
 
