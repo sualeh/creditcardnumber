@@ -41,6 +41,7 @@ public final class BankCard
   private final PrimaryAccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
+  private final ServiceCode serviceCode;
 
   /**
    * No bank card.
@@ -89,6 +90,24 @@ public final class BankCard
                   final ExpirationDate expirationDate,
                   final Name name)
   {
+    this(pan, expirationDate, name, null);
+  }
+
+  /**
+   * Construct a bank card from the constituent parts.
+   *
+   * @param pan
+   *        Primary account number
+   * @param expirationDate
+   *        Card expiration date
+   * @param name
+   *        Cardholder name
+   */
+  public BankCard(final PrimaryAccountNumber pan,
+                  final ExpirationDate expirationDate,
+                  final Name name,
+                  final ServiceCode serviceCode)
+  {
     if (pan != null)
     {
       this.pan = pan;
@@ -114,6 +133,15 @@ public final class BankCard
     else
     {
       this.expirationDate = new ExpirationDate();
+    }
+
+    if (serviceCode != null)
+    {
+      this.serviceCode = serviceCode;
+    }
+    else
+    {
+      this.serviceCode = new ServiceCode();
     }
   }
 
@@ -237,6 +265,14 @@ public final class BankCard
   }
 
   /**
+   * @return the serviceCode
+   */
+  public ServiceCode getServiceCode()
+  {
+    return serviceCode;
+  }
+
+  /**
    * Checks whether the card expiration date is available.
    *
    * @return True if the card expiration date is available.
@@ -281,6 +317,11 @@ public final class BankCard
   public boolean hasPrimaryAccountNumber()
   {
     return pan != null && pan.hasPrimaryAccountNumber();
+  }
+
+  public boolean hasServiceCode()
+  {
+    return serviceCode != null && serviceCode.hasServiceCode();
   }
 
   /**
@@ -334,6 +375,18 @@ public final class BankCard
     {
       buffer.append("  Name: ");
       buffer.append(getName()).append(NEWLINE);
+    }
+    if (hasServiceCode())
+    {
+      final ServiceCode serviceCode = getServiceCode();
+      buffer.append("  Service Code: ");
+      buffer.append(NEWLINE);
+      buffer.append("    ");
+      buffer.append(serviceCode.getServiceCode1()).append(NEWLINE);
+      buffer.append("    ");
+      buffer.append(serviceCode.getServiceCode2()).append(NEWLINE);
+      buffer.append("    ");
+      buffer.append(serviceCode.getServiceCode3()).append(NEWLINE);
     }
 
     return buffer.toString();
