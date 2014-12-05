@@ -2,7 +2,7 @@
 
 *Credit Card Number* is a Java library that can provide details of a bank issued credit card number. 
 
-All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. Maven is needed for a build.
+All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. In order to be Java 8 ready, Credit Card Number depends on Stephen Colebourne's [ThreeTen backport project](https://github.com/ThreeTen/threetenbp), a port of [JSR 310](https://jcp.org/en/jsr/detail?id=310) to Java 6. 
 
 The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about credit card numbers.
 
