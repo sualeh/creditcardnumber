@@ -20,7 +20,7 @@ You can [download the jar on the Maven Central Repository](http://search.maven.o
 ## Maven Build
 
 To use *Credit Card Number* in your Maven build, include the following dependency. No repositories references are needed, since the jars are in the Maven Central Repository.
-```
+```xml
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
@@ -33,7 +33,7 @@ To use *Credit Card Number* in your Maven build, include the following dependenc
 ### How to Get Bank Card Information
 
 To get bank card information, use code like:
-```
+```java
 final PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
 final BankCard card = new BankCard(pan);
 System.out.println(card);
@@ -54,7 +54,7 @@ Bank Card Information:
 ### How to Secure the Credit Card Number
 
 If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
-```
+```java
 final PrimaryAccountNumber pan = 
   new AccountNumberInfo(new AccountNumber("5266-0922-0141-6174"));
 ```
