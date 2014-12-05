@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Credit card number : Java 6 library that can provide details of a bank issued credit card number">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Credit card number</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/sualeh/credit_card_number">View on GitHub</a>
+
+          <h1 id="project_title">Credit card number</h1>
+          <h2 id="project_tagline">Java 6 library that can provide details of a bank issued credit card number</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sualeh/credit_card_number/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sualeh/credit_card_number/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="credit-card-number" class="anchor" href="#credit-card-number" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credit Card Number</h1>
+
+<p><em>Credit Card Number</em> is a Java library that can provide details of a bank issued credit card number. </p>
+
+<p>All classes are immutable and thread-safe. The standard <code>toString()</code> function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. In order to be Java 8 ready, Credit Card Number depends on Stephen Colebourne's <a href="https://github.com/ThreeTen/threetenbp">ThreeTen backport project</a>, a port of <a href="https://jcp.org/en/jsr/detail?id=310">JSR 310</a> to Java 6. </p>
+
+<p>The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about credit card numbers.</p>
+
+<p>Some resources consulted are:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank card number</a></li>
+<li>
+<a href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How do you detect Credit card type based on number?</a><br>
+</li>
+<li><a href="http://www.regular-expressions.info/creditcard.html">Finding or Verifying Credit Card Numbers</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29">Major Industry Identifier</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn Algorithm</a></li>
+</ul>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>You can <a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22credit_card_number%22">download the jar on the Maven Central Repository</a>.</p>
+
+<h2>
+<a id="maven-build" class="anchor" href="#maven-build" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maven Build</h2>
+
+<p>To use <em>Credit Card Number</em> in your Maven build, include the following dependency. No repositories references are needed, since the jars are in the Maven Central Repository.</p>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;us.fatehi&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;credit_card_number&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;1.3&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<h3>
+<a id="how-to-get-bank-card-information" class="anchor" href="#how-to-get-bank-card-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Get Bank Card Information</h3>
+
+<p>To get bank card information, use code like:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-s">final</span> <span class="pl-stj">PrimaryAccountNumber</span> pan <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-stj">AccountNumber</span>(<span class="pl-s1"><span class="pl-pds">"</span>5266-0922-0141-6174<span class="pl-pds">"</span></span>);
+<span class="pl-s">final</span> <span class="pl-stj">BankCard</span> card <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-stj">BankCard</span>(pan);
+<span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(card);</pre></div>
+
+<p>and you will get this output:</p>
+
+<pre><code>Bank Card Information: 
+  Primary Account Number: 5266092201416174
+  Primary Account Number (Secure): MasterCard-6174
+    Major Industry Identifier: 5 - Banking and financial
+    Issuer Identification Number: 526609
+    Card Brand: MasterCard
+    Last Four Digits: 6174
+    Passes Luhn Check? Yes
+    Is Primary Account Number Valid? Yes
+</code></pre>
+
+<h3>
+<a id="how-to-secure-the-credit-card-number" class="anchor" href="#how-to-secure-the-credit-card-number" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Secure the Credit Card Number</h3>
+
+<p>If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-s">final</span> <span class="pl-stj">PrimaryAccountNumber</span> pan <span class="pl-k">=</span> 
+  <span class="pl-k">new</span> <span class="pl-stj">AccountNumberInfo</span>(<span class="pl-k">new</span> <span class="pl-stj">AccountNumber</span>(<span class="pl-s1"><span class="pl-pds">"</span>5266-0922-0141-6174<span class="pl-pds">"</span></span>));</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Credit card number maintained by <a href="https://github.com/sualeh">sualeh</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
