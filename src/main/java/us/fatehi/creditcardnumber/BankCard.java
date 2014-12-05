@@ -361,7 +361,7 @@ public final class BankCard
       buffer.append("    Passes Luhn Check? ");
       buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
       buffer.append("    Is Primary Account Number Valid? ");
-      buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
+      buffer.append(pan.isPrimaryAccountNumberValid()? "Yes": "No").append(NEWLINE);
     }
     if (hasExpirationDate())
     {
