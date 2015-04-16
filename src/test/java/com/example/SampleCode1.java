@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.test.creditcardnumber;
+package com.example;
 
 
 import us.fatehi.creditcardnumber.AccountNumber;
@@ -26,7 +26,7 @@ import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
 import us.fatehi.creditcardnumber.PrimaryAccountNumber;
 
-public class Example
+public class SampleCode1
 {
 
   public static void main(final String[] args)
