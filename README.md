@@ -26,7 +26,7 @@ To use *Credit Card Number* in your Maven build, include the following dependenc
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>1.6</version>
+    <version>1.7</version>
 </dependency>
 ```
 
