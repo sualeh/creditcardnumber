@@ -253,7 +253,14 @@ public final class ExpirationDate
   @Override
   public String toString()
   {
-    return getExpirationDateAsString();
+    if (hasExpirationDate())
+    {
+      return expirationDate.toString();
+    }
+    else
+    {
+      return "";
+    }
   }
 
 }
