@@ -32,9 +32,9 @@ public class SampleCode1
   public static void main(final String[] args)
   {
     final PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
-    final ExpirationDate expirationDate = new ExpirationDate(2015, 4);
+    final ExpirationDate expiration = new ExpirationDate(2015, 4);
     final Name name = new Name("Sualeh", "Fatehi");
-    final BankCard card = new BankCard(pan, expirationDate, name);
+    final BankCard card = new BankCard(pan, expiration, name);
     System.out.println(card);
   }
 

@@ -190,24 +190,6 @@ public final class ExpirationDate
   }
 
   /**
-   * Gets the card expiration date, as a String, in YYMM format. Returns
-   * an empty String if no date is available.
-   *
-   * @return Card expiration date.
-   */
-  public String getExpirationDateAsString()
-  {
-    if (hasExpirationDate())
-    {
-      return formatter.format(expirationDate);
-    }
-    else
-    {
-      return "";
-    }
-  }
-
-  /**
    * Checks whether the card expiration date is available.
    *
    * @return True if the card expiration date is available.

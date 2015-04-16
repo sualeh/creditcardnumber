@@ -229,14 +229,6 @@ public final class BankCard
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsString()
-   */
-  public String getExpirationDateAsString()
-  {
-    return expirationDate.getExpirationDateAsString();
-  }
-
-  /**
    * Gets the cardholder's name.
    *
    * @return Cardholder's name.
@@ -358,7 +350,7 @@ public final class BankCard
     if (hasExpirationDate())
     {
       buffer.append("  Expiration Date: ");
-      buffer.append(getExpirationDateAsString()).append(NEWLINE);
+      buffer.append(expirationDate).append(NEWLINE);
       buffer.append("    Is Expired: ");
       buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
     }

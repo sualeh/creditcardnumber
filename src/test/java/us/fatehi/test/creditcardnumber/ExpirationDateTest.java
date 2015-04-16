@@ -106,7 +106,6 @@ public class ExpirationDateTest
     final String rawExpirationDate = "1212";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
     assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertEquals(rawExpirationDate, expirationDate.getExpirationDateAsString());
     assertEquals("2012-12", expirationDate.toString());
     assertTrue("Should have expiration date",
                expirationDate.hasExpirationDate());

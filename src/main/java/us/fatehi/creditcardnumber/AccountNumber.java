@@ -35,7 +35,7 @@ import java.util.Arrays;
  */
 public final class AccountNumber
   extends BaseRawData
-  implements PrimaryAccountNumber
+  implements PrimaryAccountNumber, Comparable<AccountNumber>
 {
 
   private static final long serialVersionUID = -7012531091389412459L;
@@ -69,6 +69,27 @@ public final class AccountNumber
     passesLuhnCheck = luhnCheck();
     majorIndustryIdentifier = MajorIndustryIdentifier.from(accountNumber);
     cardBrand = CardBrand.from(accountNumber);
+  }
+
+  @Override
+  public int compareTo(final AccountNumber otherPan)
+  {
+    if (otherPan == null)
+    {
+      return 1;
+    }
+    else if (!hasPrimaryAccountNumber() && !otherPan.hasPrimaryAccountNumber())
+    {
+      return 0;
+    }
+    else if (hasPrimaryAccountNumber() && !otherPan.hasPrimaryAccountNumber())
+    {
+      return 1;
+    }
+    else
+    {
+      return accountNumber.compareTo(otherPan.accountNumber);
+    }
   }
 
   /**

@@ -38,7 +38,8 @@ public final class AccountNumberInfo
 
   public AccountNumberInfo(final PrimaryAccountNumber pan)
   {
-    super("");
+    super(null);
+
     final PrimaryAccountNumber accountNumber;
     if (pan == null)
     {
