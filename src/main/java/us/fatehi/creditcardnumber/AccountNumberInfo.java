@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -21,6 +21,7 @@ package us.fatehi.creditcardnumber;
 
 
 public final class AccountNumberInfo
+  extends BaseRawData
   implements PrimaryAccountNumber
 {
 
@@ -35,31 +36,33 @@ public final class AccountNumberInfo
   private final boolean isLengthValid;
   private final boolean isPrimaryAccountNumberValid;
 
-  public AccountNumberInfo(final PrimaryAccountNumber accountNumber)
+  public AccountNumberInfo(final PrimaryAccountNumber pan)
   {
-    if (accountNumber != null)
+    super("");
+    final PrimaryAccountNumber accountNumber;
+    if (pan == null)
     {
-      majorIndustryIdentifier = accountNumber.getMajorIndustryIdentifier();
-      issuerIdentificationNumber = accountNumber
-        .getIssuerIdentificationNumber();
-      lastFourDigits = accountNumber.getLastFourDigits();
-      cardBrand = accountNumber.getCardBrand();
-      passesLuhnCheck = accountNumber.passesLuhnCheck();
-      accountNumberLength = accountNumber.getAccountNumberLength();
-      isLengthValid = accountNumber.isLengthValid();
-      isPrimaryAccountNumberValid = accountNumber.isPrimaryAccountNumberValid();
+      accountNumber = new AccountNumber();
     }
     else
     {
-      majorIndustryIdentifier = MajorIndustryIdentifier.unknown;
-      issuerIdentificationNumber = "";
-      lastFourDigits = "";
-      cardBrand = CardBrand.Unknown;
-      passesLuhnCheck = false;
-      accountNumberLength = -1;
-      isLengthValid = false;
-      isPrimaryAccountNumberValid = false;
+      accountNumber = pan;
     }
+
+    majorIndustryIdentifier = accountNumber.getMajorIndustryIdentifier();
+    issuerIdentificationNumber = accountNumber.getIssuerIdentificationNumber();
+    lastFourDigits = accountNumber.getLastFourDigits();
+    cardBrand = accountNumber.getCardBrand();
+    passesLuhnCheck = accountNumber.passesLuhnCheck();
+    accountNumberLength = accountNumber.getAccountNumberLength();
+    isLengthValid = accountNumber.isLengthValid();
+    isPrimaryAccountNumberValid = accountNumber.isPrimaryAccountNumberValid();
+  }
+
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return false;
   }
 
   /**
@@ -126,7 +129,7 @@ public final class AccountNumberInfo
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isValidLength()
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isLengthValid()
    */
   @Override
   public boolean isLengthValid()

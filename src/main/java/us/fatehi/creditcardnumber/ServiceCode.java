@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -39,7 +39,7 @@ public class ServiceCode
   private static final long serialVersionUID = -5127753346282374841L;
 
   private final String serviceCode;
-  private final ServiceCodeType serviceCode1;
+  private final ServiceCode1 serviceCode1;
   private final ServiceCode2 serviceCode2;
   private final ServiceCode3 serviceCode3;
 
@@ -53,7 +53,7 @@ public class ServiceCode
 
   /**
    * Service code from string.
-   * 
+   *
    * @param rawServiceCode
    *        Raw service code from magnetic track data.
    */
@@ -101,9 +101,6 @@ public class ServiceCode
     return true;
   }
 
-  /**
-   * @see TrackData#exceedsMaximumLength()
-   */
   @Override
   public boolean exceedsMaximumLength()
   {
@@ -112,7 +109,7 @@ public class ServiceCode
 
   /**
    * Gets the parsed service code.
-   * 
+   *
    * @return Service code.
    */
   public String getServiceCode()
@@ -122,17 +119,17 @@ public class ServiceCode
 
   /**
    * Gets the service code position 1 value.
-   * 
+   *
    * @return Service code position 1.
    */
-  public ServiceCodeType getServiceCode1()
+  public ServiceCode1 getServiceCode1()
   {
     return serviceCode1;
   }
 
   /**
    * Gets the service code position 2 value.
-   * 
+   *
    * @return Service code position 2.
    */
   public ServiceCode2 getServiceCode2()
@@ -142,7 +139,7 @@ public class ServiceCode
 
   /**
    * Gets the service code position 3 value.
-   * 
+   *
    * @return Service code position 3.
    */
   public ServiceCode3 getServiceCode3()
@@ -165,7 +162,7 @@ public class ServiceCode
   public boolean hasServiceCode()
   {
     return !(serviceCode1 == ServiceCode1.unknown
-             && serviceCode2 == ServiceCode2.unknown && serviceCode3 == ServiceCode3.unknown);
+             || serviceCode2 == ServiceCode2.unknown || serviceCode3 == ServiceCode3.unknown);
   }
 
   /**

@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -23,8 +23,6 @@ package us.fatehi.creditcardnumber;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.threeten.bp.format.DateTimeFormatter;
-
 /**
  * Represents a bank card, and contains information about the card
  * number, cardholder's name, expiration date, and service code.
@@ -34,9 +32,6 @@ public final class BankCard
 {
 
   private static final long serialVersionUID = 6253084852668206154L;
-
-  protected static final DateTimeFormatter formatter = DateTimeFormatter
-    .ofPattern("MMMM yyyy");
 
   private final PrimaryAccountNumber pan;
   private final Name name;
@@ -145,10 +140,6 @@ public final class BankCard
     }
   }
 
-  /*
-   * (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(final Object obj)
   {
@@ -208,14 +199,7 @@ public final class BankCard
    */
   public String getAccountNumber()
   {
-    if (pan.hasPrimaryAccountNumber())
-    {
-      return pan.getAccountNumber();
-    }
-    else
-    {
-      return null;
-    }
+    return pan.getAccountNumber();
   }
 
   /**
@@ -242,6 +226,14 @@ public final class BankCard
   public Date getExpirationDateAsDate()
   {
     return expirationDate.getExpirationDateAsDate();
+  }
+
+  /**
+   * @see us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsString()
+   */
+  public String getExpirationDateAsString()
+  {
+    return expirationDate.getExpirationDateAsString();
   }
 
   /**
@@ -334,9 +326,6 @@ public final class BankCard
     return expirationDate.isExpired();
   }
 
-  /**
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString()
   {
@@ -346,6 +335,8 @@ public final class BankCard
     buffer.append("Bank Card Information: ").append(NEWLINE);
     if (hasPrimaryAccountNumber())
     {
+      buffer.append("  Raw Account Number: ");
+      buffer.append(pan.getRawData()).append(NEWLINE);
       buffer.append("  Primary Account Number: ");
       buffer.append(pan).append(NEWLINE);
       buffer.append("  Primary Account Number (Secure): ");
@@ -361,13 +352,13 @@ public final class BankCard
       buffer.append("    Passes Luhn Check? ");
       buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
       buffer.append("    Is Primary Account Number Valid? ");
-      buffer.append(pan.isPrimaryAccountNumberValid()? "Yes": "No").append(NEWLINE);
+      buffer.append(pan.isPrimaryAccountNumberValid()? "Yes": "No")
+        .append(NEWLINE);
     }
     if (hasExpirationDate())
     {
       buffer.append("  Expiration Date: ");
-      buffer.append(formatter.format(expirationDate.getExpirationDate()))
-        .append(NEWLINE);
+      buffer.append(getExpirationDateAsString()).append(NEWLINE);
       buffer.append("    Is Expired: ");
       buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
     }

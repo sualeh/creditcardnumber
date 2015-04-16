@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -57,6 +57,17 @@ public class ServiceCodeTest
     final String rawServiceCode = "AQW";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
     assertEquals(rawServiceCode, serviceCode.getRawData());
+    assertTrue("Should not have service code", !serviceCode.hasServiceCode());
+  }
+
+  @Test
+  public void serviceCode_4()
+  {
+    final String rawServiceCode = "10";
+    final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
+    assertEquals(rawServiceCode, serviceCode.getRawData());
+    assertEquals(ServiceCode1.v_1, serviceCode.getServiceCode1());
+    assertEquals(ServiceCode2.v_0, serviceCode.getServiceCode2());
     assertTrue("Should not have service code", !serviceCode.hasServiceCode());
   }
 

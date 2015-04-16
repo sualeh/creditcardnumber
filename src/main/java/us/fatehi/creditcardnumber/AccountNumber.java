@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -22,8 +22,9 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.left;
-import static org.apache.commons.lang3.StringUtils.length;
+import static org.apache.commons.lang3.StringUtils.leftPad;
 import static org.apache.commons.lang3.StringUtils.right;
+import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.Utility.non_digit;
 
@@ -109,7 +110,7 @@ public final class AccountNumber
   @Override
   public boolean exceedsMaximumLength()
   {
-    return trimToEmpty(getRawData()).length() > 19;
+    return getAccountNumberLength() > 19;
   }
 
   /**
@@ -124,7 +125,7 @@ public final class AccountNumber
   @Override
   public int getAccountNumberLength()
   {
-    return length(accountNumber);
+    return accountNumber.length();
   }
 
   /**
@@ -142,7 +143,7 @@ public final class AccountNumber
   @Override
   public String getIssuerIdentificationNumber()
   {
-    return left(accountNumber, 6);
+    return rightPad(left(accountNumber, 6), 6, "0");
   }
 
   /**
@@ -151,7 +152,7 @@ public final class AccountNumber
   @Override
   public String getLastFourDigits()
   {
-    return right(accountNumber, 4);
+    return leftPad(right(accountNumber, 4), 4, "0");
   }
 
   /**
@@ -205,7 +206,7 @@ public final class AccountNumber
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isPassesLuhnCheck()
+   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#passesLuhnCheck()
    */
   @Override
   public boolean passesLuhnCheck()

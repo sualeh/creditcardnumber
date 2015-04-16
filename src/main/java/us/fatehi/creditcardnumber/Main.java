@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -35,11 +35,13 @@ public class Main
   public static void main(final String[] args)
     throws Exception
   {
+    Version.main(new String[0]);
+
     final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     while (true)
     {
-      System.out.println("Press Ctrl-C to quit");
+      System.out.println("** Press <Ctrl-C> to quit **");
       getBankCardInformation(in);
     }
 
@@ -50,7 +52,7 @@ public class Main
   {
     while (true)
     {
-      System.out.print("Bank Card Number: ");
+      System.out.print("Primary Account Number: ");
       final String line = in.readLine();
       if (!isBlank(line))
       {

@@ -17,31 +17,25 @@
  * Boston, MA 02111-1307, USA.
  *
  */
-package us.fatehi.creditcardnumber;
+package us.fatehi.test.creditcardnumber;
 
 
-public interface RawData
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.BankCard;
+import us.fatehi.creditcardnumber.ExpirationDate;
+import us.fatehi.creditcardnumber.Name;
+import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+
+public class Example
 {
 
-  /**
-   * Whether the raw data exceeds the maximum length allowed.
-   *
-   * @return True if too long
-   */
-  boolean exceedsMaximumLength();
-
-  /**
-   * Raw data.
-   *
-   * @return Raw data
-   */
-  String getRawData();
-
-  /**
-   * Whether raw data is present.
-   *
-   * @return True if raw data is available.
-   */
-  boolean hasRawData();
+  public static void main(final String[] args)
+  {
+    final PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+    final ExpirationDate expirationDate = new ExpirationDate(2015, 4);
+    final Name name = new Name("Sualeh", "Fatehi");
+    final BankCard card = new BankCard(pan, expirationDate, name);
+    System.out.println(card);
+  }
 
 }

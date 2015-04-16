@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -22,8 +22,6 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-import javax.xml.crypto.Data;
-
 abstract class BaseRawData
   implements RawData
 {
@@ -35,18 +33,12 @@ abstract class BaseRawData
     this.rawData = rawData;
   }
 
-  /**
-   * @see Data#getRawData()
-   */
   @Override
   public String getRawData()
   {
     return rawData;
   }
 
-  /**
-   * @see Data#hasRawData()
-   */
   @Override
   public boolean hasRawData()
   {

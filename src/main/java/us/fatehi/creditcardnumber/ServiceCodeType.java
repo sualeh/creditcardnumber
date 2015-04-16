@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -20,21 +20,21 @@
 package us.fatehi.creditcardnumber;
 
 
-public interface ServiceCodeType
+interface ServiceCodeType
 {
 
   /**
-   * Gets the service code value.
-   * 
-   * @return Service code value.
-   */
-  public int getValue();
-
-  /**
    * Gets the description.
-   * 
+   *
    * @return Description.
    */
   String getDescription();
+
+  /**
+   * Gets the service code value.
+   *
+   * @return Service code value.
+   */
+  int getValue();
 
 }

@@ -2,7 +2,7 @@
  *
  * Magnetic Track Parser
  * https://github.com/sualeh/magnetictrackparser
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -49,7 +49,7 @@ public enum ServiceCode1
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.ServiceCodeType#getDescription()
+   * @see ServiceCodeType#getDescription()
    */
   @Override
   public String getDescription()
@@ -61,7 +61,7 @@ public enum ServiceCode1
 
   /**
    * Gets the interchange rules.
-   * 
+   *
    * @return Interchange rules.
    */
   public String getInterchange()
@@ -71,7 +71,7 @@ public enum ServiceCode1
 
   /**
    * Gets the the technology.
-   * 
+   *
    * @return Technology.
    */
   public String getTechnology()
@@ -80,7 +80,7 @@ public enum ServiceCode1
   }
 
   /**
-   * @see us.fatehi.magnetictrack.bankcard.ServiceCodeType#getValue()
+   * @see ServiceCodeType#getValue()
    */
   @Override
   public int getValue()

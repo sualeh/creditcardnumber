@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -30,7 +30,7 @@ import java.io.Serializable;
  * @author Sualeh Fatehi
  */
 public interface PrimaryAccountNumber
-  extends Serializable
+  extends RawData, Serializable
 {
 
   /**
@@ -38,21 +38,21 @@ public interface PrimaryAccountNumber
    *
    * @return Primary account number.
    */
-  public abstract String getAccountNumber();
+  String getAccountNumber();
 
   /**
    * The length of the PAN.
    *
    * @return The length of the PAN
    */
-  public abstract int getAccountNumberLength();
+  int getAccountNumberLength();
 
   /**
    * Gets the the card brand.
    *
    * @return Card brand.
    */
-  public abstract CardBrand getCardBrand();
+  CardBrand getCardBrand();
 
   /**
    * The first six digits of the PAN are taken from the IIN, or Issuer
@@ -64,7 +64,7 @@ public interface PrimaryAccountNumber
    *
    * @return IIN, or Issuer Identification Number
    */
-  public abstract String getIssuerIdentificationNumber();
+  String getIssuerIdentificationNumber();
 
   /**
    * The last 4 digits of the primary account number (PAN), for card
@@ -72,7 +72,7 @@ public interface PrimaryAccountNumber
    *
    * @return Last 4 digits of PAN
    */
-  public abstract String getLastFourDigits();
+  String getLastFourDigits();
 
   /**
    * The first digit of a credit card number is the Major Industry
@@ -81,7 +81,7 @@ public interface PrimaryAccountNumber
    *
    * @return MII.
    */
-  public abstract MajorIndustryIdentifier getMajorIndustryIdentifier();
+  MajorIndustryIdentifier getMajorIndustryIdentifier();
 
   /**
    * Checks whether the primary account number for the card is
@@ -90,19 +90,19 @@ public interface PrimaryAccountNumber
    * @return True if the primary account number for the card is
    *         available.
    */
-  public abstract boolean hasPrimaryAccountNumber();
+  boolean hasPrimaryAccountNumber();
 
   /**
    * Whether the account number has a valid length.
    */
-  public abstract boolean isLengthValid();
+  boolean isLengthValid();
 
   /**
    * Whether the primary account number (PAN) is valid.
    *
-   * @return True if the primary account number (PAN) is valids
+   * @return True if the primary account number (PAN) is valid
    */
-  public abstract boolean isPrimaryAccountNumberValid();
+  boolean isPrimaryAccountNumberValid();
 
   /**
    * Checks whether the primary account number passes the Luhn check.
@@ -111,6 +111,6 @@ public interface PrimaryAccountNumber
    * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
    *      Algorithm</a>
    */
-  public abstract boolean passesLuhnCheck();
+  boolean passesLuhnCheck();
 
 }

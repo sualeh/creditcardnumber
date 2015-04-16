@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -35,7 +35,7 @@ public final class Name
 {
 
   private static final long serialVersionUID = 6735627336462134892L;
-  
+
   private final String firstName;
   private final String lastName;
 
@@ -103,7 +103,7 @@ public final class Name
         return false;
       }
     }
-    else if (!firstName.equals(other.firstName))
+    else if (!firstName.equalsIgnoreCase(other.firstName))
     {
       return false;
     }
@@ -114,7 +114,7 @@ public final class Name
         return false;
       }
     }
-    else if (!lastName.equals(other.lastName))
+    else if (!lastName.equalsIgnoreCase(other.lastName))
     {
       return false;
     }

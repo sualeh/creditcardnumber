@@ -2,9 +2,11 @@
 
 *Credit Card Number* is a Java library that can provide details of a bank issued credit card number. 
 
-All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. Java 6 or newer is required. In order to be Java 8 ready, Credit Card Number depends on Stephen Colebourne's [ThreeTen backport project](https://github.com/ThreeTen/threetenbp), a port of [JSR 310](https://jcp.org/en/jsr/detail?id=310) to Java 6. 
-
 > The goal of this project is to use publicly and freely available documentation to create a reliable Java library to provide information about credit card numbers.
+
+All classes are immutable and thread-safe. All getter methods return non-null values. The standard `toString()` function formats data in a readable form. Validity is enforced by JUnit tests. 
+
+Java 6 or newer is required. This library deliberately supports Java 6, to make it usable in Android apps. In order to be Java 8 ready, Credit Card Number depends on Stephen Colebourne's [ThreeTen backport project](https://github.com/ThreeTen/threetenbp), a port of [JSR 310](https://jcp.org/en/jsr/detail?id=310) to Java 6. 
 
 Some resources consulted are:
 * [Bank card number](http://en.wikipedia.org/wiki/Bank_card_number)
@@ -24,7 +26,7 @@ To use *Credit Card Number* in your Maven build, include the following dependenc
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>1.3</version>
+    <version>1.6</version>
 </dependency>
 ```
 
@@ -34,13 +36,16 @@ To use *Credit Card Number* in your Maven build, include the following dependenc
 
 To get bank card information, use code like:
 ```java
-final PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
-final BankCard card = new BankCard(pan);
+PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+ExpirationDate expirationDate = new ExpirationDate(2015, 4);
+Name name = new Name("Sualeh", "Fatehi");
+BankCard card = new BankCard(pan, expirationDate, name);
 System.out.println(card);
 ```
 and you will get this output:
 ```
 Bank Card Information: 
+  Raw Account Number: 5266-0922-0141-6174
   Primary Account Number: 5266092201416174
   Primary Account Number (Secure): MasterCard-6174
     Major Industry Identifier: 5 - Banking and financial
@@ -49,6 +54,9 @@ Bank Card Information:
     Last Four Digits: 6174
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
+  Expiration Date: 1504
+    Is Expired: No
+  Name: Sualeh Fatehi
 ```
 
 ### How to Secure the Credit Card Number

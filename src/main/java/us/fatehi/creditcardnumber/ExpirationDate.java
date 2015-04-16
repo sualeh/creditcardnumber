@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014, Sualeh Fatehi.
+ * Copyright (c) 2014-2015, Sualeh Fatehi.
  *
  * This library is free software; you can redistribute it and/or modify it under the terms
  * of the GNU Lesser General Public License as published by the Free Software Foundation;
@@ -58,12 +58,10 @@ public final class ExpirationDate
   }
 
   /**
-   * Expiration date from year and month.
+   * Expiration date from date.
    *
-   * @param year
-   *        Year
-   * @param month
-   *        Month
+   * @param date
+   *        Date
    */
   public ExpirationDate(final Date date)
   {
@@ -158,7 +156,8 @@ public final class ExpirationDate
   }
 
   /**
-   * Gets the card expiration date.
+   * Gets the card expiration date. Returns null if no date is
+   * available.
    *
    * @return Card expiration date.
    */
@@ -168,7 +167,8 @@ public final class ExpirationDate
   }
 
   /**
-   * Gets the card expiration date, as a java.util.Date object.
+   * Gets the card expiration date, as a java.util.Date object. Returns
+   * null if no date is available.
    *
    * @return Card expiration date.
    */
@@ -186,6 +186,24 @@ public final class ExpirationDate
     else
     {
       return null;
+    }
+  }
+
+  /**
+   * Gets the card expiration date, as a String. Returns an empty String
+   * if no date is available.
+   *
+   * @return Card expiration date.
+   */
+  public String getExpirationDateAsString()
+  {
+    if (hasExpirationDate())
+    {
+      return formatter.format(expirationDate);
+    }
+    else
+    {
+      return "";
     }
   }
 
@@ -235,14 +253,7 @@ public final class ExpirationDate
   @Override
   public String toString()
   {
-    if (hasExpirationDate())
-    {
-      return expirationDate.toString();
-    }
-    else
-    {
-      return super.toString();
-    }
+    return getExpirationDateAsString();
   }
 
 }
