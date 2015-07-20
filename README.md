@@ -1,6 +1,6 @@
-# Credit Card Number
-
 [![Build Status](https://travis-ci.org/sualeh/credit_card_number.svg)](https://travis-ci.org/sualeh/credit_card_number)
+
+# Credit Card Number
 
 *Credit Card Number* is a Java library that can provide details of a bank issued credit card number. 
 
