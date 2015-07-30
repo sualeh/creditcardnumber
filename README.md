@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sualeh/credit_card_number.svg)](https://travis-ci.org/sualeh/credit_card_number)
+[![Coverage Status](http://img.shields.io/coveralls/sualeh/credit_card_number/master.svg)](https://coveralls.io/r/sualeh/credit_card_number?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/us.fatehi/credit_card_number/badge.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aus.fatehi%20a%3Acredit_card_number)
 
 # Credit Card Number
