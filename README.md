@@ -17,6 +17,8 @@ Some resources consulted are:
 * [Finding or Verifying Credit Card Numbers](http://www.regular-expressions.info/creditcard.html)
 * [Major Industry Identifier](https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29)
 * [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
+* [Test Credit Card Account Numbers](https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm)
+* [MasterCard BIN Range Coming October 2016](https://www.forte.net/blog/mastercard-bin-range-coming/)
 
 ## Download
 
