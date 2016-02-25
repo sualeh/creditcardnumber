@@ -86,20 +86,20 @@
             <configuration>
               <compilerArguments>
                 <profile>compact1</profile>
-              </compilerArguments> 
+              </compilerArguments>
             </configuration>
           </execution>
         </executions>
-      </plugin>    
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
-        <configuration>        
+        <configuration>
           <source>6</source>
           <target>6</target>
         </configuration>
-      </plugin>     
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -191,7 +191,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
     </plugins>
   </build>
 </project>
