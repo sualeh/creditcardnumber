@@ -166,7 +166,7 @@
               <links>
                 <link>http://docs.oracle.com/javase/6/docs/api/</link>
               </links>
-              <bottom>Copyright &#169; 2014-2015 {organizationName}. All rights
+              <bottom>Copyright &#169; 2014-2016 {organizationName}. All rights
                 reserved.</bottom>
               <doctitle>${project.name} ${project.version}</doctitle>
             </configuration>
