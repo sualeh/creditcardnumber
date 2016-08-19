@@ -40,7 +40,7 @@ Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>1.8</version>
+    <version>1.10.01</version>
 </dependency>
 ```
 
