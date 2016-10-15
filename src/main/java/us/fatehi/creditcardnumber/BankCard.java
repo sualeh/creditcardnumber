@@ -109,7 +109,7 @@ public final class BankCard
     }
     else
     {
-      this.pan = new AccountNumber();
+      this.pan = new PrimaryAccountNumber();
     }
 
     if (name != null)
@@ -300,7 +300,7 @@ public final class BankCard
    */
   public boolean hasPrimaryAccountNumber()
   {
-    return pan != null && pan.hasPrimaryAccountNumber();
+    return pan != null && pan.hasAccountNumber();
   }
 
   public boolean hasServiceCode()
@@ -331,8 +331,6 @@ public final class BankCard
       buffer.append(pan.getRawData()).append(NEWLINE);
       buffer.append("  Primary Account Number: ");
       buffer.append(pan).append(NEWLINE);
-      buffer.append("  Primary Account Number (Secure): ");
-      buffer.append(new AccountNumberInfo(pan)).append(NEWLINE);
       buffer.append("    Major Industry Identifier: ");
       buffer.append(pan.getMajorIndustryIdentifier()).append(NEWLINE);
       buffer.append("    Issuer Identification Number: ");

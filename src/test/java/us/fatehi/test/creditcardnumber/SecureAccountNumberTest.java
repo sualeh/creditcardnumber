@@ -25,8 +25,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import us.fatehi.creditcardnumber.AccountNumber;
-import us.fatehi.creditcardnumber.AccountNumberInfo;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 import us.fatehi.creditcardnumber.PrimaryAccountNumber;
@@ -38,24 +36,30 @@ public class SecureAccountNumberTest
   public void pan_1()
   {
     final String rawAccountNumber = null;
-    final PrimaryAccountNumber pan = new AccountNumberInfo(new AccountNumber(rawAccountNumber));
-    assertTrue(!pan.hasPrimaryAccountNumber());
+    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertTrue(!pan.hasAccountNumber());
+    pan.clearAccountNumber();
+    assertTrue(!pan.hasAccountNumber());
   }
 
   @Test
   public void pan_2()
   {
     final String rawAccountNumber = "\t\t";
-    final PrimaryAccountNumber pan = new AccountNumberInfo(new AccountNumber(rawAccountNumber));
-    assertTrue(!pan.hasPrimaryAccountNumber());
+    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertTrue(!pan.hasAccountNumber());
+    pan.clearAccountNumber();
+    assertTrue(!pan.hasAccountNumber());
   }
 
   @Test
   public void pan_3()
   {
     final String rawAccountNumber = "5266092201416173";
-    final PrimaryAccountNumber pan = new AccountNumberInfo(new AccountNumber(rawAccountNumber));
-    assertTrue(!pan.hasPrimaryAccountNumber());
+    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    assertTrue(pan.hasAccountNumber());
+    pan.clearAccountNumber();
+    assertTrue(!pan.hasAccountNumber());
     assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
     assertEquals("6173", pan.getLastFourDigits());
     assertEquals("526609", pan.getIssuerIdentificationNumber());

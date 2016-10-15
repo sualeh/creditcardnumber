@@ -20,7 +20,14 @@
 package us.fatehi.creditcardnumber;
 
 
+import static org.apache.commons.lang3.StringUtils.left;
+import static org.apache.commons.lang3.StringUtils.leftPad;
+import static org.apache.commons.lang3.StringUtils.right;
+import static org.apache.commons.lang3.StringUtils.rightPad;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Represents a bank card number.
@@ -29,30 +36,182 @@ import java.io.Serializable;
  *      card number</a>
  * @author Sualeh Fatehi
  */
-public interface PrimaryAccountNumber
-  extends RawData, Serializable
+public class PrimaryAccountNumber
+  extends BaseRawData
+  implements RawData, Serializable
 {
+
+  private static final long serialVersionUID = -7012531091389412459L;
+
+  private final char[] accountNumber;
+  private final char[] issuerIdentificationNumber;
+  private final char[] lastFourDigits;
+  private final AccountNumberInfo accountNumberInfo;
+
+  /**
+   * No primary account number of the bank card.
+   */
+  public PrimaryAccountNumber()
+  {
+    this(null);
+  }
+
+  /**
+   * Parses the primary account number of the bank card. Can accept card
+   * numbers with spaces or dashes.
+   *
+   * @param rawAccountNumber
+   *        Raw primary account number.
+   */
+  public PrimaryAccountNumber(final String rawAccountNumber)
+  {
+    super(rawAccountNumber);
+
+    final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
+    accountNumber = accountNumberString.toCharArray();
+    issuerIdentificationNumber = rightPad(left(accountNumberString, 6), 6, "0")
+      .toCharArray();
+    lastFourDigits = leftPad(right(accountNumberString, 4), 4, "0")
+      .toCharArray();
+
+    final boolean passesLuhnCheck = luhnCheck();
+    final MajorIndustryIdentifier majorIndustryIdentifier = MajorIndustryIdentifier
+      .from(accountNumberString);
+    final CardBrand cardBrand = CardBrand.from(accountNumberString);
+    final int accountNumberLength = accountNumberString.length();
+    final boolean isLengthValid = Arrays.asList(13, 14, 15, 16, 19)
+      .contains(accountNumberLength);
+    final boolean isPrimaryAccountNumberValid = hasAccountNumber()
+                                                && isLengthValid
+                                                && passesLuhnCheck
+                                                && cardBrand != CardBrand.Unknown;
+    final boolean exceedsMaximumLength = accountNumberLength > 19;
+    accountNumberInfo = new AccountNumberInfo(cardBrand,
+                                              majorIndustryIdentifier,
+                                              passesLuhnCheck,
+                                              accountNumberLength,
+                                              isLengthValid,
+                                              isPrimaryAccountNumberValid,
+                                              exceedsMaximumLength);
+  }
+
+  /**
+   * Clears the account number from memory. Following recommendations
+   * from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  public void clearAccountNumber()
+  {
+    if (accountNumber != null)
+    {
+      for (int i = 0; i < accountNumber.length; i++)
+      {
+        accountNumber[i] = 0;
+      }
+    }
+  }
+
+  /**
+   * Clears the Issuer Identification Number from memory. Following
+   * recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  public void clearIssuerIdentificationNumber()
+  {
+    if (issuerIdentificationNumber != null)
+    {
+      for (int i = 0; i < issuerIdentificationNumber.length; i++)
+      {
+        issuerIdentificationNumber[i] = 0;
+      }
+    }
+  }
+
+  /**
+   * Clears the last 4 digits of the primary account number from memory.
+   * Following recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  public void clearLastFourDigits()
+  {
+    if (lastFourDigits != null)
+    {
+      for (int i = 0; i < lastFourDigits.length; i++)
+      {
+        lastFourDigits[i] = 0;
+      }
+    }
+  }
+
+  @Override
+  public boolean equals(final Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (getClass() != obj.getClass())
+    {
+      return false;
+    }
+    final PrimaryAccountNumber other = (PrimaryAccountNumber) obj;
+    if (!Arrays.equals(accountNumber, other.accountNumber))
+    {
+      return false;
+    }
+    if (accountNumberInfo == null)
+    {
+      if (other.accountNumberInfo != null)
+      {
+        return false;
+      }
+    }
+    else if (!accountNumberInfo.equals(other.accountNumberInfo))
+    {
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public boolean exceedsMaximumLength()
+  {
+    return accountNumberInfo.exceedsMaximumLength();
+  }
 
   /**
    * Gets the primary account number (PAN) of the bank card.
    *
    * @return Primary account number.
    */
-  String getAccountNumber();
+  public String getAccountNumber()
+  {
+    if (hasAccountNumber())
+    {
+      return new String(accountNumber);
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-  /**
-   * The length of the PAN.
-   *
-   * @return The length of the PAN
-   */
-  int getAccountNumberLength();
+  public int getAccountNumberLength()
+  {
+    return accountNumberInfo.getAccountNumberLength();
+  }
 
-  /**
-   * Gets the the card brand.
-   *
-   * @return Card brand.
-   */
-  CardBrand getCardBrand();
+  public CardBrand getCardBrand()
+  {
+    return accountNumberInfo.getCardBrand();
+  }
 
   /**
    * The first six digits of the PAN are taken from the IIN, or Issuer
@@ -64,7 +223,17 @@ public interface PrimaryAccountNumber
    *
    * @return IIN, or Issuer Identification Number
    */
-  String getIssuerIdentificationNumber();
+  public String getIssuerIdentificationNumber()
+  {
+    if (hasIssuerIdentificationNumber())
+    {
+      return new String(issuerIdentificationNumber);
+    }
+    else
+    {
+      return null;
+    }
+  }
 
   /**
    * The last 4 digits of the primary account number (PAN), for card
@@ -72,16 +241,22 @@ public interface PrimaryAccountNumber
    *
    * @return Last 4 digits of PAN
    */
-  String getLastFourDigits();
+  public String getLastFourDigits()
+  {
+    if (hasLastFourDigits())
+    {
+      return new String(lastFourDigits);
+    }
+    else
+    {
+      return null;
+    }
+  }
 
-  /**
-   * The first digit of a credit card number is the Major Industry
-   * Identifier (MII) (see ISO/IEC 7812), which represents the category
-   * of entity which issued the card.
-   *
-   * @return MII.
-   */
-  MajorIndustryIdentifier getMajorIndustryIdentifier();
+  public MajorIndustryIdentifier getMajorIndustryIdentifier()
+  {
+    return accountNumberInfo.getMajorIndustryIdentifier();
+  }
 
   /**
    * Checks whether the primary account number for the card is
@@ -90,19 +265,59 @@ public interface PrimaryAccountNumber
    * @return True if the primary account number for the card is
    *         available.
    */
-  boolean hasPrimaryAccountNumber();
+  public boolean hasAccountNumber()
+  {
+    return accountNumber != null && accountNumber.length > 0
+           && accountNumber[0] != 0;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Arrays.hashCode(accountNumber);
+    result = prime * result
+             + (accountNumberInfo == null? 0: accountNumberInfo.hashCode());
+    return result;
+  }
 
   /**
-   * Whether the account number has a valid length.
-   */
-  boolean isLengthValid();
-
-  /**
-   * Whether the primary account number (PAN) is valid.
+   * Checks whether the Issuer Identification Number for the card is
+   * available.
    *
-   * @return True if the primary account number (PAN) is valid
+   * @return True if the Issuer Identification Number for the card is
+   *         available.
    */
-  boolean isPrimaryAccountNumberValid();
+  public boolean hasIssuerIdentificationNumber()
+  {
+    return issuerIdentificationNumber != null
+           && issuerIdentificationNumber.length > 0
+           && issuerIdentificationNumber[0] != 0;
+  }
+
+  /**
+   * Checks whether the last 4 digits of the primary account number for
+   * the card are available.
+   *
+   * @return True if the last 4 digits of the primary account number for
+   *         the card are available.
+   */
+  public boolean hasLastFourDigits()
+  {
+    return lastFourDigits != null && lastFourDigits.length > 0
+           && lastFourDigits[0] != 0;
+  }
+
+  public boolean isLengthValid()
+  {
+    return accountNumberInfo.isLengthValid();
+  }
+
+  public boolean isPrimaryAccountNumberValid()
+  {
+    return accountNumberInfo.isPrimaryAccountNumberValid();
+  }
 
   /**
    * Checks whether the primary account number passes the Luhn check.
@@ -111,6 +326,50 @@ public interface PrimaryAccountNumber
    * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
    *      Algorithm</a>
    */
-  boolean passesLuhnCheck();
+  public boolean passesLuhnCheck()
+  {
+    return accountNumberInfo.passesLuhnCheck();
+  }
+
+  private boolean luhnCheck()
+  {
+    final int length = accountNumber.length;
+    int sum = 0;
+    boolean alternate = false;
+    for (int i = length - 1; i >= 0; i--)
+    {
+      int digit = Character.digit(accountNumber[i], 10);
+      if (alternate)
+      {
+        digit = digit * 2;
+        digit = digit > 9? digit - 9: digit;
+      }
+      sum = sum + digit;
+      alternate = !alternate;
+    }
+    final boolean passesLuhnCheck = sum % 10 == 0;
+    return passesLuhnCheck;
+  }
+
+  private String parseAccountNumber(final String rawAccountNumber)
+  {
+    if (rawAccountNumber == null)
+    {
+      return "";
+    }
+    final StringBuilder builder = new StringBuilder();
+    final int length = rawAccountNumber.length();
+    for (int offset = 0; offset < length;)
+    {
+      final int codepoint = rawAccountNumber.codePointAt(offset);
+      if (Character.isDigit(codepoint))
+      {
+        final int digit = Character.digit(codepoint, 10);
+        builder.append(String.valueOf(digit));
+      }
+      offset += Character.charCount(codepoint);
+    }
+    return builder.toString();
+  }
 
 }

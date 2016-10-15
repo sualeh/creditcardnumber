@@ -56,7 +56,7 @@ public class Main
       final String line = in.readLine();
       if (!isBlank(line))
       {
-        final PrimaryAccountNumber pan = new AccountNumber(line);
+        final PrimaryAccountNumber pan = new PrimaryAccountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }

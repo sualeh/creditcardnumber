@@ -20,149 +20,140 @@
 package us.fatehi.creditcardnumber;
 
 
-public final class AccountNumberInfo
-  extends BaseRawData
-  implements PrimaryAccountNumber
+import java.io.Serializable;
+
+final class AccountNumberInfo
+  implements Serializable
 {
 
   private static final long serialVersionUID = 2002490292247684624L;
 
-  private final MajorIndustryIdentifier majorIndustryIdentifier;
-  private final String issuerIdentificationNumber;
-  private final String lastFourDigits;
   private final CardBrand cardBrand;
+
+  private final MajorIndustryIdentifier majorIndustryIdentifier;
+
   private final boolean passesLuhnCheck;
+
   private final int accountNumberLength;
   private final boolean isLengthValid;
   private final boolean isPrimaryAccountNumberValid;
+  private final boolean isExceedsMaximumLength;
 
-  public AccountNumberInfo(final PrimaryAccountNumber pan)
+  public AccountNumberInfo(final CardBrand cardBrand,
+                           final MajorIndustryIdentifier majorIndustryIdentifier,
+                           final boolean passesLuhnCheck,
+                           final int accountNumberLength,
+                           final boolean isLengthValid,
+                           final boolean isPrimaryAccountNumberValid,
+                           final boolean isExceedsMaximumLength)
   {
-    super(null);
-
-    final PrimaryAccountNumber accountNumber;
-    if (pan == null)
-    {
-      accountNumber = new AccountNumber();
-    }
-    else
-    {
-      accountNumber = pan;
-    }
-
-    majorIndustryIdentifier = accountNumber.getMajorIndustryIdentifier();
-    issuerIdentificationNumber = accountNumber.getIssuerIdentificationNumber();
-    lastFourDigits = accountNumber.getLastFourDigits();
-    cardBrand = accountNumber.getCardBrand();
-    passesLuhnCheck = accountNumber.passesLuhnCheck();
-    accountNumberLength = accountNumber.getAccountNumberLength();
-    isLengthValid = accountNumber.isLengthValid();
-    isPrimaryAccountNumberValid = accountNumber.isPrimaryAccountNumberValid();
+    this.cardBrand = cardBrand;
+    this.majorIndustryIdentifier = majorIndustryIdentifier;
+    this.passesLuhnCheck = passesLuhnCheck;
+    this.accountNumberLength = accountNumberLength;
+    this.isLengthValid = isLengthValid;
+    this.isPrimaryAccountNumberValid = isPrimaryAccountNumberValid;
+    this.isExceedsMaximumLength = isExceedsMaximumLength;
   }
 
   @Override
+  public boolean equals(final Object obj)
+  {
+    if (this == obj)
+    {
+      return true;
+    }
+    if (obj == null)
+    {
+      return false;
+    }
+    if (getClass() != obj.getClass())
+    {
+      return false;
+    }
+    final AccountNumberInfo other = (AccountNumberInfo) obj;
+    if (accountNumberLength != other.accountNumberLength)
+    {
+      return false;
+    }
+    if (cardBrand != other.cardBrand)
+    {
+      return false;
+    }
+    if (isPrimaryAccountNumberValid != other.isPrimaryAccountNumberValid)
+    {
+      return false;
+    }
+    if (majorIndustryIdentifier != other.majorIndustryIdentifier)
+    {
+      return false;
+    }
+    if (passesLuhnCheck != other.passesLuhnCheck)
+    {
+      return false;
+    }
+    return true;
+  }
+
   public boolean exceedsMaximumLength()
   {
-    return false;
+    return isExceedsMaximumLength;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getAccountNumber()
-   */
-  @Override
-  public String getAccountNumber()
-  {
-    throw new IllegalAccessError("Account number is not available");
-  }
-
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getAccountNumberLength()
-   */
-  @Override
   public int getAccountNumberLength()
   {
     return accountNumberLength;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getCardBrand()
-   */
-  @Override
   public CardBrand getCardBrand()
   {
     return cardBrand;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getIssuerIdentificationNumber()
-   */
-  @Override
-  public String getIssuerIdentificationNumber()
-  {
-    return issuerIdentificationNumber;
-  }
-
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getLastFourDigits()
-   */
-  @Override
-  public String getLastFourDigits()
-  {
-    return lastFourDigits;
-  }
-
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#getMajorIndustryIdentifier()
-   */
-  @Override
   public MajorIndustryIdentifier getMajorIndustryIdentifier()
   {
     return majorIndustryIdentifier;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#hasPrimaryAccountNumber()
-   */
   @Override
-  public boolean hasPrimaryAccountNumber()
+  public int hashCode()
   {
-    return false;
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + accountNumberLength;
+    result = prime * result + (cardBrand == null? 0: cardBrand.hashCode());
+    result = prime * result + (isPrimaryAccountNumberValid? 1231: 1237);
+    result = prime * result
+             + (majorIndustryIdentifier == null? 0: majorIndustryIdentifier
+               .hashCode());
+    result = prime * result + (passesLuhnCheck? 1231: 1237);
+    return result;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isLengthValid()
-   */
-  @Override
   public boolean isLengthValid()
   {
     return isLengthValid;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#isPrimaryAccountNumberValid()
-   */
-  @Override
   public boolean isPrimaryAccountNumberValid()
   {
     return isPrimaryAccountNumberValid;
   }
 
-  /**
-   * @see us.fatehi.creditcardnumber.PrimaryAccountNumber#passesLuhnCheck()
-   */
-  @Override
   public boolean passesLuhnCheck()
   {
     return passesLuhnCheck;
   }
 
-  /**
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString()
   {
-    return String.format("%s-%s", cardBrand, lastFourDigits);
+    return "AccountNumberInfo [cardBrand=" + cardBrand
+           + ", majorIndustryIdentifier=" + majorIndustryIdentifier
+           + ", passesLuhnCheck=" + passesLuhnCheck + ", accountNumberLength="
+           + accountNumberLength + ", isLengthValid=" + isLengthValid
+           + ", isPrimaryAccountNumberValid=" + isPrimaryAccountNumberValid
+           + ", isExceedsMaximumLength=" + isExceedsMaximumLength + "]";
   }
 
 }
