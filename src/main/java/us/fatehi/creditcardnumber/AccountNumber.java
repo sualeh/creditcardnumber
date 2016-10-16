@@ -36,7 +36,7 @@ import java.util.Arrays;
  *      card number</a>
  * @author Sualeh Fatehi
  */
-public class PrimaryAccountNumber
+public class AccountNumber
   extends BaseRawData
   implements RawData, Serializable
 {
@@ -51,7 +51,7 @@ public class PrimaryAccountNumber
   /**
    * No primary account number of the bank card.
    */
-  public PrimaryAccountNumber()
+  public AccountNumber()
   {
     this(null);
   }
@@ -63,7 +63,7 @@ public class PrimaryAccountNumber
    * @param rawAccountNumber
    *        Raw primary account number.
    */
-  public PrimaryAccountNumber(final String rawAccountNumber)
+  public AccountNumber(final String rawAccountNumber)
   {
     super(rawAccountNumber);
 
@@ -96,19 +96,32 @@ public class PrimaryAccountNumber
   }
 
   /**
-   * Clears the account number from memory. Following recommendations
-   * from the <a href=
+   * Clears sensitive data from memory. Following recommendations from
+   * the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a>
    */
+  public void clear()
+  {
+    clearAccountNumber();
+    clearIssuerIdentificationNumber();
+    clearLastFourDigits();
+  }
+
+  /**
+   * Clears the account number from memory. Following recommendations
+   * from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
+   */
   public void clearAccountNumber()
   {
+    clearRawData();
+
     if (accountNumber != null)
     {
-      for (int i = 0; i < accountNumber.length; i++)
-      {
-        accountNumber[i] = 0;
-      }
+      Arrays.fill(accountNumber, (char) 0);
     }
   }
 
@@ -116,16 +129,22 @@ public class PrimaryAccountNumber
    * Clears the Issuer Identification Number from memory. Following
    * recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
    */
   public void clearIssuerIdentificationNumber()
   {
+    clearRawData();
+
     if (issuerIdentificationNumber != null)
     {
-      for (int i = 0; i < issuerIdentificationNumber.length; i++)
-      {
-        issuerIdentificationNumber[i] = 0;
-      }
+      Arrays.fill(issuerIdentificationNumber, (char) 0);
+    }
+    if (accountNumber != null)
+    {
+      final int fromIndex = 0;
+      final int toIndex = Math.min(accountNumber.length, 6);
+      Arrays.fill(accountNumber, fromIndex, toIndex, (char) 0);
     }
   }
 
@@ -133,16 +152,22 @@ public class PrimaryAccountNumber
    * Clears the last 4 digits of the primary account number from memory.
    * Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
    */
   public void clearLastFourDigits()
   {
+    clearRawData();
+
     if (lastFourDigits != null)
     {
-      for (int i = 0; i < lastFourDigits.length; i++)
-      {
-        lastFourDigits[i] = 0;
-      }
+      Arrays.fill(lastFourDigits, (char) 0);
+    }
+    if (accountNumber != null)
+    {
+      final int fromIndex = Math.max(accountNumber.length - 4, 0);
+      final int toIndex = accountNumber.length;
+      Arrays.fill(accountNumber, fromIndex, toIndex, (char) 0);
     }
   }
 
@@ -161,7 +186,7 @@ public class PrimaryAccountNumber
     {
       return false;
     }
-    final PrimaryAccountNumber other = (PrimaryAccountNumber) obj;
+    final AccountNumber other = (AccountNumber) obj;
     if (!Arrays.equals(accountNumber, other.accountNumber))
     {
       return false;
@@ -329,6 +354,27 @@ public class PrimaryAccountNumber
   public boolean passesLuhnCheck()
   {
     return accountNumberInfo.passesLuhnCheck();
+  }
+
+  /**
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+  {
+    if (hasAccountNumber())
+    {
+      return getAccountNumber();
+    }
+    else if (hasLastFourDigits())
+    {
+      return String
+        .format("%s-%s", accountNumberInfo.getCardBrand(), getLastFourDigits());
+    }
+    else
+    {
+      return accountNumberInfo.getCardBrand().toString();
+    }
   }
 
   private boolean luhnCheck()

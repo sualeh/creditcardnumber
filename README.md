@@ -9,7 +9,9 @@ credit card number.
 > **The goal of this project is to use publicly and freely available documentation 
 to create a reliable Java library to provide information about credit card numbers.**
 
-All classes are immutable and thread-safe. The standard `toString()` function 
+All classes are immutable and thread-safe. Secure data follows standards in the 
+[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
+The standard `toString()` function 
 formats data in a readable form. Validity is enforced by JUnit tests. 
 
 Java 6 or newer is required. This library deliberately supports Java 6, to make it 
@@ -26,6 +28,7 @@ Some resources consulted are:
 * [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
 * [Test Credit Card Account Numbers](https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm)
 * [MasterCard BIN Range Coming October 2016](https://www.forte.net/blog/mastercard-bin-range-coming/)
+* [Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
 
 ## Download
 
@@ -50,10 +53,10 @@ Repository.
 
 To get bank card information, use code like:
 ```java
-PrimaryAccountNumber pan = new AccountNumber("5266-0922-0141-6174");
-ExpirationDate expirationDate = new ExpirationDate(2015, 4);
+AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+ExpirationDate expiration = new ExpirationDate(2015, 4);
 Name name = new Name("Sualeh", "Fatehi");
-BankCard card = new BankCard(pan, expirationDate, name);
+BankCard card = new BankCard(pan, expiration, name);
 System.out.println(card);
 ```
 and you will get this output:
@@ -61,7 +64,6 @@ and you will get this output:
 Bank Card Information: 
   Raw Account Number: 5266-0922-0141-6174
   Primary Account Number: 5266092201416174
-  Primary Account Number (Secure): MasterCard-6174
     Major Industry Identifier: 5 - Banking and financial
     Issuer Identification Number: 526609
     Card Brand: MasterCard
@@ -75,8 +77,26 @@ Bank Card Information:
 
 ### How to Secure the Credit Card Number
 
-If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
+If you need the account number information, but want to be secure by not 
+storing the actual primary account number in memory, you can use code like:
 ```java
-final PrimaryAccountNumber pan = 
-  new AccountNumberInfo(new AccountNumber("5266-0922-0141-6174"));
+AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+pan.clearAccountNumber();
+System.out.println(pan);
+```
+and you will get this output:
+```
+MasterCard-6174
+```
+
+### Internationalization is Supported
+
+You can use code like:
+```java
+AccountNumber pan = new AccountNumber("५२६६ ०९२२ ०१४१ ६१७४");
+System.out.println(pan);
+```
+and you will get this output:
+```
+5266092201416174
 ```

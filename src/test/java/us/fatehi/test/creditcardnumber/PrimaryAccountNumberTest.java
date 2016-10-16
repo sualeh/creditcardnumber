@@ -29,7 +29,7 @@ import org.junit.Test;
 
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+import us.fatehi.creditcardnumber.AccountNumber;
 
 public class PrimaryAccountNumberTest
 {
@@ -38,7 +38,7 @@ public class PrimaryAccountNumberTest
   public void pan_1()
   {
     final String rawAccountNumber = null;
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue(!pan.hasAccountNumber());
   }
@@ -47,7 +47,7 @@ public class PrimaryAccountNumberTest
   public void pan_2()
   {
     final String rawAccountNumber = "\t\t";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue(!pan.hasAccountNumber());
   }
@@ -56,7 +56,7 @@ public class PrimaryAccountNumberTest
   public void pan_3()
   {
     final String rawAccountNumber = "5266092201416173";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertEquals(rawAccountNumber, pan.getRawData());
     assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
     check(rawAccountNumber, pan, rawAccountNumber);
@@ -66,7 +66,7 @@ public class PrimaryAccountNumberTest
   public void pan1()
   {
     final String rawAccountNumber = "5266092201416174";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue("Does not pass Luhn check", pan.passesLuhnCheck());
     check(rawAccountNumber, pan, rawAccountNumber);
   }
@@ -76,7 +76,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "  5266-0922-0141-6174  ";
     final String accountNumber = "5266092201416174";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue("Does not pass Luhn check", pan.passesLuhnCheck());
     check(rawAccountNumber, pan, accountNumber);
   }
@@ -86,7 +86,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "  5266-0922-0141-6174-7889  ";
     final String accountNumber = "52660922014161747889";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
     assertTrue("Should not pass Luhn check", pan.exceedsMaximumLength());
     check(rawAccountNumber, pan, accountNumber);
@@ -97,13 +97,13 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "  5266-0922  ";
     final String accountNumber = "52660922";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
     check(rawAccountNumber, pan, accountNumber);
   }
 
   private void check(final String rawAccountNumber,
-                     final PrimaryAccountNumber pan,
+                     final AccountNumber pan,
                      final String accountNumber)
   {
     assertEquals(rawAccountNumber, pan.getRawData());

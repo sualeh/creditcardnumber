@@ -29,11 +29,8 @@ final class AccountNumberInfo
   private static final long serialVersionUID = 2002490292247684624L;
 
   private final CardBrand cardBrand;
-
   private final MajorIndustryIdentifier majorIndustryIdentifier;
-
   private final boolean passesLuhnCheck;
-
   private final int accountNumberLength;
   private final boolean isLengthValid;
   private final boolean isPrimaryAccountNumberValid;

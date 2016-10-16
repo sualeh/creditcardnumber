@@ -33,7 +33,7 @@ public final class BankCard
 
   private static final long serialVersionUID = 6253084852668206154L;
 
-  private final PrimaryAccountNumber pan;
+  private final AccountNumber pan;
   private final Name name;
   private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
@@ -52,7 +52,7 @@ public final class BankCard
    * @param pan
    *        Primary account number
    */
-  public BankCard(final PrimaryAccountNumber pan)
+  public BankCard(final AccountNumber pan)
   {
     this(pan, null);
   }
@@ -65,7 +65,7 @@ public final class BankCard
    * @param expirationDate
    *        Card expiration date
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate)
   {
     this(pan, expirationDate, null);
@@ -81,7 +81,7 @@ public final class BankCard
    * @param name
    *        Cardholder name
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name)
   {
@@ -98,7 +98,7 @@ public final class BankCard
    * @param name
    *        Cardholder name
    */
-  public BankCard(final PrimaryAccountNumber pan,
+  public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
                   final Name name,
                   final ServiceCode serviceCode)
@@ -109,7 +109,7 @@ public final class BankCard
     }
     else
     {
-      this.pan = new PrimaryAccountNumber();
+      this.pan = new AccountNumber();
     }
 
     if (name != null)
@@ -243,7 +243,7 @@ public final class BankCard
    *
    * @return Primary account number.
    */
-  public PrimaryAccountNumber getPrimaryAccountNumber()
+  public AccountNumber getPrimaryAccountNumber()
   {
     return pan;
   }

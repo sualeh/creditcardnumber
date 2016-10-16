@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
-import us.fatehi.creditcardnumber.PrimaryAccountNumber;
+import us.fatehi.creditcardnumber.AccountNumber;
 
 public class SecureAccountNumberTest
 {
@@ -36,7 +36,7 @@ public class SecureAccountNumberTest
   public void pan_1()
   {
     final String rawAccountNumber = null;
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue(!pan.hasAccountNumber());
     pan.clearAccountNumber();
     assertTrue(!pan.hasAccountNumber());
@@ -46,7 +46,7 @@ public class SecureAccountNumberTest
   public void pan_2()
   {
     final String rawAccountNumber = "\t\t";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue(!pan.hasAccountNumber());
     pan.clearAccountNumber();
     assertTrue(!pan.hasAccountNumber());
@@ -56,7 +56,7 @@ public class SecureAccountNumberTest
   public void pan_3()
   {
     final String rawAccountNumber = "5266092201416173";
-    final PrimaryAccountNumber pan = new PrimaryAccountNumber(rawAccountNumber);
+    final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue(pan.hasAccountNumber());
     pan.clearAccountNumber();
     assertTrue(!pan.hasAccountNumber());
