@@ -103,21 +103,9 @@ public class AccountNumber
    */
   public void clear()
   {
-    clearAccountNumber();
-    clearIssuerIdentificationNumber();
-    clearLastFourDigits();
-  }
-
-  /**
-   * Clears the account number from memory. Following recommendations
-   * from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
-   * data.
-   */
-  public void clearAccountNumber()
-  {
     clearRawData();
+    clearLastFourDigits();
+    clearIssuerIdentificationNumber();
 
     if (accountNumber != null)
     {
@@ -293,7 +281,8 @@ public class AccountNumber
   public boolean hasAccountNumber()
   {
     return accountNumber != null && accountNumber.length > 0
-           && accountNumber[0] != 0;
+           && accountNumber[0] != 0
+           && accountNumber[accountNumber.length - 1] != 0;
   }
 
   @Override

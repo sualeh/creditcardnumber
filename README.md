@@ -81,7 +81,7 @@ If you need the account number information, but want to be secure by not
 storing the actual primary account number in memory, you can use code like:
 ```java
 AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
-pan.clearAccountNumber();
+pan.clear();
 System.out.println(pan);
 ```
 and you will get this output:
