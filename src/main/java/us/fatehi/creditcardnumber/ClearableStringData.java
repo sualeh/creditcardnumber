@@ -23,6 +23,7 @@ package us.fatehi.creditcardnumber;
 import java.util.Arrays;
 
 public final class ClearableStringData
+  implements CharSequence
 {
 
   private final char[] data;
@@ -39,11 +40,26 @@ public final class ClearableStringData
     }
   }
 
+  /**
+   * Returns the character at an index.
+   *
+   * @param i
+   *        Index
+   * @return Character at an index
+   */
+  @Override
   public char charAt(final int i)
   {
     return data[i];
   }
 
+  /**
+   * Clears the Issuer Identification Number from memory. Following
+   * recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
+   */
   public void clearData()
   {
     Arrays.fill(data, (char) 0);
@@ -111,9 +127,29 @@ public final class ClearableStringData
     return result;
   }
 
+  @Override
   public int length()
   {
     return data.length;
+  }
+
+  @Override
+  public CharSequence subSequence(final int start, final int end)
+  {
+    return toString().subSequence(start, end);
+  }
+
+  @Override
+  public String toString()
+  {
+    if (hasData())
+    {
+      return new String(data);
+    }
+    else
+    {
+      return "";
+    }
   }
 
 }
