@@ -20,10 +20,10 @@
 package com.example;
 
 
+import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
-import us.fatehi.creditcardnumber.AccountNumber;
 
 public class SampleCode1
 {

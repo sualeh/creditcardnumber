@@ -20,52 +20,33 @@
 package us.fatehi.creditcardnumber;
 
 
-import java.util.Arrays;
-
-abstract class BaseRawData
+public abstract class BaseRawData
   implements RawData
 {
 
-  private final char[] rawData;
+  private final ClearableStringData rawData;
 
   protected BaseRawData(final String rawData)
   {
-    if (rawData != null)
-    {
-      this.rawData = rawData.toCharArray();
-    }
-    else
-    {
-      this.rawData = new char[0];
-    }
+    this.rawData = new ClearableStringData(rawData);
   }
 
   @Override
   public void clearRawData()
   {
-    if (rawData != null)
-    {
-      Arrays.fill(rawData, (char) 0);
-    }
+    rawData.clearData();
   }
 
   @Override
   public String getRawData()
   {
-    if (hasRawData())
-    {
-      return new String(rawData);
-    }
-    else
-    {
-      return null;
-    }
+    return rawData.getData();
   }
 
   @Override
   public boolean hasRawData()
   {
-    return rawData != null && rawData.length > 0 && rawData[0] != 0;
+    return rawData.hasData();
   }
 
 }

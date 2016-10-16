@@ -36,8 +36,7 @@ public class CardBrandTest
     final long[] longCardNumbers = {
                                      378282246310005L,
                                      371449635398431L,
-                                     378734493671000L
-    };
+                                     378734493671000L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.AmericanExpress);
@@ -48,10 +47,7 @@ public class CardBrandTest
   @Test
   public void dinersClub()
   {
-    final long[] longCardNumbers = {
-                                     30569309025904L,
-                                     38520000023237L
-    };
+    final long[] longCardNumbers = { 30569309025904L, 38520000023237L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.DinersClub);
@@ -62,10 +58,7 @@ public class CardBrandTest
   @Test
   public void discover()
   {
-    final long[] longCardNumbers = {
-                                     6011000990139424L,
-                                     6011111111111117L
-    };
+    final long[] longCardNumbers = { 6011000990139424L, 6011111111111117L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.Discover);
@@ -76,10 +69,7 @@ public class CardBrandTest
   @Test
   public void jcb()
   {
-    final long[] longCardNumbers = {
-                                     3530111333300000L,
-                                     3566002020360505L
-    };
+    final long[] longCardNumbers = { 3530111333300000L, 3566002020360505L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.JCB);
@@ -90,10 +80,7 @@ public class CardBrandTest
   @Test
   public void masterCard()
   {
-    final long[] longCardNumbers = {
-                                     5555555555554444L,
-                                     5105105105105100L
-    };
+    final long[] longCardNumbers = { 5555555555554444L, 5105105105105100L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.MasterCard);
@@ -147,8 +134,7 @@ public class CardBrandTest
     final long[] longCardNumbers = {
                                      4111111111111111L,
                                      4012888888881881L,
-                                     4222222222222L
-    };
+                                     4222222222222L };
     for (final long longCardNumber: longCardNumbers)
     {
       test(longCardNumber, CardBrand.Visa);

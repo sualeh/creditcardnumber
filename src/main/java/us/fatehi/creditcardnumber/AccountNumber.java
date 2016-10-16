@@ -43,9 +43,9 @@ public class AccountNumber
 
   private static final long serialVersionUID = -7012531091389412459L;
 
-  private final char[] accountNumber;
-  private final char[] issuerIdentificationNumber;
-  private final char[] lastFourDigits;
+  private final ClearableStringData accountNumber;
+  private final ClearableStringData issuerIdentificationNumber;
+  private final ClearableStringData lastFourDigits;
   private final AccountNumberInfo accountNumberInfo;
 
   /**
@@ -68,11 +68,15 @@ public class AccountNumber
     super(rawAccountNumber);
 
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
-    accountNumber = accountNumberString.toCharArray();
-    issuerIdentificationNumber = rightPad(left(accountNumberString, 6), 6, "0")
-      .toCharArray();
-    lastFourDigits = leftPad(right(accountNumberString, 4), 4, "0")
-      .toCharArray();
+    accountNumber = new ClearableStringData(accountNumberString);
+    issuerIdentificationNumber = new ClearableStringData(rightPad(left(accountNumberString,
+                                                                       6),
+                                                                  6,
+                                                                  "0"));
+    lastFourDigits = new ClearableStringData(leftPad(right(accountNumberString,
+                                                           4),
+                                                     4,
+                                                     "0"));
 
     final boolean passesLuhnCheck = luhnCheck();
     final MajorIndustryIdentifier majorIndustryIdentifier = MajorIndustryIdentifier
@@ -107,10 +111,7 @@ public class AccountNumber
     clearLastFourDigits();
     clearIssuerIdentificationNumber();
 
-    if (accountNumber != null)
-    {
-      Arrays.fill(accountNumber, (char) 0);
-    }
+    accountNumber.clearData();
   }
 
   /**
@@ -124,16 +125,8 @@ public class AccountNumber
   {
     clearRawData();
 
-    if (issuerIdentificationNumber != null)
-    {
-      Arrays.fill(issuerIdentificationNumber, (char) 0);
-    }
-    if (accountNumber != null)
-    {
-      final int fromIndex = 0;
-      final int toIndex = Math.min(accountNumber.length, 6);
-      Arrays.fill(accountNumber, fromIndex, toIndex, (char) 0);
-    }
+    issuerIdentificationNumber.clearData();
+    accountNumber.clearData(0, 6);
   }
 
   /**
@@ -147,16 +140,8 @@ public class AccountNumber
   {
     clearRawData();
 
-    if (lastFourDigits != null)
-    {
-      Arrays.fill(lastFourDigits, (char) 0);
-    }
-    if (accountNumber != null)
-    {
-      final int fromIndex = Math.max(accountNumber.length - 4, 0);
-      final int toIndex = accountNumber.length;
-      Arrays.fill(accountNumber, fromIndex, toIndex, (char) 0);
-    }
+    lastFourDigits.clearData();
+    accountNumber.clearData(accountNumber.length() - 4);
   }
 
   @Override
@@ -175,7 +160,14 @@ public class AccountNumber
       return false;
     }
     final AccountNumber other = (AccountNumber) obj;
-    if (!Arrays.equals(accountNumber, other.accountNumber))
+    if (accountNumber == null)
+    {
+      if (other.accountNumber != null)
+      {
+        return false;
+      }
+    }
+    else if (!accountNumber.equals(other.accountNumber))
     {
       return false;
     }
@@ -187,6 +179,29 @@ public class AccountNumber
       }
     }
     else if (!accountNumberInfo.equals(other.accountNumberInfo))
+    {
+      return false;
+    }
+    if (issuerIdentificationNumber == null)
+    {
+      if (other.issuerIdentificationNumber != null)
+      {
+        return false;
+      }
+    }
+    else if (!issuerIdentificationNumber
+      .equals(other.issuerIdentificationNumber))
+    {
+      return false;
+    }
+    if (lastFourDigits == null)
+    {
+      if (other.lastFourDigits != null)
+      {
+        return false;
+      }
+    }
+    else if (!lastFourDigits.equals(other.lastFourDigits))
     {
       return false;
     }
@@ -206,14 +221,7 @@ public class AccountNumber
    */
   public String getAccountNumber()
   {
-    if (hasAccountNumber())
-    {
-      return new String(accountNumber);
-    }
-    else
-    {
-      return null;
-    }
+    return accountNumber.getData();
   }
 
   public int getAccountNumberLength()
@@ -238,14 +246,7 @@ public class AccountNumber
    */
   public String getIssuerIdentificationNumber()
   {
-    if (hasIssuerIdentificationNumber())
-    {
-      return new String(issuerIdentificationNumber);
-    }
-    else
-    {
-      return null;
-    }
+    return issuerIdentificationNumber.getData();
   }
 
   /**
@@ -256,14 +257,7 @@ public class AccountNumber
    */
   public String getLastFourDigits()
   {
-    if (hasLastFourDigits())
-    {
-      return new String(lastFourDigits);
-    }
-    else
-    {
-      return null;
-    }
+    return lastFourDigits.getData();
   }
 
   public MajorIndustryIdentifier getMajorIndustryIdentifier()
@@ -280,9 +274,7 @@ public class AccountNumber
    */
   public boolean hasAccountNumber()
   {
-    return accountNumber != null && accountNumber.length > 0
-           && accountNumber[0] != 0
-           && accountNumber[accountNumber.length - 1] != 0;
+    return accountNumber.hasData();
   }
 
   @Override
@@ -290,9 +282,15 @@ public class AccountNumber
   {
     final int prime = 31;
     int result = 1;
-    result = prime * result + Arrays.hashCode(accountNumber);
+    result = prime * result
+             + (accountNumber == null? 0: accountNumber.hashCode());
     result = prime * result
              + (accountNumberInfo == null? 0: accountNumberInfo.hashCode());
+    result = prime * result + (issuerIdentificationNumber == null? 0
+                                                                 : issuerIdentificationNumber
+                                                                   .hashCode());
+    result = prime * result
+             + (lastFourDigits == null? 0: lastFourDigits.hashCode());
     return result;
   }
 
@@ -305,9 +303,7 @@ public class AccountNumber
    */
   public boolean hasIssuerIdentificationNumber()
   {
-    return issuerIdentificationNumber != null
-           && issuerIdentificationNumber.length > 0
-           && issuerIdentificationNumber[0] != 0;
+    return issuerIdentificationNumber.hasData();
   }
 
   /**
@@ -319,8 +315,7 @@ public class AccountNumber
    */
   public boolean hasLastFourDigits()
   {
-    return lastFourDigits != null && lastFourDigits.length > 0
-           && lastFourDigits[0] != 0;
+    return lastFourDigits.hasData();
   }
 
   public boolean isLengthValid()
@@ -368,12 +363,12 @@ public class AccountNumber
 
   private boolean luhnCheck()
   {
-    final int length = accountNumber.length;
+    final int length = accountNumber.length();
     int sum = 0;
     boolean alternate = false;
     for (int i = length - 1; i >= 0; i--)
     {
-      int digit = Character.digit(accountNumber[i], 10);
+      int digit = Character.digit(accountNumber.charAt(i), 10);
       if (alternate)
       {
         digit = digit * 2;

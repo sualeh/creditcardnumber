@@ -27,9 +27,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
-import us.fatehi.creditcardnumber.AccountNumber;
 
 public class PrimaryAccountNumberTest
 {

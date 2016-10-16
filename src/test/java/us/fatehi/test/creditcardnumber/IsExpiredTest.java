@@ -67,8 +67,8 @@ public class IsExpiredTest
     assertEquals(rawExpirationDate, expirationDate.getRawData());
     assertTrue("Should have expiration date",
                expirationDate.hasExpirationDate());
-    assertTrue(isExpired? expirationDate.isExpired(): !expirationDate
-      .isExpired());
+    assertTrue(isExpired? expirationDate.isExpired()
+                        : !expirationDate.isExpired());
     assertEquals(expectedExpirationDate, expirationDate.getExpirationDate());
 
     // System.out.println(String.format("%s - %s",
