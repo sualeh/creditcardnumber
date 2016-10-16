@@ -27,13 +27,13 @@ public enum ServiceCode1
   implements ServiceCodeType
 {
 
-  unknown(-1, "Unknown", ""),
-  v_1(1, "International interchange", "None"),
-  v_2(2, "International interchange", "Integrated circuit card"),
-  v_5(5, "National interchange", "None"),
-  v_6(6, "National interchange", "Integrated circuit card"),
-  v_7(7, "Private", "None"),
-  v_9(9, "Test", "Test"), ;
+ unknown(-1, "Unknown", ""),
+ v_1(1, "International interchange", "None"),
+ v_2(2, "International interchange", "Integrated circuit card"),
+ v_5(5, "National interchange", "None"),
+ v_6(6, "National interchange", "Integrated circuit card"),
+ v_7(7, "Private", "None"),
+ v_9(9, "Test", "Test"),;
 
   private final int value;
   private final String interchange;

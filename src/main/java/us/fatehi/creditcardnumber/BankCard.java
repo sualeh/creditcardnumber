@@ -65,8 +65,7 @@ public final class BankCard
    * @param expirationDate
    *        Card expiration date
    */
-  public BankCard(final AccountNumber pan,
-                  final ExpirationDate expirationDate)
+  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate)
   {
     this(pan, expirationDate, null);
   }

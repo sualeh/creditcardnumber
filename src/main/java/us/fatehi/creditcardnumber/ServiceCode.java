@@ -26,8 +26,8 @@ import static us.fatehi.creditcardnumber.Utility.non_digit;
 import java.io.Serializable;
 
 /**
- * @see <a
- *      href="https://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards">Wikipedia:
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards">Wikipedia:
  *      Financial Cards</a>
  * @author Sualeh Fatehi
  */
@@ -162,7 +162,8 @@ public class ServiceCode
   public boolean hasServiceCode()
   {
     return !(serviceCode1 == ServiceCode1.unknown
-             || serviceCode2 == ServiceCode2.unknown || serviceCode3 == ServiceCode3.unknown);
+             || serviceCode2 == ServiceCode2.unknown
+             || serviceCode3 == ServiceCode3.unknown);
   }
 
   /**

@@ -24,6 +24,14 @@ public interface RawData
 {
 
   /**
+   * Clears raw data for security reasons. Following recommendations
+   * from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  void clearRawData();
+
+  /**
    * Whether the raw data exceeds the maximum length allowed.
    *
    * @return True if too long
@@ -43,13 +51,5 @@ public interface RawData
    * @return True if raw data is available.
    */
   boolean hasRawData();
-
-  /**
-   * Clears raw data for security reasons. Following recommendations
-   * from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
-   */
-  void clearRawData();
 
 }

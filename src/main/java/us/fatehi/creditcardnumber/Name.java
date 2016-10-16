@@ -240,9 +240,8 @@ public final class Name
     String name;
     if (splitName.length > position)
     {
-      name = capitalizeFully(trimToEmpty(splitName[position]), new char[] {
-          '.', '\'', ' '
-      });
+      name = capitalizeFully(trimToEmpty(splitName[position]),
+                             new char[] { '.', '\'', ' ' });
     }
     else
     {

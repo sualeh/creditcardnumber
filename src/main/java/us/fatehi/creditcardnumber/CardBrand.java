@@ -27,26 +27,28 @@ import java.util.regex.Pattern;
 /**
  * Card network that issued the bank card.
  *
- * @see <a
- *      href="http://www.regular-expressions.info/creditcard.html">Finding
- *      or Verifying Credit Card Numbers</a>
- * @see <a
- *      href="http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
+ * @see <a href=
+ *      "http://www.regular-expressions.info/creditcard.html">Finding or
+ *      Verifying Credit Card Numbers</a>
+ * @see <a href=
+ *      "http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
  *      do you detect Credit card type based on number?</a>
  * @author Sualeh Fatehi
  */
 public enum CardBrand
 {
 
-  Unknown(Pattern.compile("^unknown$")),
-  Visa(Pattern.compile("^4[0-9]{6,}$")),
-  // MasterCard numbers start with the numbers 51 through 55, and 2221 through 2720.
-  MasterCard(Pattern.compile("^5[1-5][0-9]{5,}$|^(222[1-9]|2[3-6][0-9][0-9]|27[0-1][0-9]|2720)[0-9]{12}$")),
-  AmericanExpress(Pattern.compile("^3[47][0-9]{5,}$")),
-  // Diners Club card numbers begin with 300 through 305, 36 or 38.
-  DinersClub(Pattern.compile("^3(?:0[0-5]|[68][0-9])[0-9]{4,}$")),
-  Discover(Pattern.compile("^6(?:011|5[0-9]{2})[0-9]{3,}$")),
-  JCB(Pattern.compile("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$")), ;
+ Unknown(Pattern.compile("^unknown$")),
+ Visa(Pattern.compile("^4[0-9]{6,}$")),
+ // MasterCard numbers start with the numbers 51 through 55, and 2221
+ // through 2720.
+ MasterCard(Pattern
+   .compile("^5[1-5][0-9]{5,}$|^(222[1-9]|2[3-6][0-9][0-9]|27[0-1][0-9]|2720)[0-9]{12}$")),
+ AmericanExpress(Pattern.compile("^3[47][0-9]{5,}$")),
+ // Diners Club card numbers begin with 300 through 305, 36 or 38.
+ DinersClub(Pattern.compile("^3(?:0[0-5]|[68][0-9])[0-9]{4,}$")),
+ Discover(Pattern.compile("^6(?:011|5[0-9]{2})[0-9]{3,}$")),
+ JCB(Pattern.compile("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$")),;
 
   public static CardBrand from(final String accountNumber)
   {

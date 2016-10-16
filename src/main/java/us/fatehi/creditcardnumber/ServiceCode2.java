@@ -27,10 +27,10 @@ public enum ServiceCode2
   implements ServiceCodeType
 {
 
-  unknown(-1, "Unknown"),
-  v_0(0, "Normal"),
-  v_2(2, "By issuer"),
-  v_4(4, "By issuer unless explicit bilateral agreeement applies"), ;
+ unknown(-1, "Unknown"),
+ v_0(0, "Normal"),
+ v_2(2, "By issuer"),
+ v_4(4, "By issuer unless explicit bilateral agreeement applies"),;
 
   private final int value;
   private final String authorizationProcessing;

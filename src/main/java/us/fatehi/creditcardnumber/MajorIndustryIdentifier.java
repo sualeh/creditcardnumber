@@ -25,26 +25,26 @@ package us.fatehi.creditcardnumber;
  * Identifier (MII) (see ISO/IEC 7812), which represents the category of
  * entity which issued the card.
  *
- * @see <a
- *      href="https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29">Major
+ * @see <a href=
+ *      "https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29">Major
  *      Industry Identifier</a>
  * @author Sualeh Fatehi
  */
 public enum MajorIndustryIdentifier
 {
 
-  unknown(-1, "unknown"),
-  mii_0(0, "ISO/TC 68 and other future industry assignments"),
-  mii_1(1, "Airlines"),
-  mii_2(2, "Airlines and other future industry assignments"),
-  mii_3(3, "Travel and entertainment and banking/financial"),
-  mii_4(4, "Banking and financial"),
-  mii_5(5, "Banking and financial"),
-  mii_6(6, "Merchandising and banking/financial"),
-  mii_7(7, "Petroleum and other future industry assignments"),
-  mii_8(8,
-    "Healthcare, telecommunications and other future industry assignments"),
-  mii_9(9, "National assignment"), ;
+ unknown(-1, "unknown"),
+ mii_0(0, "ISO/TC 68 and other future industry assignments"),
+ mii_1(1, "Airlines"),
+ mii_2(2, "Airlines and other future industry assignments"),
+ mii_3(3, "Travel and entertainment and banking/financial"),
+ mii_4(4, "Banking and financial"),
+ mii_5(5, "Banking and financial"),
+ mii_6(6, "Merchandising and banking/financial"),
+ mii_7(7, "Petroleum and other future industry assignments"),
+ mii_8(8,
+   "Healthcare, telecommunications and other future industry assignments"),
+ mii_9(9, "National assignment"),;
 
   /**
    * Parses MII value.
