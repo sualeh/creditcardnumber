@@ -20,6 +20,9 @@
 package us.fatehi.creditcardnumber;
 
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 import java.util.Arrays;
 
 public final class ClearableStringData
@@ -67,15 +70,12 @@ public final class ClearableStringData
 
   public void clearData(final int fromIndex)
   {
-    Arrays.fill(data, Integer.max(0, fromIndex), data.length, (char) 0);
+    Arrays.fill(data, max(0, fromIndex), data.length, (char) 0);
   }
 
   public void clearData(final int fromIndex, final int toIndex)
   {
-    Arrays.fill(data,
-                Integer.max(0, fromIndex),
-                Integer.min(data.length, toIndex),
-                (char) 0);
+    Arrays.fill(data, max(0, fromIndex), min(data.length, toIndex), (char) 0);
   }
 
   @Override
