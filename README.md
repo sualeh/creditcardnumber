@@ -10,7 +10,7 @@ credit card number.
 to create a reliable Java library to provide information about credit card numbers.**
 
 All classes are immutable and thread-safe. Secure data follows standards in the 
-[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
+[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
 The standard `toString()` function 
 formats data in a readable form. Validity is enforced by JUnit tests. 
 
@@ -43,7 +43,7 @@ Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>2.00.01</version>
+    <version>2.01.01</version>
 </dependency>
 ```
 
