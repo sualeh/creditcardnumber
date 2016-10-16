@@ -43,7 +43,7 @@ Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>1.10.01</version>
+    <version>2.00.01</version>
 </dependency>
 ```
 
