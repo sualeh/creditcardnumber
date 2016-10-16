@@ -44,11 +44,7 @@ public final class ClearableStringData
   }
 
   /**
-   * Returns the character at an index.
-   *
-   * @param i
-   *        Index
-   * @return Character at an index
+   * {@inheritDoc}
    */
   @Override
   public char charAt(final int i)
@@ -57,8 +53,8 @@ public final class ClearableStringData
   }
 
   /**
-   * Clears the Issuer Identification Number from memory. Following
-   * recommendations from the <a href=
+   * Clears the data from memory. Following recommendations from the
+   * <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
    * data.
@@ -68,16 +64,34 @@ public final class ClearableStringData
     Arrays.fill(data, (char) 0);
   }
 
+  /**
+   * Clears the data from memory, starting from the provided index,
+   * inclusive. Following recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
+   */
   public void clearData(final int fromIndex)
   {
     Arrays.fill(data, max(0, fromIndex), data.length, (char) 0);
   }
 
+  /**
+   * Clears the data from memory, starting from the provided index,
+   * inclusive, and until the second index. Following recommendations
+   * from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * data.
+   */
   public void clearData(final int fromIndex, final int toIndex)
   {
     Arrays.fill(data, max(0, fromIndex), min(data.length, toIndex), (char) 0);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean equals(final Object obj)
   {
@@ -101,6 +115,11 @@ public final class ClearableStringData
     return true;
   }
 
+  /**
+   * Gets data if available, or returns null.
+   * 
+   * @return Data if available, or null
+   */
   public String getData()
   {
     if (hasData())
@@ -113,11 +132,19 @@ public final class ClearableStringData
     }
   }
 
+  /**
+   * Checks whether data is available.
+   * 
+   * @return Whether data is available
+   */
   public boolean hasData()
   {
     return data.length > 0 && data[0] != 0 && data[data.length - 1] != 0;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int hashCode()
   {
@@ -127,18 +154,27 @@ public final class ClearableStringData
     return result;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int length()
   {
     return data.length;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public CharSequence subSequence(final int start, final int end)
   {
     return toString().subSequence(start, end);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String toString()
   {
