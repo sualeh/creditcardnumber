@@ -31,6 +31,11 @@ public abstract class BaseRawData
     this.rawData = new ClearableStringData(rawData);
   }
 
+  /**
+   * Clears raw data. Following recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
   @Override
   public void clearRawData()
   {
