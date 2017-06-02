@@ -43,9 +43,9 @@ public class AccountNumber
 
   private static final long serialVersionUID = -7012531091389412459L;
 
-  private final ClearableStringData accountNumber;
-  private final ClearableStringData issuerIdentificationNumber;
-  private final ClearableStringData lastFourDigits;
+  private final DisposableStringData accountNumber;
+  private final DisposableStringData issuerIdentificationNumber;
+  private final DisposableStringData lastFourDigits;
   private final AccountNumberInfo accountNumberInfo;
 
   /**
@@ -68,15 +68,15 @@ public class AccountNumber
     super(rawAccountNumber);
 
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
-    accountNumber = new ClearableStringData(accountNumberString);
-    issuerIdentificationNumber = new ClearableStringData(rightPad(left(accountNumberString,
-                                                                       6),
-                                                                  6,
-                                                                  "0"));
-    lastFourDigits = new ClearableStringData(leftPad(right(accountNumberString,
-                                                           4),
-                                                     4,
-                                                     "0"));
+    accountNumber = new DisposableStringData(accountNumberString);
+    issuerIdentificationNumber = new DisposableStringData(rightPad(left(accountNumberString,
+                                                                        6),
+                                                                   6,
+                                                                   "0"));
+    lastFourDigits = new DisposableStringData(leftPad(right(accountNumberString,
+                                                            4),
+                                                      4,
+                                                      "0"));
 
     final boolean passesLuhnCheck = luhnCheck();
     final MajorIndustryIdentifier majorIndustryIdentifier = MajorIndustryIdentifier
@@ -100,48 +100,75 @@ public class AccountNumber
   }
 
   /**
-   * Clears sensitive data from memory. Following recommendations from
+   * @see {@link #dispose}
+   */
+  @Deprecated
+  public void clear()
+  {
+    dispose();
+  }
+
+  /**
+   * @see {@link #disposeIssuerIdentificationNumber}
+   */
+  @Deprecated
+  public void clearIssuerIdentificationNumber()
+  {
+    disposeIssuerIdentificationNumber();
+  }
+
+  /**
+   * @see {@link #disposeLastFourDigits}
+   */
+  @Deprecated
+  public void clearLastFourDigits()
+  {
+    disposeLastFourDigits();
+  }
+
+  /**
+   * Wipes sensitive data from memory. Following recommendations from
    * the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a>
    */
-  public void clear()
+  public void dispose()
   {
-    clearRawData();
-    clearLastFourDigits();
-    clearIssuerIdentificationNumber();
+    disposeRawData();
+    disposeLastFourDigits();
+    disposeIssuerIdentificationNumber();
 
-    accountNumber.clearData();
+    accountNumber.disposeData();
   }
 
   /**
-   * Clears the Issuer Identification Number from memory. Following
+   * Wipes the Issuer Identification Number from memory. Following
    * recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
    */
-  public void clearIssuerIdentificationNumber()
+  public void disposeIssuerIdentificationNumber()
   {
-    clearRawData();
+    disposeRawData();
 
-    issuerIdentificationNumber.clearData();
-    accountNumber.clearData(0, 6);
+    issuerIdentificationNumber.disposeData();
+    accountNumber.disposeData(0, 6);
   }
 
   /**
-   * Clears the last 4 digits of the primary account number from memory.
+   * Wipes the last 4 digits of the primary account number from memory.
    * Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
    */
-  public void clearLastFourDigits()
+  public void disposeLastFourDigits()
   {
-    clearRawData();
+    disposeRawData();
 
-    lastFourDigits.clearData();
-    accountNumber.clearData(accountNumber.length() - 4);
+    lastFourDigits.disposeData();
+    accountNumber.disposeData(accountNumber.length() - 4);
   }
 
   @Override

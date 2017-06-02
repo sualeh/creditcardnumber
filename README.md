@@ -43,7 +43,7 @@ Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>2.01.01</version>
+    <version>2.01.02</version>
 </dependency>
 ```
 
@@ -81,7 +81,7 @@ If you need the account number information, but want to be secure by not
 storing the actual primary account number in memory, you can use code like:
 ```java
 AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
-pan.clear();
+pan.dispose();
 System.out.println(pan);
 ```
 and you will get this output:

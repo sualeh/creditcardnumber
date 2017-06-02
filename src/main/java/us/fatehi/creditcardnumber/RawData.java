@@ -24,12 +24,18 @@ public interface RawData
 {
 
   /**
-   * Clears raw data for security reasons. Following recommendations
-   * from the <a href=
+   * @see {@link #disposeRawData}
+   */
+  @Deprecated
+  void clearRawData();
+
+  /**
+   * Wipes raw data for security reasons. Following recommendations from
+   * the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a>
    */
-  void clearRawData();
+  void disposeRawData();
 
   /**
    * Whether the raw data exceeds the maximum length allowed.

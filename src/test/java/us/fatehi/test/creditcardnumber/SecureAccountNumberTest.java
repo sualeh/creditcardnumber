@@ -49,7 +49,7 @@ public class SecureAccountNumberTest
     assertEquals("6173", pan.getLastFourDigits());
     assertEquals("526609", pan.getIssuerIdentificationNumber());
 
-    pan.clearIssuerIdentificationNumber();
+    pan.disposeIssuerIdentificationNumber();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -76,7 +76,7 @@ public class SecureAccountNumberTest
     assertEquals("0573", pan.getLastFourDigits());
     assertEquals("573000", pan.getIssuerIdentificationNumber());
 
-    pan.clearIssuerIdentificationNumber();
+    pan.disposeIssuerIdentificationNumber();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -103,7 +103,7 @@ public class SecureAccountNumberTest
     assertEquals("6173", pan.getLastFourDigits());
     assertEquals("526609", pan.getIssuerIdentificationNumber());
 
-    pan.clearLastFourDigits();
+    pan.disposeLastFourDigits();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -130,7 +130,7 @@ public class SecureAccountNumberTest
     assertEquals("0573", pan.getLastFourDigits());
     assertEquals("573000", pan.getIssuerIdentificationNumber());
 
-    pan.clearLastFourDigits();
+    pan.disposeLastFourDigits();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -158,7 +158,7 @@ public class SecureAccountNumberTest
     assertEquals("6173", pan.getLastFourDigits());
     assertEquals("526609", pan.getIssuerIdentificationNumber());
 
-    pan.clear();
+    pan.dispose();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -187,7 +187,7 @@ public class SecureAccountNumberTest
     assertEquals("0573", pan.getLastFourDigits());
     assertEquals("573000", pan.getIssuerIdentificationNumber());
 
-    pan.clear();
+    pan.dispose();
 
     assertTrue(!pan.hasRawData());
     assertTrue(!pan.hasAccountNumber());
@@ -204,7 +204,7 @@ public class SecureAccountNumberTest
     final String rawAccountNumber = null;
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue(!pan.hasAccountNumber());
-    pan.clear();
+    pan.dispose();
     assertTrue(!pan.hasAccountNumber());
   }
 
@@ -214,7 +214,7 @@ public class SecureAccountNumberTest
     final String rawAccountNumber = "\t\t";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
     assertTrue(!pan.hasAccountNumber());
-    pan.clear();
+    pan.dispose();
     assertTrue(!pan.hasAccountNumber());
   }
 

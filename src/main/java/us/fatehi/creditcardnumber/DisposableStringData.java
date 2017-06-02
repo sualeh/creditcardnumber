@@ -25,13 +25,13 @@ import static java.lang.Math.min;
 
 import java.util.Arrays;
 
-public final class ClearableStringData
+public final class DisposableStringData
   implements CharSequence
 {
 
   private final char[] data;
 
-  public ClearableStringData(final String data)
+  public DisposableStringData(final String data)
   {
     if (data != null)
     {
@@ -53,38 +53,38 @@ public final class ClearableStringData
   }
 
   /**
-   * Clears the data from memory. Following recommendations from the
+   * Wipes the data from memory. Following recommendations from the
    * <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
    */
-  public void clearData()
+  public void disposeData()
   {
     Arrays.fill(data, (char) 0);
   }
 
   /**
-   * Clears the data from memory, starting from the provided index,
+   * Wipes the data from memory, starting from the provided index,
    * inclusive. Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
    */
-  public void clearData(final int fromIndex)
+  public void disposeData(final int fromIndex)
   {
     Arrays.fill(data, max(0, fromIndex), data.length, (char) 0);
   }
 
   /**
-   * Clears the data from memory, starting from the provided index,
+   * Wipes the data from memory, starting from the provided index,
    * inclusive, and until the second index. Following recommendations
    * from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also clears raw
+   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
    */
-  public void clearData(final int fromIndex, final int toIndex)
+  public void disposeData(final int fromIndex, final int toIndex)
   {
     Arrays.fill(data, max(0, fromIndex), min(data.length, toIndex), (char) 0);
   }
@@ -107,7 +107,7 @@ public final class ClearableStringData
     {
       return false;
     }
-    final ClearableStringData other = (ClearableStringData) obj;
+    final DisposableStringData other = (DisposableStringData) obj;
     if (!Arrays.equals(data, other.data))
     {
       return false;

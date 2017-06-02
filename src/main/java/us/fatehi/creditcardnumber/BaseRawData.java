@@ -24,30 +24,44 @@ public abstract class BaseRawData
   implements RawData
 {
 
-  private final ClearableStringData rawData;
+  private final DisposableStringData rawData;
 
   protected BaseRawData(final String rawData)
   {
-    this.rawData = new ClearableStringData(rawData);
+    this.rawData = new DisposableStringData(rawData);
   }
 
   /**
-   * Clears raw data. Following recommendations from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
+   * {@inheritDoc}
    */
+  @Deprecated
   @Override
   public void clearRawData()
   {
-    rawData.clearData();
+    disposeRawData();
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public void disposeRawData()
+  {
+    rawData.disposeData();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String getRawData()
   {
     return rawData.getData();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean hasRawData()
   {
