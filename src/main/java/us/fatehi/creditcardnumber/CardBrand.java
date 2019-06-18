@@ -48,7 +48,8 @@ public enum CardBrand
  // Diners Club card numbers begin with 300 through 305, 36 or 38.
  DinersClub(Pattern.compile("^3(?:0[0-5]|[68][0-9])[0-9]{4,}$")),
  Discover(Pattern.compile("^6(?:011|5[0-9]{2})[0-9]{3,}$")),
- JCB(Pattern.compile("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$")),;
+ JCB(Pattern.compile("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$")),
+ UATP(Pattern.compile("^1[0-9]{14}$")),;
 
   public static CardBrand from(final String accountNumber)
   {

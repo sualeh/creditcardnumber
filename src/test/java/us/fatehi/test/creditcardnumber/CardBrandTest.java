@@ -65,6 +65,17 @@ public class CardBrandTest
     }
   }
 
+  // https://en.wikipedia.org/wiki/Payment_card_number#Issuer_identification_number_(IIN)
+  @Test
+  public void uatp()
+  {
+    final long[] longCardNumbers = { 135412345678911L, 106371023654310L };
+    for (final long longCardNumber: longCardNumbers)
+    {
+      test(longCardNumber, CardBrand.UATP);
+    }
+  }
+
   // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void jcb()
