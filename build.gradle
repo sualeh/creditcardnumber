@@ -1,0 +1,46 @@
+plugins {
+  id 'java-library'
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compile 'org.apache.commons:commons-lang3:3.4'
+  testCompile 'junit:junit:4.12'
+}
+
+group = 'us.fatehi'
+version = '2.02.01'
+description = 'Credit Card Number'
+sourceCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+task sourcesJar(type: Jar) {
+  archiveClassifier = 'sources'
+  from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  archiveClassifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives sourcesJar
+  archives javadocJar
+}
+
+jar {
+  manifest {
+    attributes("Implementation-Title": description,
+          "Implementation-Version": version)
+  }
+
+}
+

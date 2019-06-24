@@ -25,7 +25,7 @@ package us.fatehi.creditcardnumber;
  * Identifier (MII) (see ISO/IEC 7812), which represents the category of
  * entity which issued the card.
  *
- * @see <a href=
+ * See <a href=
  *      "https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29">Major
  *      Industry Identifier</a>
  * @author Sualeh Fatehi
@@ -99,7 +99,7 @@ public enum MajorIndustryIdentifier
   }
 
   /**
-   * @see java.lang.Enum#toString()
+   * See java.lang.Enum#toString()
    */
   @Override
   public String toString()

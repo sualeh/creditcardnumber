@@ -32,7 +32,7 @@ import java.util.Arrays;
 /**
  * Represents a bank card number.
  *
- * @see <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank
+ * See <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank
  *      card number</a>
  * @author Sualeh Fatehi
  */
@@ -100,7 +100,7 @@ public class AccountNumber
   }
 
   /**
-   * @see {@link #dispose}
+   * See {@link #dispose}
    */
   @Deprecated
   public void clear()
@@ -109,7 +109,7 @@ public class AccountNumber
   }
 
   /**
-   * @see {@link #disposeIssuerIdentificationNumber}
+   * See {@link #disposeIssuerIdentificationNumber}
    */
   @Deprecated
   public void clearIssuerIdentificationNumber()
@@ -118,7 +118,7 @@ public class AccountNumber
   }
 
   /**
-   * @see {@link #disposeLastFourDigits}
+   * See {@link #disposeLastFourDigits}
    */
   @Deprecated
   public void clearLastFourDigits()
@@ -359,7 +359,7 @@ public class AccountNumber
    * Checks whether the primary account number passes the Luhn check.
    *
    * @return True if the primary account number passes the Luhn check.
-   * @see <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
+   * See <a href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn
    *      Algorithm</a>
    */
   public boolean passesLuhnCheck()
@@ -368,7 +368,7 @@ public class AccountNumber
   }
 
   /**
-   * @see java.lang.Object#toString()
+   * See java.lang.Object#toString()
    */
   @Override
   public String toString()

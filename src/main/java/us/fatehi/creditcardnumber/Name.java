@@ -78,7 +78,7 @@ public final class Name
   }
 
   /**
-   * @see java.lang.Object#equals(java.lang.Object)
+   * See java.lang.Object#equals(java.lang.Object)
    */
   @Override
   public boolean equals(final Object obj)
@@ -122,7 +122,7 @@ public final class Name
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
+   * See us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
@@ -194,7 +194,7 @@ public final class Name
   }
 
   /**
-   * @see java.lang.Object#hashCode()
+   * See java.lang.Object#hashCode()
    */
   @Override
   public int hashCode()
@@ -227,7 +227,7 @@ public final class Name
   }
 
   /**
-   * @see java.lang.Object#toString()
+   * See java.lang.Object#toString()
    */
   @Override
   public String toString()

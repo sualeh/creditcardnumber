@@ -26,7 +26,7 @@ import static us.fatehi.creditcardnumber.Utility.non_digit;
 import java.io.Serializable;
 
 /**
- * @see <a href=
+ * See <a href=
  *      "https://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards">Wikipedia:
  *      Financial Cards</a>
  * @author Sualeh Fatehi
@@ -69,7 +69,7 @@ public class ServiceCode
   }
 
   /**
-   * @see java.lang.Object#equals(java.lang.Object)
+   * See java.lang.Object#equals(java.lang.Object)
    */
   @Override
   public boolean equals(final Object obj)
@@ -148,7 +148,7 @@ public class ServiceCode
   }
 
   /**
-   * @see java.lang.Object#hashCode()
+   * See java.lang.Object#hashCode()
    */
   @Override
   public int hashCode()
@@ -167,7 +167,7 @@ public class ServiceCode
   }
 
   /**
-   * @see java.lang.Object#toString()
+   * See java.lang.Object#toString()
    */
   @Override
   public String toString()

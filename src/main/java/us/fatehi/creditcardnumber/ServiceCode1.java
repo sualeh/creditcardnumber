@@ -49,7 +49,7 @@ public enum ServiceCode1
   }
 
   /**
-   * @see ServiceCodeType#getDescription()
+   * See ServiceCodeType#getDescription()
    */
   @Override
   public String getDescription()
@@ -80,7 +80,7 @@ public enum ServiceCode1
   }
 
   /**
-   * @see ServiceCodeType#getValue()
+   * See ServiceCodeType#getValue()
    */
   @Override
   public int getValue()
@@ -89,7 +89,7 @@ public enum ServiceCode1
   }
 
   /**
-   * @see Object#toString()
+   * See Object#toString()
    */
   @Override
   public String toString()

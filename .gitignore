@@ -3,3 +3,6 @@
 .classpath
 *.launch
 /target
+/out
+.idea/
+*.iml

@@ -27,10 +27,10 @@ import java.util.regex.Pattern;
 /**
  * Card network that issued the bank card.
  *
- * @see <a href=
+ * See <a href=
  *      "http://www.regular-expressions.info/creditcard.html">Finding or
  *      Verifying Credit Card Numbers</a>
- * @see <a href=
+ * See <a href=
  *      "http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
  *      do you detect Credit card type based on number?</a>
  * @author Sualeh Fatehi

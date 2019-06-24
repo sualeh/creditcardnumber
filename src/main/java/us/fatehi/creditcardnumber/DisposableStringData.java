@@ -70,6 +70,8 @@ public final class DisposableStringData
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
+   *
+   * @param fromIndex Position to start disposing data from
    */
   public void disposeData(final int fromIndex)
   {
@@ -83,6 +85,9 @@ public final class DisposableStringData
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
    * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw
    * data.
+   *
+   * @param fromIndex Position to start disposing data from
+   * @param toIndex Position to end disposing data
    */
   public void disposeData(final int fromIndex, final int toIndex)
   {
@@ -117,7 +122,7 @@ public final class DisposableStringData
 
   /**
    * Gets data if available, or returns null.
-   * 
+   *
    * @return Data if available, or null
    */
   public String getData()
@@ -134,7 +139,7 @@ public final class DisposableStringData
 
   /**
    * Checks whether data is available.
-   * 
+   *
    * @return Whether data is available
    */
   public boolean hasData()

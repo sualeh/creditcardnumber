@@ -24,7 +24,7 @@ public interface RawData
 {
 
   /**
-   * @see {@link #disposeRawData}
+   * See {@link #disposeRawData}
    */
   @Deprecated
   void clearRawData();

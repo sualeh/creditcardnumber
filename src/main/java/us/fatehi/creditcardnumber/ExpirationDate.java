@@ -24,15 +24,10 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.Utility.non_digit;
 
 import java.io.Serializable;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
-
-import org.threeten.bp.Instant;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.YearMonth;
-import org.threeten.bp.ZoneId;
-import org.threeten.bp.format.DateTimeFormatter;
-import org.threeten.bp.temporal.ChronoUnit;
 
 /**
  * Parses and represents a card expiration date.
@@ -114,7 +109,7 @@ public final class ExpirationDate
   }
 
   /**
-   * @see java.lang.Object#equals(java.lang.Object)
+   * See java.lang.Object#equals(java.lang.Object)
    */
   @Override
   public boolean equals(final Object obj)
@@ -147,7 +142,7 @@ public final class ExpirationDate
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
+   * See us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
    */
   @Override
   public boolean exceedsMaximumLength()
@@ -200,7 +195,7 @@ public final class ExpirationDate
   }
 
   /**
-   * @see java.lang.Object#hashCode()
+   * See java.lang.Object#hashCode()
    */
   @Override
   public int hashCode()
@@ -230,7 +225,7 @@ public final class ExpirationDate
   }
 
   /**
-   * @see java.lang.Object#toString()
+   * See java.lang.Object#toString()
    */
   @Override
   public String toString()

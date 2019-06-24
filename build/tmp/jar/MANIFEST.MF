@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: Assembles a jar archive containing the main clas
+ ses.
+Implementation-Version: 2.02.01
+

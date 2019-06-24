@@ -23,8 +23,9 @@ package us.fatehi.test.creditcardnumber;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.YearMonth;
+
 import org.junit.Test;
-import org.threeten.bp.YearMonth;
 
 import us.fatehi.creditcardnumber.ExpirationDate;
 

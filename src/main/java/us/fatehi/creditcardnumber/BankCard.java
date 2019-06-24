@@ -96,6 +96,7 @@ public final class BankCard
    *        Card expiration date
    * @param name
    *        Cardholder name
+   * @param serviceCode Card service code
    */
   public BankCard(final AccountNumber pan,
                   final ExpirationDate expirationDate,
@@ -202,7 +203,9 @@ public final class BankCard
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.Name#getFullName()
+   * See us.fatehi.creditcardnumber.Name#getFullName()
+   *
+   * @return Card holder's full name
    */
   public String getCardHolderName()
   {
@@ -220,7 +223,9 @@ public final class BankCard
   }
 
   /**
-   * @see us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsDate()
+   * See us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsDate()
+   *
+   * @return Expiration date
    */
   public Date getExpirationDateAsDate()
   {
@@ -266,7 +271,7 @@ public final class BankCard
   }
 
   /**
-   * @see java.lang.Object#hashCode()
+   * See java.lang.Object#hashCode()
    */
   @Override
   public int hashCode()
