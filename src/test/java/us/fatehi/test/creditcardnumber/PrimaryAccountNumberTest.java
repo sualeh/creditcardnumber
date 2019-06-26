@@ -22,11 +22,10 @@ package us.fatehi.test.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.right;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
@@ -39,8 +38,8 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = null;
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawData());
-    assertTrue(!pan.hasAccountNumber());
+    assertThat(pan.getRawData(), is(rawAccountNumber));
+    assertThat(pan.hasAccountNumber(), is(false));
   }
 
   @Test
@@ -48,8 +47,8 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "\t\t";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawData());
-    assertTrue(!pan.hasAccountNumber());
+    assertThat(pan.getRawData(), is(rawAccountNumber));
+    assertThat(pan.hasAccountNumber(), is(false));
   }
 
   @Test
@@ -57,8 +56,8 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "5266092201416173";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertEquals(rawAccountNumber, pan.getRawData());
-    assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
+    assertThat(pan.getRawData(), is(rawAccountNumber));
+    assertThat(!pan.passesLuhnCheck(), is(true));
     check(rawAccountNumber, pan, rawAccountNumber);
   }
 
@@ -67,7 +66,7 @@ public class PrimaryAccountNumberTest
   {
     final String rawAccountNumber = "5266092201416174";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertTrue("Does not pass Luhn check", pan.passesLuhnCheck());
+    assertThat(pan.passesLuhnCheck(), is(true));
     check(rawAccountNumber, pan, rawAccountNumber);
   }
 
@@ -77,7 +76,7 @@ public class PrimaryAccountNumberTest
     final String rawAccountNumber = "  5266-0922-0141-6174  ";
     final String accountNumber = "5266092201416174";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertTrue("Does not pass Luhn check", pan.passesLuhnCheck());
+    assertThat(pan.passesLuhnCheck(), is(true));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -87,8 +86,8 @@ public class PrimaryAccountNumberTest
     final String rawAccountNumber = "  5266-0922-0141-6174-7889  ";
     final String accountNumber = "52660922014161747889";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
-    assertTrue("Should not pass Luhn check", pan.exceedsMaximumLength());
+    assertThat(!pan.passesLuhnCheck(), is(true));
+    assertThat(pan.exceedsMaximumLength(), is(true));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -98,7 +97,7 @@ public class PrimaryAccountNumberTest
     final String rawAccountNumber = "  5266-0922  ";
     final String accountNumber = "52660922";
     final AccountNumber pan = new AccountNumber(rawAccountNumber);
-    assertTrue("Should not pass Luhn check", !pan.passesLuhnCheck());
+    assertThat(!pan.passesLuhnCheck(), is(true));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -106,13 +105,13 @@ public class PrimaryAccountNumberTest
                      final AccountNumber pan,
                      final String accountNumber)
   {
-    assertEquals(rawAccountNumber, pan.getRawData());
-    assertEquals(accountNumber, pan.getAccountNumber());
-    assertEquals(right(accountNumber, 4), pan.getLastFourDigits());
-    assertEquals(left(accountNumber, 6), pan.getIssuerIdentificationNumber());
-    assertEquals(CardBrand.MasterCard, pan.getCardBrand());
-    assertEquals(MajorIndustryIdentifier.mii_5,
-                 pan.getMajorIndustryIdentifier());
+    assertThat(pan.getRawData(), is(rawAccountNumber));
+    assertThat(pan.getAccountNumber(), is(accountNumber));
+    assertThat(pan.getLastFourDigits(), is(right(accountNumber, 4)));
+    assertThat(pan.getIssuerIdentificationNumber(), is(left(accountNumber, 6)));
+    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
+    assertThat(pan.getMajorIndustryIdentifier(),
+               is(MajorIndustryIdentifier.mii_5));
   }
 
 }

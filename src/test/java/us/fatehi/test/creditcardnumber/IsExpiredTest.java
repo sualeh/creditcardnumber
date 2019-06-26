@@ -20,15 +20,14 @@
 package us.fatehi.test.creditcardnumber;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.ExpirationDate;
 
 public class IsExpiredTest
@@ -61,20 +60,14 @@ public class IsExpiredTest
   }
 
   private void check(final YearMonth expectedExpirationDate,
-                     final boolean isExpired)
+                     final boolean expired)
   {
     final String rawExpirationDate = formatter.format(expectedExpirationDate);
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should have expiration date",
-               expirationDate.hasExpirationDate());
-    assertTrue(isExpired? expirationDate.isExpired()
-                        : !expirationDate.isExpired());
-    assertEquals(expectedExpirationDate, expirationDate.getExpirationDate());
-
-    // System.out.println(String.format("%s - %s",
-    // expectedExpirationDate,
-    // expirationDate.getExpirationDateAsDate()));
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(true));
+    assertThat(expirationDate.isExpired(), is(expired));
+    assertThat(expirationDate.getExpirationDate(), is(expectedExpirationDate));
   }
 
 }

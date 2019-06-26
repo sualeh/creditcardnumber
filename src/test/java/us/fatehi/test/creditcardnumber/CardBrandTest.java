@@ -20,9 +20,11 @@
 package us.fatehi.test.creditcardnumber;
 
 
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.sameInstance;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.fatehi.creditcardnumber.CardBrand;
 
@@ -146,7 +148,7 @@ public class CardBrandTest
   {
     final String cardNumber = String.valueOf(longCardNumber);
     final CardBrand cardBrand = CardBrand.from(cardNumber);
-    assertTrue(cardNumber, expectedCardBrand == cardBrand);
+    assertThat(cardNumber,  cardBrand, is(sameInstance(expectedCardBrand)));
   }
 
 }

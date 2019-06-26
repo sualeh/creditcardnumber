@@ -20,11 +20,10 @@
 package us.fatehi.test.creditcardnumber;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.ServiceCode;
 import us.fatehi.creditcardnumber.ServiceCode1;
 import us.fatehi.creditcardnumber.ServiceCode2;
@@ -38,8 +37,10 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = null;
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should not have service code", !serviceCode.hasServiceCode());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should not have service code",
+               !serviceCode.hasServiceCode(),
+               is(true));
   }
 
   @Test
@@ -47,8 +48,10 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "\t\t";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should not have service code", !serviceCode.hasServiceCode());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should not have service code",
+               !serviceCode.hasServiceCode(),
+               is(true));
   }
 
   @Test
@@ -56,8 +59,10 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "AQW";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should not have service code", !serviceCode.hasServiceCode());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should not have service code",
+               !serviceCode.hasServiceCode(),
+               is(true));
   }
 
   @Test
@@ -65,10 +70,12 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "10";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertEquals(ServiceCode1.v_1, serviceCode.getServiceCode1());
-    assertEquals(ServiceCode2.v_0, serviceCode.getServiceCode2());
-    assertTrue("Should not have service code", !serviceCode.hasServiceCode());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_1));
+    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_0));
+    assertThat("Should not have service code",
+               !serviceCode.hasServiceCode(),
+               is(true));
   }
 
   @Test
@@ -76,11 +83,13 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "101";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should have service code", serviceCode.hasServiceCode());
-    assertEquals(ServiceCode1.v_1, serviceCode.getServiceCode1());
-    assertEquals(ServiceCode2.v_0, serviceCode.getServiceCode2());
-    assertEquals(ServiceCode3.v_1, serviceCode.getServiceCode3());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should have service code",
+               serviceCode.hasServiceCode(),
+               is(true));
+    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_1));
+    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_0));
+    assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.v_1));
   }
 
   @Test
@@ -88,11 +97,13 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "222 ";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should have service code", serviceCode.hasServiceCode());
-    assertEquals(ServiceCode1.v_2, serviceCode.getServiceCode1());
-    assertEquals(ServiceCode2.v_2, serviceCode.getServiceCode2());
-    assertEquals(ServiceCode3.v_2, serviceCode.getServiceCode3());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should have service code",
+               serviceCode.hasServiceCode(),
+               is(true));
+    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_2));
+    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_2));
+    assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.v_2));
   }
 
   @Test
@@ -100,11 +111,13 @@ public class ServiceCodeTest
   {
     final String rawServiceCode = "52525";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
-    assertEquals(rawServiceCode, serviceCode.getRawData());
-    assertTrue("Should have service code", serviceCode.hasServiceCode());
-    assertEquals(ServiceCode1.v_5, serviceCode.getServiceCode1());
-    assertEquals(ServiceCode2.v_2, serviceCode.getServiceCode2());
-    assertEquals(ServiceCode3.v_5, serviceCode.getServiceCode3());
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat("Should have service code",
+               serviceCode.hasServiceCode(),
+               is(true));
+    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_5));
+    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_2));
+    assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.v_5));
   }
 
 }

@@ -20,13 +20,12 @@
 package us.fatehi.test.creditcardnumber;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.YearMonth;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.ExpirationDate;
 
 public class ExpirationDateTest
@@ -37,8 +36,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = null;
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue(!expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -46,9 +45,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "\t\t";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -56,9 +54,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "AQW";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -66,9 +63,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "11";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -76,9 +72,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "8888";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -86,9 +81,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "121212";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -96,9 +90,8 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "1313";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertTrue("Should not have expiration date",
-               !expirationDate.hasExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
   }
 
   @Test
@@ -106,11 +99,10 @@ public class ExpirationDateTest
   {
     final String rawExpirationDate = "1212";
     final ExpirationDate expirationDate = new ExpirationDate(rawExpirationDate);
-    assertEquals(rawExpirationDate, expirationDate.getRawData());
-    assertEquals("2012-12", expirationDate.toString());
-    assertTrue("Should have expiration date",
-               expirationDate.hasExpirationDate());
-    assertEquals(YearMonth.of(2012, 12), expirationDate.getExpirationDate());
+    assertThat(expirationDate.getRawData(), is(rawExpirationDate));
+    assertThat(expirationDate.toString(), is("2012-12"));
+    assertThat(expirationDate.hasExpirationDate(), is(true));
+    assertThat(expirationDate.getExpirationDate(), is(YearMonth.of(2012, 12)));
   }
 
 }

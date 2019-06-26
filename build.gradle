@@ -9,7 +9,8 @@ repositories {
 
 dependencies {
   compile 'org.apache.commons:commons-lang3:3.4'
-  testCompile 'junit:junit:4.12'
+  testCompile 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+  testCompile 'org.hamcrest:hamcrest:2.1'
 }
 
 group = 'us.fatehi'

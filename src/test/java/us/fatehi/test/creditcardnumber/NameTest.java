@@ -20,10 +20,11 @@
 package us.fatehi.test.creditcardnumber;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.sameInstance;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.fatehi.creditcardnumber.Name;
 
@@ -35,8 +36,8 @@ public class NameTest
   {
     final String rawName = null;
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawData());
-    assertTrue("Should not have name", !name.hasName());
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.hasName(), is(false));
   }
 
   @Test
@@ -44,8 +45,8 @@ public class NameTest
   {
     final String rawName = "\t\t";
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawData());
-    assertTrue("Should not have name", !name.hasName());
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.hasName(), is(false));
   }
 
   @Test
@@ -53,8 +54,8 @@ public class NameTest
   {
     final String rawName = " /                        ";
     final Name name = new Name(rawName);
-    assertEquals(rawName, name.getRawData());
-    assertTrue("Should not have name", !name.hasName());
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.hasName(), is(false));
   }
 
   @Test
@@ -62,11 +63,11 @@ public class NameTest
   {
     final String rawName = "SUALEH";
     final Name name = new Name(rawName);
-    assertTrue("Should have name", name.hasName());
-    assertEquals("SUALEH", name.getRawData());
-    assertEquals("", name.getFirstName());
-    assertEquals("Sualeh", name.getLastName());
-    assertEquals("Sualeh", name.getFullName());
+    assertThat(name.hasName(), is(true));
+    assertThat(name.getRawData(), is("SUALEH"));
+    assertThat(name.getFirstName(), is(""));
+    assertThat(name.getLastName(), is("Sualeh"));
+    assertThat(name.getFullName(), is("Sualeh"));
   }
 
   @Test
@@ -74,11 +75,11 @@ public class NameTest
   {
     final String rawName = "FATEHI/SUALEH";
     final Name name = new Name(rawName);
-    assertTrue("Does not have name", name.hasName());
-    assertEquals(rawName, name.getRawData());
-    assertEquals("Sualeh", name.getFirstName());
-    assertEquals("Fatehi", name.getLastName());
-    assertEquals("Sualeh Fatehi", name.getFullName());
+    assertThat(name.hasName(), is(true));
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.getFirstName(), is("Sualeh"));
+    assertThat(name.getLastName(), is("Fatehi"));
+    assertThat(name.getFullName(), is("Sualeh Fatehi"));
   }
 
   @Test
@@ -86,11 +87,11 @@ public class NameTest
   {
     final String rawName = "FATEHI/SUALEH             ";
     final Name name = new Name(rawName);
-    assertTrue("Does not have name", name.hasName());
-    assertEquals(rawName, name.getRawData());
-    assertEquals("Sualeh", name.getFirstName());
-    assertEquals("Fatehi", name.getLastName());
-    assertEquals("Sualeh Fatehi", name.getFullName());
+    assertThat(name.hasName(), is(true));
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.getFirstName(), is("Sualeh"));
+    assertThat(name.getLastName(), is("Fatehi"));
+    assertThat(name.getFullName(), is("Sualeh Fatehi"));
   }
 
   @Test
@@ -98,11 +99,11 @@ public class NameTest
   {
     final String rawName = "MICHAELS OPEN VALUE CARD  ";
     final Name name = new Name(rawName);
-    assertTrue("Should have name", name.hasName());
-    assertEquals(rawName, name.getRawData());
-    assertEquals("", name.getFirstName());
-    assertEquals("Michaels Open Value Card", name.getLastName());
-    assertEquals("Michaels Open Value Card", name.getFullName());
+    assertThat(name.hasName(), is(true));
+    assertThat(name.getRawData(), is(rawName));
+    assertThat(name.getFirstName(), is(""));
+    assertThat(name.getLastName(), is("Michaels Open Value Card"));
+    assertThat(name.getFullName(), is("Michaels Open Value Card"));
   }
 
 }
