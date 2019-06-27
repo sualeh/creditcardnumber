@@ -10,15 +10,9 @@ credit card number.
 to create a reliable Java library to provide information about credit card numbers.**
 
 All classes are immutable and thread-safe. Secure data follows standards in the 
-[Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
+[Java Cryptography Architecture (JCA) Reference Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
 The standard `toString()` function 
-formats data in a readable form. Validity is enforced by JUnit tests. 
-
-Java 6 or newer is required. This library deliberately supports Java 6, to make it 
-usable in Android apps. In order to be Java 8 ready, Credit Card Number depends on 
-Stephen Colebourne's [ThreeTen backport 
-project](https://github.com/ThreeTen/threetenbp), a port of [JSR 
-310](https://jcp.org/en/jsr/detail?id=310) to Java 6. 
+formats data in a readable form. Validity is enforced by JUnit 5 tests. Java 8 or newer is required.
 
 Some resources consulted are:
 * [Bank card number](http://en.wikipedia.org/wiki/Bank_card_number)

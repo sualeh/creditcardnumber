@@ -353,7 +353,7 @@ public final class BankCard
     {
       buffer.append("  Expiration Date: ");
       buffer.append(expirationDate).append(NEWLINE);
-      buffer.append("    Is Expired: ");
+      buffer.append("    Is Expired? ");
       buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
     }
     if (hasName())
