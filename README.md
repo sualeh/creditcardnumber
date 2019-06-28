@@ -9,10 +9,17 @@ credit card number.
 > **The goal of this project is to use publicly and freely available documentation 
 to create a reliable Java library to provide information about credit card numbers.**
 
-All classes are immutable and thread-safe. Secure data follows standards in the 
-[Java Cryptography Architecture (JCA) Reference Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx).
-The standard `toString()` function 
-formats data in a readable form. Validity is enforced by JUnit 5 tests. Java 8 or newer is required.
+## Design Principles
+
+- All classes are immutable and thread-safe
+- Secure data follows standards in the 
+[Java Cryptography Architecture (JCA) Reference Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx)
+- The standard `toString()` function 
+formats data in a readable form
+- Validity is enforced by JUnit 5 tests
+- Java 8 or newer is required.
+
+## Resources
 
 Some resources consulted are:
 * [Bank card number](http://en.wikipedia.org/wiki/Bank_card_number)
@@ -37,7 +44,7 @@ Repository.
 <dependency>
     <groupId>us.fatehi</groupId>
     <artifactId>credit_card_number</artifactId>
-    <version>2.01.02</version>
+    <version>2.02.01</version>
 </dependency>
 ```
 
@@ -65,7 +72,7 @@ Bank Card Information:
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
   Expiration Date: 1504
-    Is Expired: No
+    Is Expired? No
   Name: Sualeh Fatehi
 ```
 
