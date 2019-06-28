@@ -3,6 +3,7 @@ plugins {
   id 'maven'
   id 'signing'
   id 'io.codearte.nexus-staging' version '0.21.0'
+  id 'com.gradle.build-scan' version '2.3'
 }
 
 repositories {
@@ -90,6 +91,13 @@ uploadArchives {
 
   task publish(type: GradleBuild) {
     tasks = ['clean', 'assemble', 'uploadArchives', 'closeAndReleaseRepository']
+  }
+
+  buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+
+    publishAlways()
   }
 
 }
