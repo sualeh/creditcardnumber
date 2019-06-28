@@ -17,7 +17,7 @@ dependencies {
 }
 
 group = 'us.fatehi'
-version = '2.02.01'
+version = '2.2.2'
 description = 'Credit Card Number'
 sourceCompatibility = '1.8'
 
