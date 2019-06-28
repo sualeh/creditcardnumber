@@ -33,10 +33,9 @@ Some resources consulted are:
 
 ## Download and Use in Projects
 
-You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar).
-
-To download page for *Credit Card Number* has instructions on how to use the library 
-in your Maven or Gradle build.
+You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar). 
+The [download page](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar) 
+has instructions on how to use the library in your Maven or Gradle build.
 
 
 ## Examples
