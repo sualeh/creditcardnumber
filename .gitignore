@@ -5,6 +5,6 @@
 .idea/
 .project
 .settings/
-/build/
-/out/
-/target/
+build/
+out/
+target/

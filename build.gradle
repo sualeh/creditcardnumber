@@ -1,5 +1,8 @@
 plugins {
   id 'java-library'
+  id 'maven'
+  id 'signing'
+  id 'io.codearte.nexus-staging' version '0.21.0'
 }
 
 repositories {
@@ -33,15 +36,61 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 artifacts {
-  archives jar
+  // archives jar
   archives sourcesJar
   archives javadocJar
 }
 
-jar {
-  manifest {
-    attributes("Implementation-Title": description,
-        "Implementation-Version": version)
+signing {
+  sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'Credit Card Number'
+        packaging 'jar'
+        description 'Java library that can provide details of a bank issued credit card number'
+        url 'https://github.com/sualeh/credit_card_number'
+
+        scm {
+          connection 'scm:git:https://github.com/sualeh/credit_card_number.git'
+          developerConnection 'scm:git:https://github.com/sualeh/credit_card_number.git'
+          url 'https://github.com/sualeh/credit_card_number.git'
+        }
+
+        licenses {
+          license {
+            name 'GNU Lesser General Public License v3'
+            url 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+          }
+        }
+
+        developers {
+          developer {
+            id 'sualeh'
+            name 'Sualeh Fatehi'
+            email 'sualeh@hotmail.com'
+          }
+        }
+      }
+    }
   }
+
+  task publish(type: GradleBuild) {
+    tasks = ['clean', 'assemble', 'uploadArchives', 'closeAndReleaseRepository']
+  }
+
 }
 
