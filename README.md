@@ -6,8 +6,22 @@
 *Credit Card Number* is a Java library that can provide details of a bank issued 
 credit card number. 
 
+
+## Resources
+
 > **The goal of this project is to use publicly and freely available documentation 
 to create a reliable Java library to provide information about credit card numbers.**
+
+Some resources consulted are:
+* [Bank card number](http://en.wikipedia.org/wiki/Bank_card_number)
+* [How do you detect Credit card type based on number?](http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number)  
+* [Finding or Verifying Credit Card Numbers](http://www.regular-expressions.info/creditcard.html)
+* [Major Industry Identifier](https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29)
+* [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
+* [Test Credit Card Account Numbers](https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm)
+* [MasterCard BIN Range Coming October 2016](https://www.forte.net/blog/mastercard-bin-range-coming/)
+* [Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
+
 
 ## Design Principles
 
@@ -19,17 +33,6 @@ formats data in a readable form
 - Validity is enforced by JUnit 5 tests
 - Java 8 or newer is required.
 
-## Resources
-
-Some resources consulted are:
-* [Bank card number](http://en.wikipedia.org/wiki/Bank_card_number)
-* [How do you detect Credit card type based on number?](http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number)  
-* [Finding or Verifying Credit Card Numbers](http://www.regular-expressions.info/creditcard.html)
-* [Major Industry Identifier](https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29)
-* [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
-* [Test Credit Card Account Numbers](https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm)
-* [MasterCard BIN Range Coming October 2016](https://www.forte.net/blog/mastercard-bin-range-coming/)
-* [Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
 
 ## Download and Use in Projects
 
