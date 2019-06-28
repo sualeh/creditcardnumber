@@ -31,22 +31,13 @@ Some resources consulted are:
 * [MasterCard BIN Range Coming October 2016](https://www.forte.net/blog/mastercard-bin-range-coming/)
 * [Java Cryptography Architecture (JCA) Reference Guide](http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx) 
 
-## Download
+## Download and Use in Projects
 
-You can [download the jar on the Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22credit_card_number%22).
+You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar).
 
-## Maven Build
+To download page for *Credit Card Number* has instructions on how to use the library 
+in your Maven or Gradle build.
 
-To use *Credit Card Number* in your Maven build, include the following dependency. 
-No repositories references are needed, since the jars are in the Maven Central 
-Repository.
-```xml
-<dependency>
-    <groupId>us.fatehi</groupId>
-    <artifactId>credit_card_number</artifactId>
-    <version>2.02.01</version>
-</dependency>
-```
 
 ## Examples
 
