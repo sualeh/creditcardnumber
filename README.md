@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/sualeh/credit_card_number.svg)](https://travis-ci.org/sualeh/credit_card_number)
-[![Maven Central](https://img.shields.io/maven-central/v/us.fatehi/credit_card_number.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aus.fatehi%20credit_card_number)
-
 # Credit Card Number
 
 *Credit Card Number* is a Java library that can provide details of a bank issued 
@@ -28,16 +25,17 @@ Some resources consulted are:
 - All classes are immutable and thread-safe
 - Secure data follows standards in the 
 [Java Cryptography Architecture (JCA) Reference Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx)
-- The standard `toString()` function 
-formats data in a readable form
+- The standard `toString()` function formats data in a readable form
+- Internationalization of card numbers is supported
 - Validity is enforced by JUnit 5 tests
-- Java 8 or newer is required.
+- Java 8 or newer is required
+
 
 
 ## Download and Use in Projects
 
-You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar). 
-The [download page](https://search.maven.org/artifact/us.fatehi/credit_card_number/2.01.02/jar) 
+You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number). 
+The [download page](https://search.maven.org/artifact/us.fatehi/credit_card_number) 
 has instructions on how to use the library in your Maven or Gradle build.
 
 
