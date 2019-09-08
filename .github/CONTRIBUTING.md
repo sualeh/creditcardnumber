@@ -1,4 +1,4 @@
-# Contributing to SchemaCrawler
+# Contributing to Credit Card Number
 
 I really appreciate your interest in Credit Card Number. At this point, I am not accepting any pull requests or contributions, since I am trying to figure out copyright and/ or patent issues.
 
@@ -6,5 +6,4 @@ Please feel free to file bug reports and enhancement requests, though, and I wil
 
 Thank you.
 
-Sualeh Fatehi 
-@sualeh
+**Sualeh Fatehi** <sualeh@hotmail.com>
