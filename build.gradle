@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
   compile 'org.apache.commons:commons-lang3:3.4'
-  testCompile 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+  testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
   testCompile 'org.hamcrest:hamcrest:2.1'
 }
 
@@ -21,6 +21,10 @@ group = 'us.fatehi'
 version = '2.2.3'
 description = 'Credit Card Number'
 sourceCompatibility = '1.8'
+
+test {
+  useJUnitPlatform()
+}
 
 tasks.withType(JavaCompile) {
   options.encoding = 'UTF-8'
