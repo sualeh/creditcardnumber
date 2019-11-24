@@ -2,6 +2,7 @@ plugins {
   id 'java-library'
   id 'maven'
   id 'signing'
+  id 'maven-publish'
   id 'io.codearte.nexus-staging' version '0.21.0'
   id 'com.gradle.build-scan' version '2.3'
 }
@@ -97,6 +98,24 @@ uploadArchives {
   task publish(type: GradleBuild) {
     tasks = ['clean', 'assemble', 'uploadArchives', 'closeAndReleaseRepository']
   }
+
+	publishing {
+		repositories {
+			maven {
+				name = "GitHubPackages"
+				url = uri("https://maven.pkg.github.com/sualeh/creditcardnumber")
+				credentials {
+					username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+					password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+				}
+			}
+		}
+		publications {
+			gpr(MavenPublication) {
+				from(components.java)
+			}
+		}
+	}
 
   buildScan {
     termsOfServiceUrl = 'https://gradle.com/terms-of-service'
