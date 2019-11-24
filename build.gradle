@@ -106,7 +106,7 @@ uploadArchives {
 				url = uri("https://maven.pkg.github.com/sualeh/creditcardnumber")
 				credentials {
 					username = "sualeh"
-					password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
+					password = System.getenv("GITHUB_TOKEN")
 				}
 			}
 		}
