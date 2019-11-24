@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-
+    name: Build
     runs-on: ubuntu-latest
 
     steps: 
@@ -19,3 +19,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_USERNAME: sualeh
+    - name: Echo
+      run: echo "GITHUB_ACTOR=$GITHUB_ACTOR"
