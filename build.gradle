@@ -95,7 +95,7 @@ uploadArchives {
     }
   }
 
-  task publish(type: GradleBuild) {
+  task releaseOnCentral(type: GradleBuild) {
     tasks = ['clean', 'assemble', 'uploadArchives', 'closeAndReleaseRepository']
   }
 
