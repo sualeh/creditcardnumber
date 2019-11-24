@@ -18,3 +18,4 @@ jobs:
       run: ./gradlew -i publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_USERNAME: sualeh
