@@ -19,9 +19,3 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew -i build
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_USERNAME: sualeh
-
-    - name: Echo
-      run: echo "GITHUB_ACTOR=$GITHUB_ACTOR"
