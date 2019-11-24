@@ -16,3 +16,5 @@ jobs:
         java-version: 1.8
     - name: Build and Publish with Gradle
       run: ./gradlew publish
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
