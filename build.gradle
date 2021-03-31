@@ -1,10 +1,8 @@
 plugins {
   id 'java-library'
-  id 'maven'
   id 'signing'
   id 'maven-publish'
-  id 'io.codearte.nexus-staging' version '0.21.0'
-  id 'com.gradle.build-scan' version '2.3'
+  id 'io.codearte.nexus-staging' version '0.30.0'
 }
 
 repositories {
@@ -13,9 +11,9 @@ repositories {
 }
 
 dependencies {
-  compile 'org.apache.commons:commons-lang3:3.4'
+  api 'org.apache.commons:commons-lang3:3.4'
   testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
-  testCompile 'org.hamcrest:hamcrest:2.1'
+  testCompileOnly 'org.hamcrest:hamcrest:2.1'
 }
 
 group = 'us.fatehi'
@@ -100,16 +98,6 @@ uploadArchives {
   }
 
   publishing {
-    repositories {
-      maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/sualeh/creditcardnumber")
-        credentials {
-          username = System.getenv("GITHUB_ACTOR")
-          password = System.getenv("GITHUB_TOKEN")
-        }
-      }
-    }
     publications {
       gpr(MavenPublication) {
         from(components.java)
