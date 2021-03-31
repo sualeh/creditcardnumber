@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>creditcardnumber</artifactId>
-  <version>2.3.0</version>
+  <version>3.0.0</version>
   <packaging>jar</packaging>
   <name>Credit Card Number</name>
   <description>Credit Card Number is a library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
