@@ -9,12 +9,24 @@ package us.fatehi.creditcardnumber;
 
 public final class AccountNumbers {
 
-  public static AccountNumber newAccountNumber(final String rawAccountNumber) {
-    return new BankCardAccountNumber(rawAccountNumber);
+  private static final AccountNumber ACCOUNT_NUMBER_EMPTY = new AccountNumberEmpty();
+
+  public static AccountNumber accountNumber(final String rawAccountNumber) {
+    if (rawAccountNumber == null) {
+      return ACCOUNT_NUMBER_EMPTY;
+    } else {
+      return new AccountNumberComplete(rawAccountNumber);
+    }
   }
 
-  public static AccountNumber newSecureAccountNumber(final String rawAccountNumber) {
-    return new BankCardAccountNumber(rawAccountNumber).toSecureAccountNumber();
+  public static AccountNumber emptyAccountNumber() {
+    return ACCOUNT_NUMBER_EMPTY;
+  }
+
+  public static AccountNumber secureAccountNumber(final String rawAccountNumber) {
+    final AccountNumberComplete pan = new AccountNumberComplete(rawAccountNumber);
+    pan.disposeRawData();
+    return pan.toSecureAccountNumber();
   }
 
   private AccountNumbers() {

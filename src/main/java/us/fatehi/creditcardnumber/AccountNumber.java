@@ -11,16 +11,18 @@ import java.io.Serializable;
 
 public interface AccountNumber extends RawData, Serializable {
 
-  @Override
-  boolean exceedsMaximumLength();
-
   /**
    * Gets the primary account number (PAN) of the bank card.
    *
-   * @return Primary account number.
+   * @return Primary account number - or null if the account number is disposed
    */
   String getAccountNumber();
 
+  /**
+   * Length of the account number.
+   *
+   * @return Account number length - or null if the account number is disposed
+   */
   int getAccountNumberLength();
 
   CardBrand getCardBrand();
@@ -32,14 +34,14 @@ public interface AccountNumber extends RawData, Serializable {
    * to an international standard, ISO/IEC 7812, and can be used to determine the type of card from
    * the number.
    *
-   * @return IIN, or Issuer Identification Number
+   * @return IIN, or Issuer Identification Number - or null if the account number is disposed
    */
   String getIssuerIdentificationNumber();
 
   /**
    * The last 4 digits of the primary account number (PAN), for card identification purposes.
    *
-   * @return Last 4 digits of PAN
+   * @return Last 4 digits of PAN - or null if the account number is disposed
    */
   String getLastFourDigits();
 
@@ -53,19 +55,10 @@ public interface AccountNumber extends RawData, Serializable {
   boolean hasAccountNumber();
 
   /**
-   * Checks whether the Issuer Identification Number for the card is available.
+   * Is the account number length is valid.
    *
-   * @return True if the Issuer Identification Number for the card is available.
+   * @return True if valid
    */
-  boolean hasIssuerIdentificationNumber();
-
-  /**
-   * Checks whether the last 4 digits of the primary account number for the card are available.
-   *
-   * @return True if the last 4 digits of the primary account number for the card are available.
-   */
-  boolean hasLastFourDigits();
-
   boolean isLengthValid();
 
   boolean isPrimaryAccountNumberValid();
@@ -78,5 +71,10 @@ public interface AccountNumber extends RawData, Serializable {
    */
   boolean passesLuhnCheck();
 
+  /**
+   * Return a secure account number, with only metadata stored in memory.
+   *
+   * @return Secure account number
+   */
   AccountNumber toSecureAccountNumber();
 }

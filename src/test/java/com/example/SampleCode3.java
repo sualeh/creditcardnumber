@@ -13,7 +13,7 @@ import us.fatehi.creditcardnumber.AccountNumbers;
 public class SampleCode3 {
 
   public static void main(final String[] args) {
-    final AccountNumber pan = AccountNumbers.newAccountNumber("५२६६ ०९२२ ०१४१ ६१७४");
+    final AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
     System.out.println(pan);
   }
 }

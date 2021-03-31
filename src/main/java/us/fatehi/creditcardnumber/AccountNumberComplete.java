@@ -7,13 +7,13 @@
  */
 package us.fatehi.creditcardnumber;
 
+import static java.util.Objects.requireNonNull;
 import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.leftPad;
 import static org.apache.commons.lang3.StringUtils.right;
 import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -23,20 +23,14 @@ import java.util.Arrays;
  *
  * @author Sualeh Fatehi
  */
-final class BankCardAccountNumber extends BaseRawData
-    implements RawData, Serializable, AccountNumber {
+final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   private static final long serialVersionUID = -7012531091389412459L;
 
   private static final int IIN_LEN = 6;
 
   private final DisposableStringData accountNumber;
-  private final SecureAccountNumber secureAccountNumber;
-
-  /** No primary account number of the bank card. */
-  public BankCardAccountNumber() {
-    this(null);
-  }
+  private final AccountNumber panSecure;
 
   /**
    * Parses the primary account number of the bank card. Can accept card numbers with spaces or
@@ -44,8 +38,8 @@ final class BankCardAccountNumber extends BaseRawData
    *
    * @param rawAccountNumber Raw primary account number.
    */
-  public BankCardAccountNumber(final String rawAccountNumber) {
-    super(rawAccountNumber);
+  AccountNumberComplete(final String rawAccountNumber) {
+    super(requireNonNull(rawAccountNumber, "No raw account number provided"));
 
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
     accountNumber = new DisposableStringData(accountNumberString);
@@ -57,11 +51,11 @@ final class BankCardAccountNumber extends BaseRawData
     final int accountNumberLength = accountNumberString.length();
     final boolean isLengthValid = Arrays.asList(13, 14, 15, 16, 19).contains(accountNumberLength);
     final boolean isPrimaryAccountNumberValid =
-        hasAccountNumber() && isLengthValid && passesLuhnCheck && cardBrand != CardBrand.Unknown;
+        isLengthValid && passesLuhnCheck && cardBrand != CardBrand.Unknown;
     final boolean exceedsMaximumLength = accountNumberLength > 19;
 
-    secureAccountNumber =
-        new SecureAccountNumber(
+    panSecure =
+        new AccountNumberSecure(
             cardBrand,
             majorIndustryIdentifier,
             passesLuhnCheck,
@@ -84,7 +78,7 @@ final class BankCardAccountNumber extends BaseRawData
 
   @Override
   public boolean exceedsMaximumLength() {
-    return secureAccountNumber.exceedsMaximumLength();
+    return panSecure.exceedsMaximumLength();
   }
 
   /**
@@ -99,12 +93,12 @@ final class BankCardAccountNumber extends BaseRawData
 
   @Override
   public int getAccountNumberLength() {
-    return secureAccountNumber.getAccountNumberLength();
+    return panSecure.getAccountNumberLength();
   }
 
   @Override
   public CardBrand getCardBrand() {
-    return secureAccountNumber.getCardBrand();
+    return panSecure.getCardBrand();
   }
 
   /**
@@ -141,7 +135,7 @@ final class BankCardAccountNumber extends BaseRawData
 
   @Override
   public MajorIndustryIdentifier getMajorIndustryIdentifier() {
-    return secureAccountNumber.getMajorIndustryIdentifier();
+    return panSecure.getMajorIndustryIdentifier();
   }
 
   /**
@@ -154,34 +148,14 @@ final class BankCardAccountNumber extends BaseRawData
     return accountNumber.hasData();
   }
 
-  /**
-   * Checks whether the Issuer Identification Number for the card is available.
-   *
-   * @return True if the Issuer Identification Number for the card is available.
-   */
-  @Override
-  public boolean hasIssuerIdentificationNumber() {
-    return hasRawData();
-  }
-
-  /**
-   * Checks whether the last 4 digits of the primary account number for the card are available.
-   *
-   * @return True if the last 4 digits of the primary account number for the card are available.
-   */
-  @Override
-  public boolean hasLastFourDigits() {
-    return hasRawData();
-  }
-
   @Override
   public boolean isLengthValid() {
-    return secureAccountNumber.isLengthValid();
+    return panSecure.isLengthValid();
   }
 
   @Override
   public boolean isPrimaryAccountNumberValid() {
-    return secureAccountNumber.isPrimaryAccountNumberValid();
+    return panSecure.isPrimaryAccountNumberValid();
   }
 
   /**
@@ -192,12 +166,12 @@ final class BankCardAccountNumber extends BaseRawData
    */
   @Override
   public boolean passesLuhnCheck() {
-    return secureAccountNumber.passesLuhnCheck();
+    return panSecure.passesLuhnCheck();
   }
 
   @Override
   public AccountNumber toSecureAccountNumber() {
-    return secureAccountNumber;
+    return panSecure;
   }
 
   /** See java.lang.Object#toString() */
@@ -205,10 +179,8 @@ final class BankCardAccountNumber extends BaseRawData
   public String toString() {
     if (hasAccountNumber()) {
       return getAccountNumber();
-    } else if (hasLastFourDigits()) {
-      return String.format("%s-%s", secureAccountNumber.getCardBrand(), getLastFourDigits());
     } else {
-      return secureAccountNumber.getCardBrand().toString();
+      return panSecure.toString();
     }
   }
 

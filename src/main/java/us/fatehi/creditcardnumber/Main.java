@@ -32,7 +32,7 @@ public class Main {
       System.out.print("Primary Account Number: ");
       final String line = in.readLine();
       if (!isBlank(line)) {
-        final BankCardAccountNumber pan = new BankCardAccountNumber(line);
+        final AccountNumberComplete pan = new AccountNumberComplete(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }

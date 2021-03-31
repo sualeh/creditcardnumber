@@ -23,15 +23,13 @@ public class SecureAccountNumberTest {
   @Test
   public void disposeRawData() {
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.newAccountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
 
     assertThat(pan.hasRawData(), is(true));
     assertThat(pan.hasAccountNumber(), is(true));
-    assertThat(pan.hasLastFourDigits(), is(true));
-    assertThat(pan.hasIssuerIdentificationNumber(), is(true));
     assertThat(pan.getLastFourDigits(), is("6173"));
     assertThat(pan.getIssuerIdentificationNumber(), is("526609"));
 
@@ -39,8 +37,6 @@ public class SecureAccountNumberTest {
 
     assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(false));
-    assertThat(pan.hasLastFourDigits(), is(false));
-    assertThat(pan.hasIssuerIdentificationNumber(), is(false));
     assertThat(pan.getLastFourDigits(), is(nullValue()));
     assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
   }
@@ -48,15 +44,13 @@ public class SecureAccountNumberTest {
   @Test
   public void pan_1() {
     final String rawAccountNumber = "573";
-    final AccountNumber pan = AccountNumbers.newAccountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
 
     assertThat(pan.hasRawData(), is(true));
     assertThat(pan.hasAccountNumber(), is(true));
-    assertThat(pan.hasLastFourDigits(), is(true));
-    assertThat(pan.hasIssuerIdentificationNumber(), is(true));
     assertThat(pan.getAccountNumber(), is("573"));
     assertThat(pan.getLastFourDigits(), is("0573"));
     assertThat(pan.getIssuerIdentificationNumber(), is("573000"));
@@ -65,8 +59,6 @@ public class SecureAccountNumberTest {
 
     assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(false));
-    assertThat(pan.hasLastFourDigits(), is(false));
-    assertThat(pan.hasIssuerIdentificationNumber(), is(false));
     assertThat(pan.getAccountNumber(), is(nullValue()));
     assertThat(pan.getLastFourDigits(), is(nullValue()));
     assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
@@ -75,7 +67,7 @@ public class SecureAccountNumberTest {
   @Test
   public void pan_a() {
     final String rawAccountNumber = null;
-    final AccountNumber pan = AccountNumbers.newAccountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
     assertThat(pan.hasAccountNumber(), is(false));
     pan.disposeRawData();
     assertThat(pan.hasAccountNumber(), is(false));
@@ -84,7 +76,7 @@ public class SecureAccountNumberTest {
   @Test
   public void pan_b() {
     final String rawAccountNumber = "\t\t";
-    final AccountNumber pan = AccountNumbers.newAccountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
     assertThat(pan.hasAccountNumber(), is(false));
     pan.disposeRawData();
     assertThat(pan.hasAccountNumber(), is(false));
@@ -93,15 +85,13 @@ public class SecureAccountNumberTest {
   @Test
   public void secureAccountNumber() {
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.newSecureAccountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.secureAccountNumber(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
 
     assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(false));
-    assertThat(pan.hasLastFourDigits(), is(false));
-    assertThat(pan.hasIssuerIdentificationNumber(), is(false));
     assertThat(pan.getLastFourDigits(), is(nullValue()));
     assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
   }

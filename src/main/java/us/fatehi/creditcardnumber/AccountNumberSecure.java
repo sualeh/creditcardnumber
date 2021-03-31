@@ -7,7 +7,9 @@
  */
 package us.fatehi.creditcardnumber;
 
-final class SecureAccountNumber implements AccountNumber {
+import static java.util.Objects.requireNonNull;
+
+final class AccountNumberSecure implements AccountNumber {
 
   private static final long serialVersionUID = 2002490292247684624L;
 
@@ -19,7 +21,7 @@ final class SecureAccountNumber implements AccountNumber {
   private final boolean isPrimaryAccountNumberValid;
   private final boolean isExceedsMaximumLength;
 
-  public SecureAccountNumber(
+  AccountNumberSecure(
       final CardBrand cardBrand,
       final MajorIndustryIdentifier majorIndustryIdentifier,
       final boolean passesLuhnCheck,
@@ -27,8 +29,9 @@ final class SecureAccountNumber implements AccountNumber {
       final boolean isLengthValid,
       final boolean isPrimaryAccountNumberValid,
       final boolean isExceedsMaximumLength) {
-    this.cardBrand = cardBrand;
-    this.majorIndustryIdentifier = majorIndustryIdentifier;
+    this.cardBrand = requireNonNull(cardBrand, "No card brand provided");
+    this.majorIndustryIdentifier =
+        requireNonNull(majorIndustryIdentifier, "No major indutry identifier provided");
     this.passesLuhnCheck = passesLuhnCheck;
     this.accountNumberLength = accountNumberLength;
     this.isLengthValid = isLengthValid;
@@ -37,38 +40,7 @@ final class SecureAccountNumber implements AccountNumber {
   }
 
   @Override
-  public void disposeRawData() {
-    // No-op
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final SecureAccountNumber other = (SecureAccountNumber) obj;
-    if (accountNumberLength != other.accountNumberLength) {
-      return false;
-    }
-    if (cardBrand != other.cardBrand) {
-      return false;
-    }
-    if (isPrimaryAccountNumberValid != other.isPrimaryAccountNumberValid) {
-      return false;
-    }
-    if (majorIndustryIdentifier != other.majorIndustryIdentifier) {
-      return false;
-    }
-    if (passesLuhnCheck != other.passesLuhnCheck) {
-      return false;
-    }
-    return true;
+  public void disposeRawData() { // No-op
   }
 
   @Override
@@ -113,29 +85,6 @@ final class SecureAccountNumber implements AccountNumber {
 
   @Override
   public boolean hasAccountNumber() {
-    return false;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + accountNumberLength;
-    result = prime * result + (cardBrand == null ? 0 : cardBrand.hashCode());
-    result = prime * result + (isPrimaryAccountNumberValid ? 1231 : 1237);
-    result =
-        prime * result + (majorIndustryIdentifier == null ? 0 : majorIndustryIdentifier.hashCode());
-    result = prime * result + (passesLuhnCheck ? 1231 : 1237);
-    return result;
-  }
-
-  @Override
-  public boolean hasIssuerIdentificationNumber() {
-    return false;
-  }
-
-  @Override
-  public boolean hasLastFourDigits() {
     return false;
   }
 

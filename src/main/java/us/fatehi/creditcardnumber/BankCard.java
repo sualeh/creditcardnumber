@@ -7,6 +7,8 @@
  */
 package us.fatehi.creditcardnumber;
 
+import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -75,7 +77,7 @@ public final class BankCard implements Serializable {
     if (pan != null) {
       this.pan = pan;
     } else {
-      this.pan = new BankCardAccountNumber();
+      this.pan = emptyAccountNumber();
     }
 
     if (name != null) {
