@@ -2,34 +2,20 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2016, Sualeh Fatehi.
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
 
-
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
- * Represents a bank card, and contains information about the card
- * number, cardholder's name, expiration date, and service code.
+ * Represents a bank card, and contains information about the card number, cardholder's name,
+ * expiration date, and service code.
  */
-public final class BankCard
-  implements Serializable
-{
+public final class BankCard implements Serializable {
 
   private static final long serialVersionUID = 6253084852668206154L;
 
@@ -38,155 +24,98 @@ public final class BankCard
   private final ExpirationDate expirationDate;
   private final ServiceCode serviceCode;
 
-  /**
-   * No bank card.
-   */
-  public BankCard()
-  {
+  /** No bank card. */
+  public BankCard() {
     this(null);
   }
 
   /**
    * Construct a bank card from the constituent parts.
    *
-   * @param pan
-   *        Primary account number
+   * @param pan Primary account number
    */
-  public BankCard(final AccountNumber pan)
-  {
+  public BankCard(final AccountNumber pan) {
     this(pan, null);
   }
 
   /**
    * Construct a bank card from the constituent parts.
    *
-   * @param pan
-   *        Primary account number
-   * @param expirationDate
-   *        Card expiration date
+   * @param pan Primary account number
+   * @param expirationDate Card expiration date
    */
-  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate)
-  {
+  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate) {
     this(pan, expirationDate, null);
   }
 
   /**
    * Construct a bank card from the constituent parts.
    *
-   * @param pan
-   *        Primary account number
-   * @param expirationDate
-   *        Card expiration date
-   * @param name
-   *        Cardholder name
+   * @param pan Primary account number
+   * @param expirationDate Card expiration date
+   * @param name Cardholder name
    */
-  public BankCard(final AccountNumber pan,
-                  final ExpirationDate expirationDate,
-                  final Name name)
-  {
+  public BankCard(final AccountNumber pan, final ExpirationDate expirationDate, final Name name) {
     this(pan, expirationDate, name, null);
   }
 
   /**
    * Construct a bank card from the constituent parts.
    *
-   * @param pan
-   *        Primary account number
-   * @param expirationDate
-   *        Card expiration date
-   * @param name
-   *        Cardholder name
+   * @param pan Primary account number
+   * @param expirationDate Card expiration date
+   * @param name Cardholder name
    * @param serviceCode Card service code
    */
-  public BankCard(final AccountNumber pan,
-                  final ExpirationDate expirationDate,
-                  final Name name,
-                  final ServiceCode serviceCode)
-  {
-    if (pan != null)
-    {
+  public BankCard(
+      final AccountNumber pan,
+      final ExpirationDate expirationDate,
+      final Name name,
+      final ServiceCode serviceCode) {
+    if (pan != null) {
       this.pan = pan;
-    }
-    else
-    {
+    } else {
       this.pan = new AccountNumber();
     }
 
-    if (name != null)
-    {
+    if (name != null) {
       this.name = name;
-    }
-    else
-    {
+    } else {
       this.name = new Name();
     }
 
-    if (expirationDate != null)
-    {
+    if (expirationDate != null) {
       this.expirationDate = expirationDate;
-    }
-    else
-    {
+    } else {
       this.expirationDate = new ExpirationDate();
     }
 
-    if (serviceCode != null)
-    {
+    if (serviceCode != null) {
       this.serviceCode = serviceCode;
-    }
-    else
-    {
+    } else {
       this.serviceCode = new ServiceCode();
     }
   }
 
   @Override
-  public boolean equals(final Object obj)
-  {
-    if (this == obj)
-    {
+  public boolean equals(final Object obj) {
+    if (this == obj) {
       return true;
     }
-    if (obj == null)
-    {
+    if (obj == null) {
       return false;
     }
-    if (!(obj instanceof BankCard))
-    {
+    if (!(obj instanceof BankCard)) {
       return false;
     }
     final BankCard other = (BankCard) obj;
-    if (expirationDate == null)
-    {
-      if (other.expirationDate != null)
-      {
-        return false;
-      }
-    }
-    else if (!expirationDate.equals(other.expirationDate))
-    {
+    if (!Objects.equals(expirationDate, other.expirationDate)) {
       return false;
     }
-    if (name == null)
-    {
-      if (other.name != null)
-      {
-        return false;
-      }
-    }
-    else if (!name.equals(other.name))
-    {
+    if (!Objects.equals(name, other.name)) {
       return false;
     }
-    if (pan == null)
-    {
-      if (other.pan != null)
-      {
-        return false;
-      }
-    }
-    else if (!pan.equals(other.pan))
-    {
+    if (!Objects.equals(pan, other.pan)) {
       return false;
     }
     return true;
@@ -197,8 +126,7 @@ public final class BankCard
    *
    * @return Primary account number. Null if not available.
    */
-  public String getAccountNumber()
-  {
+  public String getAccountNumber() {
     return pan.getAccountNumber();
   }
 
@@ -207,8 +135,7 @@ public final class BankCard
    *
    * @return Card holder's full name
    */
-  public String getCardHolderName()
-  {
+  public String getCardHolderName() {
     return name.getFullName();
   }
 
@@ -217,8 +144,7 @@ public final class BankCard
    *
    * @return Card expiration date.
    */
-  public ExpirationDate getExpirationDate()
-  {
+  public ExpirationDate getExpirationDate() {
     return expirationDate;
   }
 
@@ -227,8 +153,7 @@ public final class BankCard
    *
    * @return Expiration date
    */
-  public Date getExpirationDateAsDate()
-  {
+  public Date getExpirationDateAsDate() {
     return expirationDate.getExpirationDateAsDate();
   }
 
@@ -237,8 +162,7 @@ public final class BankCard
    *
    * @return Cardholder's name.
    */
-  public Name getName()
-  {
+  public Name getName() {
     return name;
   }
 
@@ -247,16 +171,12 @@ public final class BankCard
    *
    * @return Primary account number.
    */
-  public AccountNumber getPrimaryAccountNumber()
-  {
+  public AccountNumber getPrimaryAccountNumber() {
     return pan;
   }
 
-  /**
-   * @return the serviceCode
-   */
-  public ServiceCode getServiceCode()
-  {
+  /** @return the serviceCode */
+  public ServiceCode getServiceCode() {
     return serviceCode;
   }
 
@@ -265,23 +185,18 @@ public final class BankCard
    *
    * @return True if the card expiration date is available.
    */
-  public boolean hasExpirationDate()
-  {
+  public boolean hasExpirationDate() {
     return expirationDate != null && expirationDate.hasExpirationDate();
   }
 
-  /**
-   * See java.lang.Object#hashCode()
-   */
+  /** See java.lang.Object#hashCode() */
   @Override
-  public int hashCode()
-  {
+  public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result
-             + (expirationDate == null? 0: expirationDate.hashCode());
-    result = prime * result + (name == null? 0: name.hashCode());
-    result = prime * result + (pan == null? 0: pan.hashCode());
+    result = prime * result + (expirationDate == null ? 0 : expirationDate.hashCode());
+    result = prime * result + (name == null ? 0 : name.hashCode());
+    result = prime * result + (pan == null ? 0 : pan.hashCode());
     return result;
   }
 
@@ -290,25 +205,20 @@ public final class BankCard
    *
    * @return True if the cardholder's name is available.
    */
-  public boolean hasName()
-  {
+  public boolean hasName() {
     return name != null && name.hasName();
   }
 
   /**
-   * Checks whether the primary account number for the card is
-   * available.
+   * Checks whether the primary account number for the card is available.
    *
-   * @return True if the primary account number for the card is
-   *         available.
+   * @return True if the primary account number for the card is available.
    */
-  public boolean hasPrimaryAccountNumber()
-  {
+  public boolean hasPrimaryAccountNumber() {
     return pan != null && pan.hasAccountNumber();
   }
 
-  public boolean hasServiceCode()
-  {
+  public boolean hasServiceCode() {
     return serviceCode != null && serviceCode.hasServiceCode();
   }
 
@@ -317,20 +227,17 @@ public final class BankCard
    *
    * @return True if the the card has expired.
    */
-  public boolean isExpired()
-  {
+  public boolean isExpired() {
     return expirationDate.isExpired();
   }
 
   @Override
-  public String toString()
-  {
+  public String toString() {
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
     buffer.append("Bank Card Information: ").append(NEWLINE);
-    if (hasPrimaryAccountNumber())
-    {
+    if (hasPrimaryAccountNumber()) {
       buffer.append("  Raw Account Number: ");
       buffer.append(pan.getRawData()).append(NEWLINE);
       buffer.append("  Primary Account Number: ");
@@ -344,25 +251,21 @@ public final class BankCard
       buffer.append("    Last Four Digits: ");
       buffer.append(pan.getLastFourDigits()).append(NEWLINE);
       buffer.append("    Passes Luhn Check? ");
-      buffer.append(pan.passesLuhnCheck()? "Yes": "No").append(NEWLINE);
+      buffer.append(pan.passesLuhnCheck() ? "Yes" : "No").append(NEWLINE);
       buffer.append("    Is Primary Account Number Valid? ");
-      buffer.append(pan.isPrimaryAccountNumberValid()? "Yes": "No")
-        .append(NEWLINE);
+      buffer.append(pan.isPrimaryAccountNumberValid() ? "Yes" : "No").append(NEWLINE);
     }
-    if (hasExpirationDate())
-    {
+    if (hasExpirationDate()) {
       buffer.append("  Expiration Date: ");
       buffer.append(expirationDate).append(NEWLINE);
       buffer.append("    Is Expired? ");
-      buffer.append(expirationDate.isExpired()? "Yes": "No").append(NEWLINE);
+      buffer.append(expirationDate.isExpired() ? "Yes" : "No").append(NEWLINE);
     }
-    if (hasName())
-    {
+    if (hasName()) {
       buffer.append("  Name: ");
       buffer.append(getName()).append(NEWLINE);
     }
-    if (hasServiceCode())
-    {
+    if (hasServiceCode()) {
       final ServiceCode serviceCode = getServiceCode();
       buffer.append("  Service Code: ");
       buffer.append(NEWLINE);
@@ -376,5 +279,4 @@ public final class BankCard
 
     return buffer.toString();
   }
-
 }

@@ -2,23 +2,10 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2016, Sualeh Fatehi.
- *
- * This library is free software; you can redistribute it and/or modify it under the terms
- * of the GNU Lesser General Public License as published by the Free Software Foundation;
- * either version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License along with this
- * library; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
-
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
@@ -26,35 +13,25 @@ import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 import java.io.Serializable;
 
-/**
- * Parses and represents the cardholder's name.
- */
-public final class Name
-  extends BaseRawData
-  implements Serializable
-{
+/** Parses and represents the cardholder's name. */
+public final class Name extends BaseRawData implements Serializable {
 
   private static final long serialVersionUID = 6735627336462134892L;
 
   private final String firstName;
   private final String lastName;
 
-  /**
-   * No name.
-   */
-  public Name()
-  {
+  /** No name. */
+  public Name() {
     this(null);
   }
 
   /**
    * Name from raw magnetic track data.
    *
-   * @param rawName
-   *        Raw magnetic track data for name.
+   * @param rawName Raw magnetic track data for name.
    */
-  public Name(final String rawName)
-  {
+  public Name(final String rawName) {
     super(rawName);
 
     final String[] splitName = trimToEmpty(rawName).split("/");
@@ -65,68 +42,48 @@ public final class Name
   /**
    * Name from first and last.
    *
-   * @param firstName
-   *        First name.
-   * @param lastName
-   *        Last name.
+   * @param firstName First name.
+   * @param lastName Last name.
    */
-  public Name(final String firstName, final String lastName)
-  {
+  public Name(final String firstName, final String lastName) {
     super(null);
     this.firstName = firstName;
     this.lastName = lastName;
   }
 
-  /**
-   * See java.lang.Object#equals(java.lang.Object)
-   */
+  /** See java.lang.Object#equals(java.lang.Object) */
   @Override
-  public boolean equals(final Object obj)
-  {
-    if (this == obj)
-    {
+  public boolean equals(final Object obj) {
+    if (this == obj) {
       return true;
     }
-    if (obj == null)
-    {
+    if (obj == null) {
       return false;
     }
-    if (!(obj instanceof Name))
-    {
+    if (!(obj instanceof Name)) {
       return false;
     }
     final Name other = (Name) obj;
-    if (firstName == null)
-    {
-      if (other.firstName != null)
-      {
+    if (firstName == null) {
+      if (other.firstName != null) {
         return false;
       }
-    }
-    else if (!firstName.equalsIgnoreCase(other.firstName))
-    {
+    } else if (!firstName.equalsIgnoreCase(other.firstName)) {
       return false;
     }
-    if (lastName == null)
-    {
-      if (other.lastName != null)
-      {
+    if (lastName == null) {
+      if (other.lastName != null) {
         return false;
       }
-    }
-    else if (!lastName.equalsIgnoreCase(other.lastName))
-    {
+    } else if (!lastName.equalsIgnoreCase(other.lastName)) {
       return false;
     }
     return true;
   }
 
-  /**
-   * See us.fatehi.creditcardnumber.RawData#exceedsMaximumLength()
-   */
+  /** See us.fatehi.creditcardnumber.RawData#exceedsMaximumLength() */
   @Override
-  public boolean exceedsMaximumLength()
-  {
+  public boolean exceedsMaximumLength() {
     return trimToEmpty(getRawData()).length() > 26;
   }
 
@@ -135,8 +92,7 @@ public final class Name
    *
    * @return First name.
    */
-  public String getFirstName()
-  {
+  public String getFirstName() {
     return firstName;
   }
 
@@ -145,19 +101,15 @@ public final class Name
    *
    * @return full name.
    */
-  public String getFullName()
-  {
+  public String getFullName() {
     final StringBuilder buffer = new StringBuilder();
-    if (hasFirstName())
-    {
+    if (hasFirstName()) {
       buffer.append(trimToEmpty(firstName));
     }
-    if (hasFullName())
-    {
+    if (hasFullName()) {
       buffer.append(" ");
     }
-    if (hasLastName())
-    {
+    if (hasLastName()) {
       buffer.append(trimToEmpty(lastName));
     }
     return buffer.toString();
@@ -168,8 +120,7 @@ public final class Name
    *
    * @return Last name.
    */
-  public String getLastName()
-  {
+  public String getLastName() {
     return lastName;
   }
 
@@ -178,8 +129,7 @@ public final class Name
    *
    * @return True if the first name is available.
    */
-  public boolean hasFirstName()
-  {
+  public boolean hasFirstName() {
     return !isBlank(firstName);
   }
 
@@ -188,21 +138,17 @@ public final class Name
    *
    * @return True if the full name is available.
    */
-  public boolean hasFullName()
-  {
+  public boolean hasFullName() {
     return hasFirstName() && hasLastName();
   }
 
-  /**
-   * See java.lang.Object#hashCode()
-   */
+  /** See java.lang.Object#hashCode() */
   @Override
-  public int hashCode()
-  {
+  public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + (firstName == null? 0: firstName.hashCode());
-    result = prime * result + (lastName == null? 0: lastName.hashCode());
+    result = prime * result + (firstName == null ? 0 : firstName.hashCode());
+    result = prime * result + (lastName == null ? 0 : lastName.hashCode());
     return result;
   }
 
@@ -211,8 +157,7 @@ public final class Name
    *
    * @return True if the last name is available.
    */
-  public boolean hasLastName()
-  {
+  public boolean hasLastName() {
     return !isBlank(lastName);
   }
 
@@ -221,34 +166,24 @@ public final class Name
    *
    * @return True if the name is available.
    */
-  public boolean hasName()
-  {
+  public boolean hasName() {
     return hasFirstName() || hasLastName();
   }
 
-  /**
-   * See java.lang.Object#toString()
-   */
+  /** See java.lang.Object#toString() */
   @Override
-  public String toString()
-  {
+  public String toString() {
     return getFullName();
   }
 
-  private String name(final String[] splitName, final int position)
-  {
+  private String name(final String[] splitName, final int position) {
     String name;
-    if (splitName.length > position)
-    {
-      name = capitalizeFully(trimToEmpty(splitName[position]),
-                             new char[] { '.', '\'', ' ' });
-    }
-    else
-    {
+    if (splitName.length > position) {
+      name = capitalizeFully(trimToEmpty(splitName[position]), new char[] {'.', '\'', ' '});
+    } else {
       name = "";
     }
 
     return name;
   }
-
 }
