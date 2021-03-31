@@ -16,13 +16,6 @@ public abstract class BaseRawData implements RawData {
   }
 
   /** {@inheritDoc} */
-  @Deprecated
-  @Override
-  public void clearRawData() {
-    disposeRawData();
-  }
-
-  /** {@inheritDoc} */
   @Override
   public void disposeRawData() {
     rawData.disposeData();

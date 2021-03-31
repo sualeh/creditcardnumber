@@ -9,10 +9,6 @@ package us.fatehi.creditcardnumber;
 
 public interface RawData {
 
-  /** See {@link #disposeRawData} */
-  @Deprecated
-  void clearRawData();
-
   /**
    * Wipes raw data for security reasons. Following recommendations from the <a href=
    * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java

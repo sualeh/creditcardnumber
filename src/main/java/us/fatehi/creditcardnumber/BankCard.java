@@ -75,7 +75,7 @@ public final class BankCard implements Serializable {
     if (pan != null) {
       this.pan = pan;
     } else {
-      this.pan = new AccountNumber();
+      this.pan = new BankCardAccountNumber();
     }
 
     if (name != null) {

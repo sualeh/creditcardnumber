@@ -7,9 +7,7 @@
  */
 package us.fatehi.creditcardnumber;
 
-import java.io.Serializable;
-
-final class AccountNumberInfo implements Serializable {
+final class SecureAccountNumber implements AccountNumber {
 
   private static final long serialVersionUID = 2002490292247684624L;
 
@@ -21,7 +19,7 @@ final class AccountNumberInfo implements Serializable {
   private final boolean isPrimaryAccountNumberValid;
   private final boolean isExceedsMaximumLength;
 
-  public AccountNumberInfo(
+  public SecureAccountNumber(
       final CardBrand cardBrand,
       final MajorIndustryIdentifier majorIndustryIdentifier,
       final boolean passesLuhnCheck,
@@ -39,6 +37,11 @@ final class AccountNumberInfo implements Serializable {
   }
 
   @Override
+  public void disposeRawData() {
+    // No-op
+  }
+
+  @Override
   public boolean equals(final Object obj) {
     if (this == obj) {
       return true;
@@ -49,7 +52,7 @@ final class AccountNumberInfo implements Serializable {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final AccountNumberInfo other = (AccountNumberInfo) obj;
+    final SecureAccountNumber other = (SecureAccountNumber) obj;
     if (accountNumberLength != other.accountNumberLength) {
       return false;
     }
@@ -68,20 +71,49 @@ final class AccountNumberInfo implements Serializable {
     return true;
   }
 
+  @Override
   public boolean exceedsMaximumLength() {
     return isExceedsMaximumLength;
   }
 
+  @Override
+  public String getAccountNumber() {
+    return null;
+  }
+
+  @Override
   public int getAccountNumberLength() {
     return accountNumberLength;
   }
 
+  @Override
   public CardBrand getCardBrand() {
     return cardBrand;
   }
 
+  @Override
+  public String getIssuerIdentificationNumber() {
+    return null;
+  }
+
+  @Override
+  public String getLastFourDigits() {
+    return null;
+  }
+
+  @Override
   public MajorIndustryIdentifier getMajorIndustryIdentifier() {
     return majorIndustryIdentifier;
+  }
+
+  @Override
+  public String getRawData() {
+    return null;
+  }
+
+  @Override
+  public boolean hasAccountNumber() {
+    return false;
   }
 
   @Override
@@ -97,21 +129,44 @@ final class AccountNumberInfo implements Serializable {
     return result;
   }
 
+  @Override
+  public boolean hasIssuerIdentificationNumber() {
+    return false;
+  }
+
+  @Override
+  public boolean hasLastFourDigits() {
+    return false;
+  }
+
+  @Override
+  public boolean hasRawData() {
+    return false;
+  }
+
+  @Override
   public boolean isLengthValid() {
     return isLengthValid;
   }
 
+  @Override
   public boolean isPrimaryAccountNumberValid() {
     return isPrimaryAccountNumberValid;
   }
 
+  @Override
   public boolean passesLuhnCheck() {
     return passesLuhnCheck;
   }
 
   @Override
+  public AccountNumber toSecureAccountNumber() {
+    return this;
+  }
+
+  @Override
   public String toString() {
-    return "AccountNumberInfo [cardBrand="
+    return "AccountNumber [cardBrand="
         + cardBrand
         + ", majorIndustryIdentifier="
         + majorIndustryIdentifier
