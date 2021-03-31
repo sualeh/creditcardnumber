@@ -102,7 +102,7 @@ public final class DisposableStringData implements CharSequence {
    * @return Whether data is available
    */
   public boolean hasData() {
-    return data.length > 0 && data[0] != 0 && data[data.length - 1] != 0;
+    return data.length > 0 && !Arrays.equals(new char[data.length], data);
   }
 
   /** {@inheritDoc} */
