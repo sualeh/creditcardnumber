@@ -9,7 +9,21 @@ package us.fatehi.creditcardnumber;
 
 import java.io.Serializable;
 
+/**
+ * Represents a bank card number.
+ *
+ * <p>See <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank card number</a>
+ *
+ * @author Sualeh Fatehi
+ */
 public interface AccountNumber extends RawData, Serializable {
+
+  /**
+   * Wipes raw data for security reasons. Following recommendations from the <a href=
+   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
+   * Cryptography Architecture (JCA) Reference Guide</a>
+   */
+  void dispose();
 
   /**
    * Gets the primary account number (PAN) of the bank card.

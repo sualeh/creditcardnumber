@@ -16,13 +16,6 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.util.Arrays;
 
-/**
- * Represents a bank card number.
- *
- * <p>See <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank card number</a>
- *
- * @author Sualeh Fatehi
- */
 final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   private static final long serialVersionUID = -7012531091389412459L;
@@ -32,12 +25,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
   private final DisposableStringData accountNumber;
   private final AccountNumber panSecure;
 
-  /**
-   * Parses the primary account number of the bank card. Can accept card numbers with spaces or
-   * dashes.
-   *
-   * @param rawAccountNumber Raw primary account number.
-   */
   AccountNumberComplete(final String rawAccountNumber) {
     super(requireNonNull(rawAccountNumber, "No raw account number provided"));
 
@@ -65,13 +52,8 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
             exceedsMaximumLength);
   }
 
-  /**
-   * Wipes sensitive data from memory. Following recommendations from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a>
-   */
   @Override
-  public void disposeRawData() {
+  public void dispose() {
     super.disposeRawData();
     accountNumber.disposeData();
   }
@@ -81,11 +63,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return panSecure.exceedsMaximumLength();
   }
 
-  /**
-   * Gets the primary account number (PAN) of the bank card.
-   *
-   * @return Primary account number.
-   */
   @Override
   public String getAccountNumber() {
     return accountNumber.getData();
@@ -101,15 +78,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return panSecure.getCardBrand();
   }
 
-  /**
-   * The first six digits of the PAN are taken from the IIN, or Issuer Identification Number,
-   * belonging to the issuing bank (IINs were previously known as BIN (Bank Identification Numbers)
-   * so you may see references to that terminology in some documents). These six digits are subject
-   * to an international standard, ISO/IEC 7812, and can be used to determine the type of card from
-   * the number.
-   *
-   * @return IIN, or Issuer Identification Number
-   */
   @Override
   public String getIssuerIdentificationNumber() {
     if (!hasRawData()) {
@@ -119,11 +87,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return rightPad(left(accountNumberString, IIN_LEN), IIN_LEN, "0");
   }
 
-  /**
-   * The last 4 digits of the primary account number (PAN), for card identification purposes.
-   *
-   * @return Last 4 digits of PAN
-   */
   @Override
   public String getLastFourDigits() {
     if (!hasRawData()) {
@@ -138,11 +101,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return panSecure.getMajorIndustryIdentifier();
   }
 
-  /**
-   * Checks whether the primary account number for the card is available.
-   *
-   * @return True if the primary account number for the card is available.
-   */
   @Override
   public boolean hasAccountNumber() {
     return accountNumber.hasData();
@@ -158,12 +116,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return panSecure.isPrimaryAccountNumberValid();
   }
 
-  /**
-   * Checks whether the primary account number passes the Luhn check.
-   *
-   * @return True if the primary account number passes the Luhn check. See <a
-   *     href="http://en.wikipedia.org/wiki/Luhn_algorithm">Luhn Algorithm</a>
-   */
   @Override
   public boolean passesLuhnCheck() {
     return panSecure.passesLuhnCheck();
@@ -174,7 +126,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     return panSecure;
   }
 
-  /** See java.lang.Object#toString() */
   @Override
   public String toString() {
     if (hasAccountNumber()) {

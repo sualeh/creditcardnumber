@@ -33,7 +33,7 @@ public class SecureAccountNumberTest {
     assertThat(pan.getLastFourDigits(), is("6173"));
     assertThat(pan.getIssuerIdentificationNumber(), is("526609"));
 
-    pan.disposeRawData();
+    pan.dispose();
 
     assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(false));
@@ -55,7 +55,7 @@ public class SecureAccountNumberTest {
     assertThat(pan.getLastFourDigits(), is("0573"));
     assertThat(pan.getIssuerIdentificationNumber(), is("573000"));
 
-    pan.disposeRawData();
+    pan.dispose();
 
     assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(false));

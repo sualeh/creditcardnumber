@@ -40,7 +40,13 @@ final class AccountNumberSecure implements AccountNumber {
   }
 
   @Override
-  public void disposeRawData() { // No-op
+  public void dispose() {
+    // No-op
+  }
+
+  @Override
+  public void disposeRawData() {
+    // No-op
   }
 
   @Override

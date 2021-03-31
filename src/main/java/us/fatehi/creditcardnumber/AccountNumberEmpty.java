@@ -1,8 +1,13 @@
 package us.fatehi.creditcardnumber;
 
-class AccountNumberEmpty implements AccountNumber {
+final class AccountNumberEmpty implements AccountNumber {
 
   private static final long serialVersionUID = 3873941867937638049L;
+
+  @Override
+  public void dispose() {
+    // No-op
+  }
 
   @Override
   public void disposeRawData() {
@@ -77,5 +82,10 @@ class AccountNumberEmpty implements AccountNumber {
   @Override
   public AccountNumber toSecureAccountNumber() {
     return this;
+  }
+
+  @Override
+  public String toString() {
+    return "";
   }
 }
