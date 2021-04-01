@@ -14,6 +14,7 @@ import java.time.YearMonth;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.ExpirationDate;
 
 public class ExpirationDateTest {
@@ -82,5 +83,10 @@ public class ExpirationDateTest {
     assertThat(expirationDate.toString(), is("2012-12"));
     assertThat(expirationDate.hasExpirationDate(), is(true));
     assertThat(expirationDate.getExpirationDate(), is(YearMonth.of(2012, 12)));
+  }
+
+  @Test
+  public void expirationDateEquals() {
+    EqualsVerifier.forClass(ExpirationDate.class).withIgnoredFields("rawData").verify();
   }
 }

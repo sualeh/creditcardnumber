@@ -12,6 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.Name;
 
 public class NameTest {
@@ -82,5 +83,10 @@ public class NameTest {
     assertThat(name.getFirstName(), is(""));
     assertThat(name.getLastName(), is("Michaels Open Value Card"));
     assertThat(name.getFullName(), is("Michaels Open Value Card"));
+  }
+
+  @Test
+  public void nameEquals() {
+    EqualsVerifier.forClass(Name.class).withIgnoredFields("rawData").verify();
   }
 }
