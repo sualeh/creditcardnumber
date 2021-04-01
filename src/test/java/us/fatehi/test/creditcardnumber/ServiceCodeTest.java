@@ -12,6 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.ServiceCode;
 import us.fatehi.creditcardnumber.ServiceCode1;
 import us.fatehi.creditcardnumber.ServiceCode2;
@@ -54,6 +55,17 @@ public class ServiceCodeTest {
   }
 
   @Test
+  public void serviceCode_5() {
+    final String rawServiceCode = "888";
+    final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
+    assertThat(serviceCode.getRawData(), is(rawServiceCode));
+    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.unknown));
+    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.unknown));
+    assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.unknown));
+    assertThat("Should not have service code", !serviceCode.hasServiceCode(), is(true));
+  }
+
+  @Test
   public void serviceCode1() {
     final String rawServiceCode = "101";
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
@@ -70,9 +82,39 @@ public class ServiceCodeTest {
     final ServiceCode serviceCode = new ServiceCode(rawServiceCode);
     assertThat(serviceCode.getRawData(), is(rawServiceCode));
     assertThat("Should have service code", serviceCode.hasServiceCode(), is(true));
-    assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_2));
-    assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_2));
-    assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.v_2));
+
+    final ServiceCode1 serviceCode1 = serviceCode.getServiceCode1();
+    final ServiceCode2 serviceCode2 = serviceCode.getServiceCode2();
+    final ServiceCode3 serviceCode3 = serviceCode.getServiceCode3();
+
+    assertThat(serviceCode1, is(ServiceCode1.v_2));
+    assertThat(serviceCode2, is(ServiceCode2.v_2));
+    assertThat(serviceCode3, is(ServiceCode3.v_2));
+
+    assertThat(
+        serviceCode1.toString(),
+        is("2 - Interchange: International interchange. Technology: Integrated circuit card."));
+    assertThat(
+        serviceCode1.getDescription(),
+        is("Interchange: International interchange. Technology: Integrated circuit card."));
+    assertThat(serviceCode1.getTechnology(), is("Integrated circuit card"));
+    assertThat(serviceCode1.getInterchange(), is("International interchange"));
+    assertThat(serviceCode1.getValue(), is(2));
+
+    assertThat(serviceCode2.toString(), is("2 - Authorization Processing: By issuer."));
+    assertThat(serviceCode2.getDescription(), is("Authorization Processing: By issuer."));
+    assertThat(serviceCode2.getAuthorizationProcessing(), is("By issuer"));
+    assertThat(serviceCode2.getValue(), is(2));
+
+    assertThat(
+        serviceCode3.toString(),
+        is("2 - Allowed Services: Goods and services only. PIN Requirements: None."));
+    assertThat(
+        serviceCode3.getDescription(),
+        is("Allowed Services: Goods and services only. PIN Requirements: None."));
+    assertThat(serviceCode3.getAllowedServices(), is("Goods and services only"));
+    assertThat(serviceCode3.getPinRequirements(), is("None"));
+    assertThat(serviceCode3.getValue(), is(2));
   }
 
   @Test
@@ -84,5 +126,10 @@ public class ServiceCodeTest {
     assertThat(serviceCode.getServiceCode1(), is(ServiceCode1.v_5));
     assertThat(serviceCode.getServiceCode2(), is(ServiceCode2.v_2));
     assertThat(serviceCode.getServiceCode3(), is(ServiceCode3.v_5));
+  }
+
+  @Test
+  public void serviceCodeEquals() {
+    EqualsVerifier.forClass(ServiceCode.class).withOnlyTheseFields("serviceCode").verify();
   }
 }
