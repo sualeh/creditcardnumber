@@ -9,7 +9,7 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
-import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
+import static org.apache.commons.text.WordUtils.capitalizeFully;
 
 import java.io.Serializable;
 
