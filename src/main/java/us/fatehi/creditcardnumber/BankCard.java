@@ -10,7 +10,6 @@ package us.fatehi.creditcardnumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -148,15 +147,6 @@ public final class BankCard implements Serializable {
    */
   public ExpirationDate getExpirationDate() {
     return expirationDate;
-  }
-
-  /**
-   * See us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsDate()
-   *
-   * @return Expiration date
-   */
-  public Date getExpirationDateAsDate() {
-    return expirationDate.getExpirationDateAsDate();
   }
 
   /**

@@ -9,6 +9,7 @@ package us.fatehi.test.creditcardnumber;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -38,6 +39,15 @@ public class IsExpiredTest {
   public void isExpired3() {
     final YearMonth expirationDateLastMonth = YearMonth.now().minus(1, ChronoUnit.MONTHS);
     check(expirationDateLastMonth, true);
+  }
+
+  @Test
+  public void isExpired4() {
+    final ExpirationDate expirationDate = new ExpirationDate();
+    assertThat(expirationDate.hasRawData(), is(false));
+    assertThat(expirationDate.hasExpirationDate(), is(false));
+    assertThat(expirationDate.isExpired(), is(true));
+    assertThat(expirationDate.getExpirationDate(), is(nullValue()));
   }
 
   private void check(final YearMonth expectedExpirationDate, final boolean expired) {
