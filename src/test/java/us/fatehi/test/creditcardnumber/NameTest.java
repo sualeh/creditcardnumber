@@ -9,84 +9,128 @@ package us.fatehi.test.creditcardnumber;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.nullValue;
 
 import org.junit.jupiter.api.Test;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.Name;
 
 public class NameTest {
 
   @Test
-  public void name_1() {
-    final String rawName = null;
-    final Name name = new Name(rawName);
-    assertThat(name.getRawData(), is(rawName));
+  public void emptyName1() {
+    final Name name = new Name();
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(false));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(false));
+    assertThat(name.getFullName(), is(""));
+    assertThat(name.toString(), is(""));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name_2() {
-    final String rawName = "\t\t";
-    final Name name = new Name(rawName);
-    assertThat(name.getRawData(), is(rawName));
+  public void emptyName2() {
+    final Name name = new Name(null, null);
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(false));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(false));
+    assertThat(name.getFullName(), is(""));
+    assertThat(name.toString(), is(""));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name_3() {
-    final String rawName = " /                        ";
-    final Name name = new Name(rawName);
-    assertThat(name.getRawData(), is(rawName));
+  public void emptyName3() {
+    final Name name = new Name(null);
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(false));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(false));
+    assertThat(name.getFullName(), is(""));
+    assertThat(name.toString(), is(""));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name1() {
-    final String rawName = "SUALEH";
-    final Name name = new Name(rawName);
+  public void firstNameWithLast_1() {
+    final Name name = new Name(null, "LAST");
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(true));
-    assertThat(name.getRawData(), is("SUALEH"));
-    assertThat(name.getFirstName(), is(""));
-    assertThat(name.getLastName(), is("Sualeh"));
-    assertThat(name.getFullName(), is("Sualeh"));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(true));
+    assertThat(name.getFullName(), is("LAST"));
+    assertThat(name.toString(), is("LAST"));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name2() {
-    final String rawName = "FATEHI/SUALEH";
-    final Name name = new Name(rawName);
+  public void firstNameWithLast_2() {
+    final Name name = new Name("\t\t", "LAST");
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(true));
-    assertThat(name.getRawData(), is(rawName));
-    assertThat(name.getFirstName(), is("Sualeh"));
-    assertThat(name.getLastName(), is("Fatehi"));
-    assertThat(name.getFullName(), is("Sualeh Fatehi"));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(true));
+    assertThat(name.getFullName(), is("LAST"));
+    assertThat(name.toString(), is("LAST"));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name3() {
-    final String rawName = "FATEHI/SUALEH             ";
-    final Name name = new Name(rawName);
+  public void firstNameWithLast_3() {
+    final Name name = new Name("", "VERY LONG LAST NAME THAT IS RIDICULOUSLY LONG");
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(true));
-    assertThat(name.getRawData(), is(rawName));
-    assertThat(name.getFirstName(), is("Sualeh"));
-    assertThat(name.getLastName(), is("Fatehi"));
-    assertThat(name.getFullName(), is("Sualeh Fatehi"));
+    assertThat(name.hasFirstName(), is(false));
+    assertThat(name.hasLastName(), is(true));
+    assertThat(name.getFullName(), is("VERY LONG LAST NAME THAT IS RIDICULOUSLY LONG"));
+    assertThat(name.toString(), is("VERY LONG LAST NAME THAT IS RIDICULOUSLY LONG"));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void name4() {
-    final String rawName = "MICHAELS OPEN VALUE CARD  ";
-    final Name name = new Name(rawName);
+  public void firstNameWithLast1() {
+    final Name name = new Name("FIRST", "LAST");
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
     assertThat(name.hasName(), is(true));
-    assertThat(name.getRawData(), is(rawName));
-    assertThat(name.getFirstName(), is(""));
-    assertThat(name.getLastName(), is("Michaels Open Value Card"));
-    assertThat(name.getFullName(), is("Michaels Open Value Card"));
+    assertThat(name.hasFirstName(), is(true));
+    assertThat(name.hasLastName(), is(true));
+    assertThat(name.getFullName(), is("FIRST LAST"));
+    assertThat(name.toString(), is("FIRST LAST"));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 
   @Test
-  public void nameEquals() {
-    EqualsVerifier.forClass(Name.class).withIgnoredFields("rawData").verify();
+  public void lastNameWithFirst_1() {
+    final Name name = new Name("FIRST", null);
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
+    assertThat(name.hasName(), is(true));
+    assertThat(name.hasFirstName(), is(true));
+    assertThat(name.hasLastName(), is(false));
+    assertThat(name.getFullName(), is("FIRST"));
+    assertThat(name.toString(), is("FIRST"));
+    assertThat(name.exceedsMaximumLength(), is(false));
+  }
+
+  @Test
+  public void lastNameWithFirst_2() {
+    final Name name = new Name("FIRST", "\t\t");
+    assertThat(name.getRawData(), is(nullValue()));
+    assertThat(name.hasRawData(), is(false));
+    assertThat(name.hasName(), is(true));
+    assertThat(name.hasFirstName(), is(true));
+    assertThat(name.hasLastName(), is(false));
+    assertThat(name.getFullName(), is("FIRST"));
+    assertThat(name.toString(), is("FIRST"));
+    assertThat(name.exceedsMaximumLength(), is(false));
   }
 }
