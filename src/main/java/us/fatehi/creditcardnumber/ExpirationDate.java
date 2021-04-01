@@ -57,7 +57,13 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
    */
   public ExpirationDate(final int year, final int month) {
     super(null);
-    expirationDate = YearMonth.of(year, month);
+    YearMonth expirationDate;
+    try {
+      expirationDate = YearMonth.of(year, month);
+    } catch (final Exception e) {
+      expirationDate = null;
+    }
+    this.expirationDate = expirationDate;
   }
 
   /**
