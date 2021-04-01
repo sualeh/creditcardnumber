@@ -36,6 +36,13 @@ public class BankCardTest {
 
     assertThat(bankCard.hasAccountNumber(), is(true));
     assertThat(bankCard.getAccountNumber(), is(pan));
+    assertThat(bankCard.hasExpirationDate(), is(true));
+    assertThat(bankCard.getExpirationDate(), is(expirationDate));
+    assertThat(bankCard.isExpired(), is(true));
+    assertThat(bankCard.hasName(), is(true));
+    assertThat(bankCard.getName(), is(name));
+    assertThat(bankCard.hasServiceCode(), is(true));
+    assertThat(bankCard.getServiceCode(), is(serviceCode));
 
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard.toString", StandardCharsets.UTF_8);
@@ -53,6 +60,12 @@ public class BankCardTest {
 
     assertThat(bankCard.hasAccountNumber(), is(true));
     assertThat(bankCard.getAccountNumber(), is(pan));
+    assertThat(bankCard.hasExpirationDate(), is(true));
+    assertThat(bankCard.getExpirationDate(), is(expirationDate));
+    assertThat(bankCard.isExpired(), is(true));
+    assertThat(bankCard.hasName(), is(true));
+    assertThat(bankCard.getName(), is(name));
+    assertThat(bankCard.hasServiceCode(), is(false));
 
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard1.toString", StandardCharsets.UTF_8);
@@ -69,6 +82,11 @@ public class BankCardTest {
 
     assertThat(bankCard.hasAccountNumber(), is(true));
     assertThat(bankCard.getAccountNumber(), is(pan));
+    assertThat(bankCard.hasExpirationDate(), is(true));
+    assertThat(bankCard.getExpirationDate(), is(expirationDate));
+    assertThat(bankCard.isExpired(), is(true));
+    assertThat(bankCard.hasName(), is(false));
+    assertThat(bankCard.hasServiceCode(), is(false));
 
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard2.toString", StandardCharsets.UTF_8);
@@ -84,6 +102,10 @@ public class BankCardTest {
 
     assertThat(bankCard.hasAccountNumber(), is(true));
     assertThat(bankCard.getAccountNumber(), is(pan));
+    assertThat(bankCard.hasExpirationDate(), is(false));
+    assertThat(bankCard.isExpired(), is(true));
+    assertThat(bankCard.hasName(), is(false));
+    assertThat(bankCard.hasServiceCode(), is(false));
 
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard3.toString", StandardCharsets.UTF_8);
@@ -97,6 +119,10 @@ public class BankCardTest {
     final BankCard bankCard = new BankCard();
 
     assertThat(bankCard.hasAccountNumber(), is(false));
+    assertThat(bankCard.hasExpirationDate(), is(false));
+    assertThat(bankCard.isExpired(), is(true));
+    assertThat(bankCard.hasName(), is(false));
+    assertThat(bankCard.hasServiceCode(), is(false));
 
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard4.toString", StandardCharsets.UTF_8);

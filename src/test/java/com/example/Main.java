@@ -5,13 +5,18 @@
  * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
-package us.fatehi.creditcardnumber;
+package com.example;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.AccountNumbers;
+import us.fatehi.creditcardnumber.BankCard;
+import us.fatehi.creditcardnumber.Version;
 
 /** Credit Card Number console application. */
 public class Main {
@@ -32,7 +37,7 @@ public class Main {
       System.out.print("Primary Account Number: ");
       final String line = in.readLine();
       if (!isBlank(line)) {
-        final AccountNumberComplete pan = new AccountNumberComplete(line);
+        final AccountNumber pan = AccountNumbers.accountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }
