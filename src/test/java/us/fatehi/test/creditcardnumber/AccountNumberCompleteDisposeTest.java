@@ -19,9 +19,30 @@ import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 
-public class SecureAccountNumberTest {
+public class AccountNumberCompleteDisposeTest {
 
   private static final int IIN_LEN = 8;
+
+  @Test
+  public void dispose() {
+    final String rawAccountNumber = "5266092201416173";
+    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
+    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
+    assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
+
+    assertThat(pan.hasRawData(), is(true));
+    assertThat(pan.hasAccountNumber(), is(true));
+    assertThat(pan.getLastFourDigits(), is("6173"));
+    assertThat(pan.getIssuerIdentificationNumber(), is(left(rawAccountNumber, IIN_LEN)));
+
+    pan.dispose();
+
+    assertThat(pan.hasRawData(), is(false));
+    assertThat(pan.hasAccountNumber(), is(false));
+    assertThat(pan.getLastFourDigits(), is(nullValue()));
+    assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
+  }
 
   @Test
   public void disposeRawData() {
@@ -32,6 +53,13 @@ public class SecureAccountNumberTest {
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
 
     assertThat(pan.hasRawData(), is(true));
+    assertThat(pan.hasAccountNumber(), is(true));
+    assertThat(pan.getLastFourDigits(), is("6173"));
+    assertThat(pan.getIssuerIdentificationNumber(), is(left(rawAccountNumber, IIN_LEN)));
+
+    pan.disposeRawData();
+
+    assertThat(pan.hasRawData(), is(false));
     assertThat(pan.hasAccountNumber(), is(true));
     assertThat(pan.getLastFourDigits(), is("6173"));
     assertThat(pan.getIssuerIdentificationNumber(), is(left(rawAccountNumber, IIN_LEN)));
@@ -83,19 +111,5 @@ public class SecureAccountNumberTest {
     assertThat(pan.hasAccountNumber(), is(false));
     pan.disposeRawData();
     assertThat(pan.hasAccountNumber(), is(false));
-  }
-
-  @Test
-  public void secureAccountNumber() {
-    final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.secureAccountNumber(rawAccountNumber);
-    assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
-    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
-    assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
-
-    assertThat(pan.hasRawData(), is(false));
-    assertThat(pan.hasAccountNumber(), is(false));
-    assertThat(pan.getLastFourDigits(), is(nullValue()));
-    assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
   }
 }
