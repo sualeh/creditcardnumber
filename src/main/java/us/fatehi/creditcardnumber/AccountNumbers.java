@@ -31,7 +31,7 @@ public final class AccountNumbers {
    *
    * @param rawAccountNumber Raw primary account number.
    */
-  public static AccountNumber accountNumberLast4(final String rawAccountNumber) {
+  public static AccountNumber accountNumberLastFour(final String rawAccountNumber) {
     if (rawAccountNumber == null) {
       return ACCOUNT_NUMBER_EMPTY;
     } else {

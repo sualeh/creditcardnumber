@@ -11,6 +11,7 @@ import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.right;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 
-public class PrimaryAccountNumberTest {
+public class AccountNumberCompleteTest {
 
   private static final int IIN_LEN = 8;
 
@@ -29,6 +30,8 @@ public class PrimaryAccountNumberTest {
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(pan.hasAccountNumber(), is(false));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(false));
+    assertThat(pan.getAccountNumberLength(), is(0));
   }
 
   @Test
@@ -37,6 +40,8 @@ public class PrimaryAccountNumberTest {
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(pan.hasAccountNumber(), is(false));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(false));
+    assertThat(pan.getAccountNumberLength(), is(0));
   }
 
   @Test
@@ -45,7 +50,9 @@ public class PrimaryAccountNumberTest {
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(!pan.passesLuhnCheck(), is(true));
+    assertThat(pan.getAccountNumberLength(), is(16));
     check(rawAccountNumber, pan, rawAccountNumber);
+    assertThat(pan.isPrimaryAccountNumberValid(), is(false));
   }
 
   @Test
@@ -53,6 +60,9 @@ public class PrimaryAccountNumberTest {
     final String rawAccountNumber = "5266092201416174";
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(pan.passesLuhnCheck(), is(true));
+    assertThat(pan.isLengthValid(), is(true));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(true));
+    assertThat(pan.getAccountNumberLength(), is(16));
     check(rawAccountNumber, pan, rawAccountNumber);
   }
 
@@ -62,7 +72,14 @@ public class PrimaryAccountNumberTest {
     final String accountNumber = "5266092201416174";
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(pan.passesLuhnCheck(), is(true));
+    assertThat(pan.isLengthValid(), is(true));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(true));
+    assertThat(pan.getAccountNumberLength(), is(16));
     check(rawAccountNumber, pan, accountNumber);
+
+    assertThat(pan.toString(), is(accountNumber));
+    pan.dispose();
+    assertThat(pan.toString(), containsString("Account Number:"));
   }
 
   @Test
@@ -72,6 +89,9 @@ public class PrimaryAccountNumberTest {
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(!pan.passesLuhnCheck(), is(true));
     assertThat(pan.exceedsMaximumLength(), is(true));
+    assertThat(pan.isLengthValid(), is(false));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(false));
+    assertThat(pan.getAccountNumberLength(), is(20));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -81,6 +101,9 @@ public class PrimaryAccountNumberTest {
     final String accountNumber = "52660922";
     final AccountNumber pan = accountNumber(rawAccountNumber);
     assertThat(!pan.passesLuhnCheck(), is(true));
+    assertThat(pan.isLengthValid(), is(false));
+    assertThat(pan.isPrimaryAccountNumberValid(), is(false));
+    assertThat(pan.getAccountNumberLength(), is(8));
     check(rawAccountNumber, pan, accountNumber);
   }
 

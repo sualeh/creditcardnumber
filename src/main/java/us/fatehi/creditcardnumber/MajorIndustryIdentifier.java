@@ -7,6 +7,8 @@
  */
 package us.fatehi.creditcardnumber;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
 /**
  * The first digit of a credit card number is the Major Industry Identifier (MII) (see ISO/IEC
  * 7812), which represents the category of entity which issued the card.
@@ -38,7 +40,7 @@ public enum MajorIndustryIdentifier {
    * @return MII value.
    */
   public static MajorIndustryIdentifier from(final String accountNumber) {
-    if (accountNumber != null && !accountNumber.isEmpty()) {
+    if (!isBlank(accountNumber)) {
       final int value = Character.digit(accountNumber.charAt(0), 10);
       for (final MajorIndustryIdentifier mii : values()) {
         if (mii.getValue() == value) {
