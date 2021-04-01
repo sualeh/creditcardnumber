@@ -121,20 +121,21 @@ final class AccountNumberSecure implements AccountNumber {
 
   @Override
   public String toString() {
-    return "AccountNumber [cardBrand="
-        + cardBrand
-        + ", majorIndustryIdentifier="
-        + majorIndustryIdentifier
-        + ", passesLuhnCheck="
-        + passesLuhnCheck
-        + ", accountNumberLength="
-        + accountNumberLength
-        + ", isLengthValid="
-        + isLengthValid
-        + ", isPrimaryAccountNumberValid="
-        + isPrimaryAccountNumberValid
-        + ", isExceedsMaximumLength="
-        + isExceedsMaximumLength
-        + "]";
+    final String NEWLINE = System.getProperty("line.separator");
+    final StringBuilder buffer = new StringBuilder();
+
+    buffer.append("Account Number: ").append(NEWLINE);
+    buffer.append("  Major Industry Identifier: ");
+    buffer.append(getMajorIndustryIdentifier()).append(NEWLINE);
+    buffer.append("  Issuer Identification Number: ");
+    buffer.append(getIssuerIdentificationNumber()).append(NEWLINE);
+    buffer.append("  Card Brand: ");
+    buffer.append(getCardBrand()).append(NEWLINE);
+    buffer.append("  Passes Luhn Check? ");
+    buffer.append(passesLuhnCheck() ? "Yes" : "No").append(NEWLINE);
+    buffer.append("  Is Primary Account Number Valid? ");
+    buffer.append(isPrimaryAccountNumberValid() ? "Yes" : "No").append(NEWLINE);
+
+    return buffer.toString();
   }
 }

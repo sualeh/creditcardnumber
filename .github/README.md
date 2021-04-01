@@ -35,8 +35,7 @@ Some resources consulted are:
 ## Download and Use in Projects
 
 You can [download the jar on the Maven Central Repository](https://search.maven.org/artifact/us.fatehi/credit_card_number). 
-The [download page](https://search.maven.org/artifact/us.fatehi/credit_card_number) 
-has instructions on how to use the library in your Maven or Gradle build.
+The [download page](https://search.maven.org/artifact/us.fatehi/credit_card_number) has instructions on how to use the library in your Maven or Gradle build.
 
 
 ## Examples
@@ -45,7 +44,7 @@ has instructions on how to use the library in your Maven or Gradle build.
 
 To get bank card information, use code like:
 ```java
-AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
 ExpirationDate expiration = new ExpirationDate(2015, 4);
 Name name = new Name("Sualeh", "Fatehi");
 BankCard card = new BankCard(pan, expiration, name);
@@ -62,30 +61,34 @@ Bank Card Information:
     Last Four Digits: 6174
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
-  Expiration Date: 1504
-    Is Expired? No
+  Expiration Date: 2015-04
+    Is Expired? Yes
   Name: Sualeh Fatehi
 ```
 
 ### How to Secure the Credit Card Number
 
-If you need the account number information, but want to be secure by not 
-storing the actual primary account number in memory, you can use code like:
+If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
 ```java
-AccountNumber pan = new AccountNumber("5266-0922-0141-6174");
+AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
 pan.dispose();
 System.out.println(pan);
 ```
 and you will get this output:
 ```
-MasterCard-6174
+Account Number: 
+  Major Industry Identifier: 5 - Banking and financial
+  Issuer Identification Number: null
+  Card Brand: MasterCard
+  Passes Luhn Check? Yes
+  Is Primary Account Number Valid? Yes
 ```
 
 ### Internationalization is Supported
 
 You can use code like:
 ```java
-AccountNumber pan = new AccountNumber("५२६६ ०९२२ ०१४१ ६१७४");
+AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
 System.out.println(pan);
 ```
 and you will get this output:
