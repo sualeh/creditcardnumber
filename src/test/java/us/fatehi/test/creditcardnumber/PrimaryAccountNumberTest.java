@@ -21,6 +21,8 @@ import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 
 public class PrimaryAccountNumberTest {
 
+  private static final int IIN_LEN = 8;
+
   @Test
   public void pan_1() {
     final String rawAccountNumber = null;
@@ -87,7 +89,7 @@ public class PrimaryAccountNumberTest {
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(pan.getAccountNumber(), is(accountNumber));
     assertThat(pan.getLastFourDigits(), is(right(accountNumber, 4)));
-    assertThat(pan.getIssuerIdentificationNumber(), is(left(accountNumber, 6)));
+    assertThat(pan.getIssuerIdentificationNumber(), is(left(accountNumber, IIN_LEN)));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
   }

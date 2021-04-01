@@ -7,6 +7,7 @@
  */
 package us.fatehi.test.creditcardnumber;
 
+import static org.apache.commons.lang3.StringUtils.left;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -20,6 +21,8 @@ import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 
 public class SecureAccountNumberTest {
 
+  private static final int IIN_LEN = 8;
+
   @Test
   public void disposeRawData() {
     final String rawAccountNumber = "5266092201416173";
@@ -31,7 +34,7 @@ public class SecureAccountNumberTest {
     assertThat(pan.hasRawData(), is(true));
     assertThat(pan.hasAccountNumber(), is(true));
     assertThat(pan.getLastFourDigits(), is("6173"));
-    assertThat(pan.getIssuerIdentificationNumber(), is("526609"));
+    assertThat(pan.getIssuerIdentificationNumber(), is(left(rawAccountNumber, IIN_LEN)));
 
     pan.dispose();
 
@@ -53,7 +56,7 @@ public class SecureAccountNumberTest {
     assertThat(pan.hasAccountNumber(), is(true));
     assertThat(pan.getAccountNumber(), is("573"));
     assertThat(pan.getLastFourDigits(), is("0573"));
-    assertThat(pan.getIssuerIdentificationNumber(), is("573000"));
+    assertThat(pan.getIssuerIdentificationNumber(), is("57300000"));
 
     pan.dispose();
 

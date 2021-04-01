@@ -20,7 +20,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   private static final long serialVersionUID = -7012531091389412459L;
 
-  private static final int IIN_LEN = 6;
+  private static final int IIN_LEN = 8;
 
   private final DisposableStringData accountNumber;
   private final AccountNumber panSecure;

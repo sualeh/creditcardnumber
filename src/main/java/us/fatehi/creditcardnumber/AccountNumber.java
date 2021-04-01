@@ -42,11 +42,11 @@ public interface AccountNumber extends RawData, Serializable {
   CardBrand getCardBrand();
 
   /**
-   * The first six digits of the PAN are taken from the IIN, or Issuer Identification Number,
+   * The first eight digits of the PAN are taken from the IIN, or Issuer Identification Number,
    * belonging to the issuing bank (IINs were previously known as BIN (Bank Identification Numbers)
-   * so you may see references to that terminology in some documents). These six digits are subject
-   * to an international standard, ISO/IEC 7812, and can be used to determine the type of card from
-   * the number.
+   * so you may see references to that terminology in some documents). These eight digits are
+   * subject to an international standard, ISO/IEC 7812, and can be used to determine the type of
+   * card from the number.
    *
    * @return IIN, or Issuer Identification Number - or null if the account number is disposed
    */
