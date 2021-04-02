@@ -49,10 +49,7 @@ public final class DisposableStringData implements CharSequence {
       return false;
     }
     final DisposableStringData other = (DisposableStringData) obj;
-    if (!Arrays.equals(data, other.data)) {
-      return false;
-    }
-    return true;
+    return Arrays.equals(data, other.data);
   }
 
   /**

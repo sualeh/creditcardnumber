@@ -61,10 +61,7 @@ public final class ServiceCode extends BaseRawData implements Serializable {
       return false;
     }
     final ServiceCode other = (ServiceCode) obj;
-    if (!Objects.equals(serviceCode, other.serviceCode)) {
-      return false;
-    }
-    return true;
+    return Objects.equals(serviceCode, other.serviceCode);
   }
 
   @Override

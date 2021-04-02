@@ -149,7 +149,6 @@ public class BankCardTest {
     assertThat(bankCard.hasServiceCode(), is(true));
     assertThat(bankCard.getServiceCode(), is(serviceCode));
 
-    System.out.println(bankCard);
     final String bankCardToString =
         IOUtils.resourceToString("/BankCard5.toString", StandardCharsets.UTF_8);
     assertThat(
