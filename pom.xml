@@ -4,12 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
-  <artifactId>credit_card_number</artifactId>
-  <version>3.0.0</version>
+  <artifactId>creditcardnumber</artifactId>
+  <version>3.0.1</version>
   <packaging>jar</packaging>
   <name>Credit Card Number</name>
   <description>Credit Card Number is a library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
-  <url>https://github.com/sualeh/credit_card_number</url>
+  <url>https://github.com/sualeh/creditcardnumber</url>
   <licenses>
     <license>
       <name>Eclipse Public License - v 1.0</name>
@@ -32,9 +32,9 @@
     <name>Sualeh Fatehi</name>
   </organization>
   <scm>
-    <url>https://github.com/sualeh/credit_card_number</url>
-    <connection>scm:git:git@github.com:sualeh/credit_card_number.git</connection>
-    <developerConnection>scm:git:git@github.com:sualeh/credit_card_number.git</developerConnection>
+    <url>https://github.com/sualeh/creditcardnumber</url>
+    <connection>scm:git:git@github.com:sualeh/creditcardnumber.git</connection>
+    <developerConnection>scm:git:git@github.com:sualeh/creditcardnumber.git</developerConnection>
   </scm>
   <distributionManagement>
     <snapshotRepository>
