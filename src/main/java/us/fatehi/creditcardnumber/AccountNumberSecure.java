@@ -131,10 +131,6 @@ final class AccountNumberSecure implements AccountNumber {
     buffer.append(getIssuerIdentificationNumber()).append(NEWLINE);
     buffer.append("  Card Brand: ");
     buffer.append(getCardBrand()).append(NEWLINE);
-    buffer.append("  Passes Luhn Check? ");
-    buffer.append(passesLuhnCheck() ? "Yes" : "No").append(NEWLINE);
-    buffer.append("  Is Primary Account Number Valid? ");
-    buffer.append(isPrimaryAccountNumberValid() ? "Yes" : "No").append(NEWLINE);
 
     return buffer.toString();
   }

@@ -81,7 +81,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   @Override
   public String getIssuerIdentificationNumber() {
-    if (!hasRawData()) {
+    if (!hasAccountNumber()) {
       return null;
     }
     final String accountNumberString = accountNumber.getData();
@@ -90,7 +90,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   @Override
   public String getLastFourDigits() {
-    if (!hasRawData()) {
+    if (!hasAccountNumber()) {
       return null;
     }
     final String accountNumberString = accountNumber.getData();
@@ -154,9 +154,6 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
   }
 
   private String parseAccountNumber(final String rawAccountNumber) {
-    if (rawAccountNumber == null) {
-      return "";
-    }
     final StringBuilder builder = new StringBuilder();
     final int length = rawAccountNumber.length();
     for (int offset = 0; offset < length; ) {

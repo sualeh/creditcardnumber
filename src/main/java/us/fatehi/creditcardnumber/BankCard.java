@@ -10,8 +10,6 @@ package us.fatehi.creditcardnumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
 
 /**
  * Represents a bank card, and contains information about the card number, cardholder's name,
@@ -99,46 +97,13 @@ public final class BankCard implements Serializable {
     }
   }
 
-  @Override
-  public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (!(obj instanceof BankCard)) {
-      return false;
-    }
-    final BankCard other = (BankCard) obj;
-    if (!Objects.equals(expirationDate, other.expirationDate)) {
-      return false;
-    }
-    if (!Objects.equals(name, other.name)) {
-      return false;
-    }
-    if (!Objects.equals(pan, other.pan)) {
-      return false;
-    }
-    return true;
-  }
-
   /**
-   * Gets the primary account number for the card, if available.
+   * Gets the primary account number for the card.
    *
-   * @return Primary account number. Null if not available.
+   * @return Primary account number.
    */
-  public String getAccountNumber() {
-    return pan.getAccountNumber();
-  }
-
-  /**
-   * See us.fatehi.creditcardnumber.Name#getFullName()
-   *
-   * @return Card holder's full name
-   */
-  public String getCardHolderName() {
-    return name.getFullName();
+  public AccountNumber getAccountNumber() {
+    return pan;
   }
 
   /**
@@ -151,15 +116,6 @@ public final class BankCard implements Serializable {
   }
 
   /**
-   * See us.fatehi.creditcardnumber.ExpirationDate#getExpirationDateAsDate()
-   *
-   * @return Expiration date
-   */
-  public Date getExpirationDateAsDate() {
-    return expirationDate.getExpirationDateAsDate();
-  }
-
-  /**
    * Gets the cardholder's name.
    *
    * @return Cardholder's name.
@@ -168,18 +124,18 @@ public final class BankCard implements Serializable {
     return name;
   }
 
-  /**
-   * Gets the primary account number for the card.
-   *
-   * @return Primary account number.
-   */
-  public AccountNumber getPrimaryAccountNumber() {
-    return pan;
-  }
-
   /** @return the serviceCode */
   public ServiceCode getServiceCode() {
     return serviceCode;
+  }
+
+  /**
+   * Checks whether the primary account number for the card is available.
+   *
+   * @return True if the primary account number for the card is available.
+   */
+  public boolean hasAccountNumber() {
+    return pan.hasAccountNumber();
   }
 
   /**
@@ -188,18 +144,7 @@ public final class BankCard implements Serializable {
    * @return True if the card expiration date is available.
    */
   public boolean hasExpirationDate() {
-    return expirationDate != null && expirationDate.hasExpirationDate();
-  }
-
-  /** See java.lang.Object#hashCode() */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (expirationDate == null ? 0 : expirationDate.hashCode());
-    result = prime * result + (name == null ? 0 : name.hashCode());
-    result = prime * result + (pan == null ? 0 : pan.hashCode());
-    return result;
+    return expirationDate.hasExpirationDate();
   }
 
   /**
@@ -208,20 +153,11 @@ public final class BankCard implements Serializable {
    * @return True if the cardholder's name is available.
    */
   public boolean hasName() {
-    return name != null && name.hasName();
-  }
-
-  /**
-   * Checks whether the primary account number for the card is available.
-   *
-   * @return True if the primary account number for the card is available.
-   */
-  public boolean hasPrimaryAccountNumber() {
-    return pan != null && pan.hasAccountNumber();
+    return name.hasName();
   }
 
   public boolean hasServiceCode() {
-    return serviceCode != null && serviceCode.hasServiceCode();
+    return serviceCode.hasServiceCode();
   }
 
   /**
@@ -239,7 +175,7 @@ public final class BankCard implements Serializable {
     final StringBuilder buffer = new StringBuilder();
 
     buffer.append("Bank Card Information: ").append(NEWLINE);
-    if (hasPrimaryAccountNumber()) {
+    if (hasAccountNumber()) {
       buffer.append("  Raw Account Number: ");
       buffer.append(pan.getRawData()).append(NEWLINE);
       buffer.append("  Primary Account Number: ");

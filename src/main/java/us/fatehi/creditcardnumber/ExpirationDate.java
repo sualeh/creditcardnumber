@@ -11,13 +11,9 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.Utility.non_digit;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Objects;
 
@@ -57,7 +53,13 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
    */
   public ExpirationDate(final int year, final int month) {
     super(null);
-    expirationDate = YearMonth.of(year, month);
+    YearMonth expirationDate;
+    try {
+      expirationDate = YearMonth.of(year, month);
+    } catch (final Exception e) {
+      expirationDate = null;
+    }
+    this.expirationDate = expirationDate;
   }
 
   /**
@@ -110,28 +112,6 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
    */
   public YearMonth getExpirationDate() {
     return expirationDate;
-  }
-
-  /**
-   * Gets the card expiration date, as a java.util.Date object. Returns null if no date is
-   * available.
-   *
-   * @return Card expiration date.
-   */
-  public Date getExpirationDateAsDate() {
-    if (hasExpirationDate()) {
-      final LocalDateTime endOfMonth =
-          expirationDate
-              .atEndOfMonth()
-              .atStartOfDay()
-              .plus(1, ChronoUnit.DAYS)
-              .minus(1, ChronoUnit.NANOS);
-      final Instant instant = endOfMonth.atZone(ZoneId.systemDefault()).toInstant();
-      final Date date = new Date(instant.toEpochMilli());
-      return date;
-    } else {
-      return null;
-    }
   }
 
   /**

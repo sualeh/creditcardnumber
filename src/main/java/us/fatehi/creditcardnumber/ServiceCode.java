@@ -19,7 +19,7 @@ import java.util.Objects;
  *
  * @author Sualeh Fatehi
  */
-public class ServiceCode extends BaseRawData implements Serializable {
+public final class ServiceCode extends BaseRawData implements Serializable {
 
   private static final long serialVersionUID = -5127753346282374841L;
 

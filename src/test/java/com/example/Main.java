@@ -5,7 +5,7 @@
  * Copyright (c) 2014-2021, Sualeh Fatehi.
  *
  */
-package us.fatehi.creditcardnumber;
+package com.example;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -13,11 +13,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import us.fatehi.creditcardnumber.AccountNumber;
+import us.fatehi.creditcardnumber.AccountNumbers;
+import us.fatehi.creditcardnumber.BankCard;
+
 /** Credit Card Number console application. */
 public class Main {
 
   public static void main(final String[] args) throws Exception {
-    Version.main(new String[0]);
 
     final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -32,7 +35,7 @@ public class Main {
       System.out.print("Primary Account Number: ");
       final String line = in.readLine();
       if (!isBlank(line)) {
-        final AccountNumberComplete pan = new AccountNumberComplete(line);
+        final AccountNumber pan = AccountNumbers.accountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }
