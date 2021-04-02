@@ -70,8 +70,31 @@ public class CardBrandTest {
   }
 
   @Test
+  public void unionPay() {
+    final long[] longCardNumbers = {
+      6244867756201583L,
+      6232270603171725L,
+      6223040736535646L,
+      6223722731815525L,
+      6270855608444425L,
+      6270207865205158L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.UnionPay);
+    }
+  }
+
+  @Test
   public void visa() {
     final long[] longCardNumbers = {4111111111111111L, 4012888888881881L, 4222222222222L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Visa);
+    }
+  }
+
+  @Test
+  public void visa13digit() {
+    final long[] longCardNumbers = {4556258335907L, 4826840371540L, 4539736294508L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Visa);
     }
