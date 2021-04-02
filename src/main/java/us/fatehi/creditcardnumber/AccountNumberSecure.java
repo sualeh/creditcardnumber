@@ -9,7 +9,7 @@ package us.fatehi.creditcardnumber;
 
 import static java.util.Objects.requireNonNull;
 
-final class AccountNumberSecure implements AccountNumber {
+public final class AccountNumberSecure implements AccountNumber {
 
   private static final long serialVersionUID = 2002490292247684624L;
 
@@ -20,6 +20,22 @@ final class AccountNumberSecure implements AccountNumber {
   private final boolean isLengthValid;
   private final boolean isPrimaryAccountNumberValid;
   private final boolean isExceedsMaximumLength;
+
+  /**
+   * Captures secure information (metadata) that has no part of the actual account number in it.
+   *
+   * @param accountNumber Account number with metadata
+   */
+  public AccountNumberSecure(final AccountNumber accountNumber) {
+    this(
+        requireNonNull(accountNumber, "No account number provided").getCardBrand(),
+        accountNumber.getMajorIndustryIdentifier(),
+        accountNumber.passesLuhnCheck(),
+        accountNumber.getAccountNumberLength(),
+        accountNumber.isLengthValid(),
+        accountNumber.isPrimaryAccountNumberValid(),
+        accountNumber.exceedsMaximumLength());
+  }
 
   AccountNumberSecure(
       final CardBrand cardBrand,

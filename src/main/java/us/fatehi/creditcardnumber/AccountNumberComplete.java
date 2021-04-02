@@ -32,6 +32,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
     accountNumber = new DisposableStringData(accountNumberString);
 
+    // Secure information (metadata) that has no part of the actual account in it
     final boolean passesLuhnCheck = luhnCheck();
     final MajorIndustryIdentifier majorIndustryIdentifier =
         MajorIndustryIdentifier.from(accountNumberString);
