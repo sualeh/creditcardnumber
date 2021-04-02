@@ -15,9 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import us.fatehi.creditcardnumber.CardBrand;
 
+/**
+ * Use test credit card numbers from
+ * https://developer.paypal.com/docs/payflow/payflow-pro/payflow-pro-testing/
+ */
 public class CardBrandTest {
 
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void americanExpress() {
     final long[] longCardNumbers = {378282246310005L, 371449635398431L, 378734493671000L};
@@ -26,7 +29,6 @@ public class CardBrandTest {
     }
   }
 
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void dinersClub() {
     final long[] longCardNumbers = {30569309025904L, 38520000023237L};
@@ -35,7 +37,6 @@ public class CardBrandTest {
     }
   }
 
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void discover() {
     final long[] longCardNumbers = {6011000990139424L, 6011111111111117L};
@@ -44,7 +45,6 @@ public class CardBrandTest {
     }
   }
 
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void jcb() {
     final long[] longCardNumbers = {3530111333300000L, 3566002020360505L};
@@ -53,7 +53,6 @@ public class CardBrandTest {
     }
   }
 
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void masterCard() {
     final long[] longCardNumbers = {5555555555554444L, 5105105105105100L};
@@ -63,38 +62,13 @@ public class CardBrandTest {
   }
 
   @Test
-  public void masterCard2Series_1negative() {
-    final long longCardNumber = 2221000000000000L;
-    for (long i = 1; i <= 10; i++) {
-      test(longCardNumber - i, CardBrand.Unknown);
+  public void masterCard2Series() {
+    final long[] longCardNumbers = {2221000000000009L, 2223000048400011L, 2223016768739313L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.MasterCard);
     }
   }
 
-  @Test
-  public void masterCard2Series_1positive() {
-    final long longCardNumber = 2221000000000000L;
-    for (long i = 0; i <= 10; i++) {
-      test(longCardNumber + i, CardBrand.MasterCard);
-    }
-  }
-
-  @Test
-  public void masterCard2Series_2negative() {
-    final long longCardNumber = 2720999999999999L;
-    for (long i = 1; i <= 10; i++) {
-      test(longCardNumber + i, CardBrand.Unknown);
-    }
-  }
-
-  @Test
-  public void masterCard2Series_2positive() {
-    final long longCardNumber = 2720999999999999L;
-    for (long i = 0; i <= 10; i++) {
-      test(longCardNumber - i, CardBrand.MasterCard);
-    }
-  }
-
-  // https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
   @Test
   public void visa() {
     final long[] longCardNumbers = {4111111111111111L, 4012888888881881L, 4222222222222L};
