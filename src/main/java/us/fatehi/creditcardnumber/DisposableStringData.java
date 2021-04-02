@@ -7,9 +7,6 @@
  */
 package us.fatehi.creditcardnumber;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-
 import java.util.Arrays;
 
 public final class DisposableStringData implements CharSequence {
@@ -37,31 +34,6 @@ public final class DisposableStringData implements CharSequence {
    */
   public void disposeData() {
     Arrays.fill(data, (char) 0);
-  }
-
-  /**
-   * Wipes the data from memory, starting from the provided index, inclusive. Following
-   * recommendations from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw data.
-   *
-   * @param fromIndex Position to start disposing data from
-   */
-  public void disposeData(final int fromIndex) {
-    Arrays.fill(data, max(0, fromIndex), data.length, (char) 0);
-  }
-
-  /**
-   * Wipes the data from memory, starting from the provided index, inclusive, and until the second
-   * index. Following recommendations from the <a href=
-   * "http://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx">Java
-   * Cryptography Architecture (JCA) Reference Guide</a> Also wipes raw data.
-   *
-   * @param fromIndex Position to start disposing data from
-   * @param toIndex Position to end disposing data
-   */
-  public void disposeData(final int fromIndex, final int toIndex) {
-    Arrays.fill(data, max(0, fromIndex), min(data.length, toIndex), (char) 0);
   }
 
   /** {@inheritDoc} */

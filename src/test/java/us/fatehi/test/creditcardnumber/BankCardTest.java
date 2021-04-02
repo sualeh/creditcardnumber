@@ -129,4 +129,30 @@ public class BankCardTest {
     assertThat(
         bankCard.toString().replaceAll("\\R", ""), is(bankCardToString.replaceAll("\\R", "")));
   }
+
+  @Test
+  public void bankCard5() throws IOException {
+    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416174");
+    final ExpirationDate expirationDate = new ExpirationDate(2030, 12);
+    final Name name = new Name("Sualeh", "Fatehi");
+    final ServiceCode serviceCode = new ServiceCode("222");
+
+    final BankCard bankCard = new BankCard(pan, expirationDate, name, serviceCode);
+
+    assertThat(bankCard.hasAccountNumber(), is(true));
+    assertThat(bankCard.getAccountNumber(), is(pan));
+    assertThat(bankCard.hasExpirationDate(), is(true));
+    assertThat(bankCard.getExpirationDate(), is(expirationDate));
+    assertThat(bankCard.isExpired(), is(false));
+    assertThat(bankCard.hasName(), is(true));
+    assertThat(bankCard.getName(), is(name));
+    assertThat(bankCard.hasServiceCode(), is(true));
+    assertThat(bankCard.getServiceCode(), is(serviceCode));
+
+    System.out.println(bankCard);
+    final String bankCardToString =
+        IOUtils.resourceToString("/BankCard5.toString", StandardCharsets.UTF_8);
+    assertThat(
+        bankCard.toString().replaceAll("\\R", ""), is(bankCardToString.replaceAll("\\R", "")));
+  }
 }

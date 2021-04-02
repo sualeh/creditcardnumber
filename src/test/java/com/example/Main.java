@@ -16,13 +16,11 @@ import java.io.InputStreamReader;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.BankCard;
-import us.fatehi.creditcardnumber.Version;
 
 /** Credit Card Number console application. */
 public class Main {
 
   public static void main(final String[] args) throws Exception {
-    Version.main(new String[0]);
 
     final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
