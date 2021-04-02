@@ -70,6 +70,21 @@ public class CardBrandTest {
   }
 
   @Test
+  public void uatp() {
+    final long[] longCardNumbers = {
+      168714822757781L,
+      164564145638158L,
+      128646125763323L,
+      163751038165008L,
+      171005001833666L,
+      144501340152408L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.UATP);
+    }
+  }
+
+  @Test
   public void unionPay() {
     final long[] longCardNumbers = {
       6244867756201583L,

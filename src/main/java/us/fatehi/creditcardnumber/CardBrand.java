@@ -33,7 +33,7 @@ public enum CardBrand {
   Discover("^6(?:011|5[0-9]{2})[0-9]{3,}$"),
   JCB("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$"),
   UnionPay("^62[0-9]{14,}$"),
-  ;
+  UATP("^1[0-9]{14}$");
 
   public static CardBrand from(final String accountNumber) {
     if (isBlank(accountNumber)) {
