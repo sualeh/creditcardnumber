@@ -54,6 +54,21 @@ public class CardBrandTest {
   }
 
   @Test
+  public void maestro() {
+    final long[] longCardNumbers = {
+      5893576249190792L,
+      5020197760270594L,
+      5038995137100760L,
+      5038555438947721L,
+      5893695217878046L,
+      5038973483815604L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Maestro);
+    }
+  }
+
+  @Test
   public void masterCard() {
     final long[] longCardNumbers = {5555555555554444L, 5105105105105100L};
     for (final long longCardNumber : longCardNumbers) {
