@@ -27,7 +27,7 @@
     "editor.tabSize":2,
     "files.trimTrailingWhitespace":true,
     "git.enableCommitSigning":true
-  }
+  },
   "extensions":[
     "vscjava.vscode-java-pack",
     "shengchen.vscode-checkstyle",
