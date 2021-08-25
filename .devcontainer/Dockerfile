@@ -10,5 +10,5 @@ RUN \
   apt-get -y install --no-install-recommends \
     gnupg2
 RUN \
-  apt-get clean \
+  apt-get clean && \
   apt-get autoremove --purge
