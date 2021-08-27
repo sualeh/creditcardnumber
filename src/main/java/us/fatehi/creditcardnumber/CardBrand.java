@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public enum CardBrand {
   Unknown("^unknown$"),
   // Visa can be 13, 16 or 19 digits in length
-  Visa("^4[0-9]{12}(?:[0-9]{3}){0,2}?$"),
+  Visa("^4[0-9]{12}(?:[0-9]{3}){0,2}$"),
   // MasterCard numbers start with the numbers 51 through 55, and 2221
   // through 2720.
   MasterCard("^(?:5[1-5][0-9]{2}|222[1-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"),
