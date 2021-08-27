@@ -46,6 +46,14 @@ public class CardBrandTest {
   }
 
   @Test
+  public void mir() {
+    final long[] longCardNumbers = {2201024313392493L, 2202037066066964L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.MIR);
+    }
+  }
+
+  @Test
   public void jcb() {
     final long[] longCardNumbers = {3530111333300000L, 3566002020360505L};
     for (final long longCardNumber : longCardNumbers) {
@@ -62,6 +70,45 @@ public class CardBrandTest {
       5038555438947721L,
       5893695217878046L,
       5038973483815604L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Maestro);
+    }
+  }
+
+  @Test
+  public void maestro13digit() {
+    final long[] longCardNumbers = {
+      5038827764320L,
+      5038877268248L,
+      6304305000689L,
+      6763614233226L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Maestro);
+    }
+  }
+
+  @Test
+  public void maestro15digit() {
+    final long[] longCardNumbers = {
+      502093431938115L,
+      501837269893631L,
+      503874834497950L,
+      630497884045549L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Maestro);
+    }
+  }
+
+  @Test
+  public void maestro19digit() {
+    final long[] longCardNumbers = {
+      5020199451495212630L,
+      6763577441211256926L,
+      5038363563196126588L,
+      6304126516377184290L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Maestro);
@@ -125,6 +172,14 @@ public class CardBrandTest {
   @Test
   public void visa13digit() {
     final long[] longCardNumbers = {4556258335907L, 4826840371540L, 4539736294508L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.Visa);
+    }
+  }
+
+  @Test
+  public void visa19digit() {
+    final long[] longCardNumbers = {4916656927157289574L, 4024007121577965158L, 4556980068526399611L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Visa);
     }
