@@ -37,7 +37,7 @@ public enum CardBrand {
   // Diners Club card numbers begin with 300 through 305, 36 or 38.
   DinersClub("^3(?:0[0-5]|[68][0-9])[0-9]{11}$"),
   // Maestro can be 12-19 digits in length
-  Maestro("^(?:5018|5020|5038|5893|6304|6759|6761|6762|6763)[0-9]{8,15}$"),
+  Maestro("^(?:5018|5020|5038|5893|6304|6759|676[1-3])[0-9]{8,15}$"),
   JCB("^(?:2131|1800|35[0-9]{3})[0-9]{11}$"),
   UATP("^1[0-9]{14}$");
 
