@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-labels: 
+labels:
 
 ---
 
@@ -15,5 +15,5 @@ labels:
 
 > Specify the
 > * version of Credit Card Number that you are using
-> * version of Java that you are using 
+> * version of Java that you are using
 > * operating system and version that you are using
