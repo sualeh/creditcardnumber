@@ -15,7 +15,7 @@ of these licenses:
 
 In order to download and use Credit Card Number under one of the licenses above, you should
 have obtained the Credit Card Number jar files from the
-[The Central Repository](https://search.maven.org/search?q=g:us.fatehi%20a:Credit Card Number*),
+[The Central Repository](https://search.maven.org/search?q=g:us.fatehi%20a:creditcardnumber*),
 or built them yourself from the source code.
 
 ## Custom or Commercial License
