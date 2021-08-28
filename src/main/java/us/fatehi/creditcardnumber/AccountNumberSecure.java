@@ -137,17 +137,10 @@ public final class AccountNumberSecure implements AccountNumber {
 
   @Override
   public String toString() {
-    final String NEWLINE = System.getProperty("line.separator");
-    final StringBuilder buffer = new StringBuilder();
-
-    buffer.append("Account Number: ").append(NEWLINE);
-    buffer.append("  Major Industry Identifier: ");
-    buffer.append(getMajorIndustryIdentifier()).append(NEWLINE);
-    buffer.append("  Issuer Identification Number: ");
-    buffer.append(getIssuerIdentificationNumber()).append(NEWLINE);
-    buffer.append("  Card Brand: ");
-    buffer.append(getCardBrand()).append(NEWLINE);
-
-    return buffer.toString();
+    if (cardBrand == CardBrand.Unknown) {
+      return majorIndustryIdentifier.getDescription();
+    } else {
+      return cardBrand.toString();
+    }
   }
 }
