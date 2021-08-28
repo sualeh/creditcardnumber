@@ -3,7 +3,7 @@
 
 > Generated from <https://contributoragreements.org/>
 
-Thank you for your interest in contributing to Sualeh Fatehi's [creditcardnumber](https://github.com/sualeh/creditcardnumber) ("We" or "Us").
+Thank you for your interest in contributing to Sualeh Fatehi's [Credit Card Number](https://github.com/sualeh/creditcardnumber) ("We" or "Us").
 
 The purpose of this contributor agreement ("Agreement") is to clarify and document the rights granted by contributors to Us. To make this document effective, please add your name to the list below, commit this document using a verified commit, and submit a pull request.
 
