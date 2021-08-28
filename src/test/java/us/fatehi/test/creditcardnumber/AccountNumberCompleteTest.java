@@ -14,9 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;
 import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
-
 import org.junit.jupiter.api.Test;
-
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumberSecure;
 import us.fatehi.creditcardnumber.CardBrand;
@@ -89,7 +87,7 @@ public class AccountNumberCompleteTest {
 
     assertThat(pan.toString(), is(accountNumber));
     pan.dispose();
-    assertThat(pan.toString(), containsString("Account Number:"));
+    assertThat(pan.toString(), containsString("MasterCard"));
   }
 
   @Test
