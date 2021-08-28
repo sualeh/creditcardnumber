@@ -25,6 +25,7 @@ public class MajorIndustryIdentifierTest {
   public void from() {
     assertThat(MajorIndustryIdentifier.from(null), is(MajorIndustryIdentifier.unknown));
     assertThat(MajorIndustryIdentifier.from("\t\t"), is(MajorIndustryIdentifier.unknown));
+    assertThat(MajorIndustryIdentifier.from("abc"), is(MajorIndustryIdentifier.unknown));
     assertThat(MajorIndustryIdentifier.from("23"), is(MajorIndustryIdentifier.mii_2));
   }
 }
