@@ -21,4 +21,4 @@ or built them yourself from the source code.
 ## Custom or Commercial License
 
 If you need to use Credit Card Number with customized licensing terms, or with a commercial license,
-please conact Sualeh Fatehi <sualeh@hotmail.com>.
+please contact Sualeh Fatehi <sualeh@hotmail.com>.
