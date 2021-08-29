@@ -47,10 +47,12 @@ The [download page](https://search.maven.org/artifact/us.fatehi/creditcardnumber
 
 To get bank card information, use code like:
 ```java
+System.out.println("# How to Get Bank Card Information\n");
 AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
 ExpirationDate expiration = new ExpirationDate(2015, 4);
 Name name = new Name("Sualeh", "Fatehi");
-BankCard card = new BankCard(pan, expiration, name);
+ServiceCode serviceCode = new ServiceCode("225");
+BankCard card = new BankCard(pan, expiration, name, serviceCode);
 System.out.println(card);
 ```
 and you will get this output:
@@ -67,6 +69,10 @@ Bank Card Information:
   Expiration Date: 2015-04
     Is Expired? Yes
   Name: Sualeh Fatehi
+  Service Code:
+    2 - Interchange: International interchange. Technology: Integrated circuit card.
+    2 - Authorization Processing: By issuer.
+    5 - Allowed Services: Goods and services only. PIN Requirements: PIN required.
 ```
 
 ### How to Secure the Credit Card Number
@@ -81,14 +87,20 @@ and you will get this output:
 ```
 null
 ```
-The account number is no longer retained in memory.
+The account number is no longer retained in memory. Even though the memory has been cleared of
+the account number, you may want to allow the original reference to be garbage collected by
+doing this:
+```java
+// (Call dispose() first)
+final AccountNumber securePan = pan.toSecureAccountNumber();
+```
 
 ### Internationalization is Supported
 
 You can use code like:
 ```java
 AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
-System.out.println(pan);
+System.out.println(pan.getAccountNumber());
 ```
 and you will get this output:
 ```

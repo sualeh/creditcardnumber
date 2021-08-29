@@ -12,6 +12,7 @@ import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.BankCard;
 import us.fatehi.creditcardnumber.ExpirationDate;
 import us.fatehi.creditcardnumber.Name;
+import us.fatehi.creditcardnumber.ServiceCode;
 
 public class ReadmeCode {
 
@@ -28,7 +29,8 @@ public class ReadmeCode {
     final AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
     final ExpirationDate expiration = new ExpirationDate(2015, 4);
     final Name name = new Name("Sualeh", "Fatehi");
-    final BankCard card = new BankCard(pan, expiration, name);
+    final ServiceCode serviceCode = new ServiceCode("225");
+    final BankCard card = new BankCard(pan, expiration, name, serviceCode);
     System.out.println(card);
   }
 
@@ -37,11 +39,16 @@ public class ReadmeCode {
     final AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
     pan.dispose();
     System.out.println(pan.getAccountNumber());
+
+    // Additionally, allow garbage collection
+    System.out.println("## Allow garbage collection");
+    final AccountNumber securePan = pan.toSecureAccountNumber();
+    System.out.println(securePan.getAccountNumber());
   }
 
   private static void example3() {
     System.out.println("# Internationalization is Supported\n");
     final AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
-    System.out.println(pan);
+    System.out.println(pan.getAccountNumber());
   }
 }
