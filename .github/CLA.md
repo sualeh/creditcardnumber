@@ -110,5 +110,5 @@ IF THE DISCLAIMER AND DAMAGE WAIVER MENTIONED IN SECTION 5. AND SECTION 6. CANNO
 | Full Name of Signatory | GitHub Username | Acceptance |
 | ---------------------- | --------------- | --------------------------------------------- |
 | Sualeh Fatehi | @sualeh | I accept the terms above |
-|                        |                 |                                               |
+| Matthew Bayer | @mbayerPK | I accept the terms above |
 |                        |                 |                                               |
