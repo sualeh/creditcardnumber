@@ -158,6 +158,14 @@ public class CardBrandTest {
   }
 
   @Test
+  public void rupay() {
+    final long[] longCardNumbers = {6073849000000009L, 6074819900004939L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.RuPay);
+    }
+  }
+
+  @Test
   public void uatp() {
     final long[] longCardNumbers = {
       168714822757781L,

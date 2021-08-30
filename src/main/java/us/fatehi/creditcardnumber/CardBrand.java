@@ -61,6 +61,9 @@ public enum CardBrand {
   // UnionPay numbers start with 62
   UnionPay("^62[0-9]{2,}$", new LengthRangeCheck(16, 19)),
 
+  // RuPay numbers start with 60, 6521, or 6522
+  RuPay("^(?:60[0-9]{2}|6521|6522)[0-9]*$", new LengthCheck(16)),
+
   // Diners Club card numbers begin with 300 through 305, 36 or 38
   DinersClub("^3(?:0[0-5]|[68][0-9])[0-9]{1,}$", new LengthRangeCheck(14, 19)),
 
