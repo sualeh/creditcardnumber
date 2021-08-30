@@ -47,7 +47,13 @@ public class CardBrandTest {
 
   @Test
   public void mir() {
-    final long[] longCardNumbers = {2201024313392493L, 2202037066066964L};
+    final long[] longCardNumbers = {
+      2200155625277062L,
+      2201024313392493L,
+      2202037066066964L,
+      2203328875927137L,
+      2204773387264946L
+    };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.MIR);
     }
@@ -55,7 +61,28 @@ public class CardBrandTest {
 
   @Test
   public void jcb() {
-    final long[] longCardNumbers = {3530111333300000L, 3566002020360505L};
+    final long[] longCardNumbers = {
+      180072013113445L,
+      180015253702997L,
+      210040806417574L,
+      210074314120578L
+    };
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.JCB);
+    }
+  }
+
+  @Test
+  public void jcb16digit() {
+    final long[] longCardNumbers = {3530111333300000L,3566002020360505L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.JCB);
+    }
+  }
+
+  @Test
+  public void jcb19digit() {
+    final long[] longCardNumbers = {3530253533895208350L,3589962713967657076L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
     }

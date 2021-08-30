@@ -1,3 +1,4 @@
+
 /*
  *
  * Credit Card Number
@@ -52,6 +53,7 @@ public class AccountNumberCompleteTest {
     assertThat(!pan.passesLuhnCheck(), is(true));
     assertThat(pan.getAccountNumberLength(), is(16));
     check(rawAccountNumber, pan, rawAccountNumber);
+    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));
   }
 
@@ -63,6 +65,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan.isLengthValid(), is(true));
     assertThat(pan.isPrimaryAccountNumberValid(), is(true));
     assertThat(pan.getAccountNumberLength(), is(16));
+    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     check(rawAccountNumber, pan, rawAccountNumber);
 
     final AccountNumber securePan1 = pan.toSecureAccountNumber();
@@ -83,6 +86,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan.isLengthValid(), is(true));
     assertThat(pan.isPrimaryAccountNumberValid(), is(true));
     assertThat(pan.getAccountNumberLength(), is(16));
+    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     check(rawAccountNumber, pan, accountNumber);
 
     assertThat(pan.toString(), is(accountNumber));
@@ -100,6 +104,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan.isLengthValid(), is(false));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));
     assertThat(pan.getAccountNumberLength(), is(20));
+    assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -112,6 +117,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan.isLengthValid(), is(false));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));
     assertThat(pan.getAccountNumberLength(), is(8));
+    assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
     check(rawAccountNumber, pan, accountNumber);
   }
 
@@ -121,7 +127,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan.getAccountNumber(), is(accountNumber));
     assertThat(pan.getLastFourDigits(), is(right(accountNumber, 4)));
     assertThat(pan.getIssuerIdentificationNumber(), is(left(accountNumber, IIN_LEN)));
-    assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
   }
 }
+
