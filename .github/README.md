@@ -108,4 +108,3 @@ and you will get this output:
 ```
 5266092201416174
 ```
-git
