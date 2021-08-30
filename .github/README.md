@@ -8,6 +8,8 @@
 *Credit Card Number* is a Java library that can provide details of a bank issued
 credit card number.
 
+(Also see [Magnetic Track Parser](https://github.com/sualeh/magnetictrackparser).)
+
 
 ## Resources
 
@@ -106,3 +108,4 @@ and you will get this output:
 ```
 5266092201416174
 ```
+git
