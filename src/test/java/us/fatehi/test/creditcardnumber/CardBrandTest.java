@@ -64,8 +64,7 @@ public class CardBrandTest {
     final long[] longCardNumbers = {
       180072013113445L,
       180015253702997L,
-      210040806417574L,
-      210074314120578L
+        213140806417574L, 213174314120578L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
@@ -216,5 +215,7 @@ public class CardBrandTest {
     final String cardNumber = String.valueOf(longCardNumber);
     final CardBrand cardBrand = CardBrand.from(cardNumber);
     assertThat(cardNumber, cardBrand, is(sameInstance(expectedCardBrand)));
+    assertThat(cardNumber, cardBrand.isLengthValid(String.valueOf(longCardNumber).length()),
+        is(true));
   }
 }
