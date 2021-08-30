@@ -23,17 +23,25 @@ import java.util.regex.Pattern;
  */
 public enum CardBrand {
   Unknown("^unknown$"),
-  Visa("^4[0-9]{6,}$"),
+  // Visa can be 13, 16 or 19 digits in length.
+  Visa("^4[0-9]{12}(?:[0-9]{3}){0,2}$"),
   // MasterCard numbers start with the numbers 51 through 55, and 2221
   // through 2720.
-  MasterCard("^5[1-5][0-9]{5,}$|^(222[1-9]|2[3-6][0-9][0-9]|27[0-1][0-9]|2720)[0-9]{12}$"),
-  AmericanExpress("^3[47][0-9]{5,}$"),
-  Discover("^6(?:011|5[0-9]{2})[0-9]{3,}$"),
-  UnionPay("^62[0-9]{14,}$"),
+  MasterCard("^(?:5[1-5][0-9]{2}|222[1-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$"),
+  AmericanExpress("^3[47][0-9]{13}$"),
+  // Discover can be 16 or 19 digits in length.
+  Discover("^6(?:011|5[0-9]{2})[0-9]{12}(?:[0-9]{3})?$"),
+  // MIR can be 16-19 digits in length.
+  MIR("^220[0-4][0-9]{12,15}$"),
+  // China Unionpay can be 16 or 19 digits in length.
+  UnionPay("^62[0-9]{14}(?:[0-9]{3})?$"),
   // Diners Club card numbers begin with 300 through 305, 36 or 38.
-  DinersClub("^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"),
-  Maestro("^(6759|5018|5020|5038|5893|6304|6759|6761|6762|6763)[0-9]{8,15}$"),
-  JCB("^(?:2131|1800|35[0-9]{3})[0-9]{3,}$"),
+  DinersClub("^3(?:0[0-5]|[68][0-9])[0-9]{11}$"),
+  // Maestro can be 12-19 digits in length.
+  Maestro("^(?:5018|5020|5038|5893|6304|6759|676[1-3])[0-9]{8,15}$"),
+  // JCB can begin with 1800 or 2100 and be 15 digits in length, or JCB can begin with 35 and be 16-19
+  // digits in length.
+  JCB("^(?:2100|1800|35[0-9]{3,6})[0-9]{11}$"),
   UATP("^1[0-9]{14}$");
 
   public static CardBrand from(final String accountNumber) {
