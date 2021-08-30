@@ -38,7 +38,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
         MajorIndustryIdentifier.from(accountNumberString);
     final CardBrand cardBrand = CardBrand.from(accountNumberString);
     final int accountNumberLength = accountNumberString.length();
-    final boolean isLengthValid = Arrays.asList(13, 14, 15, 16, 19).contains(accountNumberLength);
+    final boolean isLengthValid = cardBrand.isLengthValid(accountNumberLength);
     final boolean isPrimaryAccountNumberValid =
         isLengthValid && passesLuhnCheck && cardBrand != CardBrand.Unknown;
     final boolean exceedsMaximumLength = accountNumberLength > 19;

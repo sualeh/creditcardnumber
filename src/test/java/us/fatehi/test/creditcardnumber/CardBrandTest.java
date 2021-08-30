@@ -64,8 +64,7 @@ public class CardBrandTest {
     final long[] longCardNumbers = {
       180072013113445L,
       180015253702997L,
-      210040806417574L,
-      210074314120578L
+        213140806417574L, 213174314120578L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
@@ -159,6 +158,14 @@ public class CardBrandTest {
   }
 
   @Test
+  public void rupay() {
+    final long[] longCardNumbers = {6073849000000009L, 6074819900004939L};
+    for (final long longCardNumber : longCardNumbers) {
+      test(longCardNumber, CardBrand.RuPay);
+    }
+  }
+
+  @Test
   public void uatp() {
     final long[] longCardNumbers = {
       168714822757781L,
@@ -216,5 +223,7 @@ public class CardBrandTest {
     final String cardNumber = String.valueOf(longCardNumber);
     final CardBrand cardBrand = CardBrand.from(cardNumber);
     assertThat(cardNumber, cardBrand, is(sameInstance(expectedCardBrand)));
+    assertThat(cardNumber, cardBrand.isLengthValid(String.valueOf(longCardNumber).length()),
+        is(true));
   }
 }
