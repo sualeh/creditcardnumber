@@ -108,3 +108,18 @@ and you will get this output:
 ```
 5266092201416174
 ```
+
+### Look-ahead Typing
+
+The Credit Card Number library allows look-ahead typing and identifies the
+card brand by at least the first four digits of the card number.
+
+You can use code like:
+```java
+CardBrand cardBrand = CardBrand.from("5366");
+System.out.println(cardBrand);
+```
+and you will get this output:
+```
+MasterCard
+```
