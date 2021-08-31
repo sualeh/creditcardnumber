@@ -10,9 +10,7 @@ package us.fatehi.test.creditcardnumber;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.sameInstance;
-
 import org.junit.jupiter.api.Test;
-
 import us.fatehi.creditcardnumber.CardBrand;
 
 /**
@@ -225,5 +223,8 @@ public class CardBrandTest {
     assertThat(cardNumber, cardBrand, is(sameInstance(expectedCardBrand)));
     assertThat(cardNumber, cardBrand.isLengthValid(String.valueOf(longCardNumber).length()),
         is(true));
+    // Allow look-ahead typing and try to identify the card brand by the first four digits of the
+    // card number
+    assertThat(cardNumber.substring(0, 4), cardBrand, is(sameInstance(expectedCardBrand)));
   }
 }

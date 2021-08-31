@@ -123,9 +123,8 @@ public class AccountNumberCompleteTest {
     assertThat(pan.getLastFourDigits(), is(right(accountNumber, 4)));
     assertThat(pan.getIssuerIdentificationNumber(), is(left(accountNumber, IIN_LEN)));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
-    // Allow look-ahead typing and try to identify the card brand by teh first four digits of the
+    // Allow look-ahead typing and try to identify the card brand by the first four digits of the
     // card number
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
   }
 }
-
