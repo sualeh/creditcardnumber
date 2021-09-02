@@ -14,8 +14,6 @@ import static org.apache.commons.lang3.StringUtils.right;
 import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
-import java.util.Arrays;
-
 final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   private static final long serialVersionUID = -7012531091389412459L;
