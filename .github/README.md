@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD040 MD041 MD004 MD0012 -->
+<!-- markdownlint-disable MD040 MD041 MD004 MD012 -->
 [![Quick Build](https://github.com/sualeh/creditcardnumber/workflows/Quick%20Build/badge.svg)](https://github.com/sualeh/creditcardnumber/actions?query=workflow%3A%22Quick+Build%22)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/creditcardnumber.svg)](https://search.maven.org/search?q=g:us.fatehi%20creditcardnumber*)
 
@@ -98,6 +98,7 @@ and you will get this output:
 null
 
 ```
+
 The account number is no longer retained in memory. Even though the memory has been cleared of
 the account number, you may want to allow the original reference to be garbage collected by
 doing this:
