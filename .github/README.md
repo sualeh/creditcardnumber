@@ -1,4 +1,4 @@
-<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable MD040 MD041 MD004 MD0012 -->
 [![Quick Build](https://github.com/sualeh/creditcardnumber/workflows/Quick%20Build/badge.svg)](https://github.com/sualeh/creditcardnumber/actions?query=workflow%3A%22Quick+Build%22)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/creditcardnumber.svg)](https://search.maven.org/search?q=g:us.fatehi%20creditcardnumber*)
 
@@ -17,12 +17,13 @@ credit card number.
 to create a reliable Java library to provide information about credit card numbers.**
 
 Some resources consulted are:
-* [Payment card number](https://en.wikipedia.org/wiki/Payment_card_number)
-* [How do you detect Credit card type based on number?](http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number)
-* [Finding or Verifying Credit Card Numbers](http://www.regular-expressions.info/creditcard.html)
-* [Major Industry Identifier](https://en.wikipedia.org/wiki/ISO/IEC_7812#Major_industry_identifier)
-* [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
-* [Where can I find test credit card numbers?](https://www.paypal.com/us/smarthelp/article/where-can-i-find-test-credit-card-numbers-ts2157)
+
+- [Payment card number](https://en.wikipedia.org/wiki/Payment_card_number)
+- [How do you detect Credit card type based on number?](http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number)
+- [Finding or Verifying Credit Card Numbers](http://www.regular-expressions.info/creditcard.html)
+- [Major Industry Identifier](https://en.wikipedia.org/wiki/ISO/IEC_7812#Major_industry_identifier)
+- [Luhn Algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm)
+- [Where can I find test credit card numbers?](https://www.paypal.com/us/smarthelp/article/where-can-i-find-test-credit-card-numbers-ts2157)
 
 
 ## Design Principles
@@ -34,7 +35,7 @@ Some resources consulted are:
 - Internationalization of card numbers is supported
 - Validity is enforced by JUnit 5 tests
 - Java 8 or newer is required
-
+- Android friendly, even though Java 8 Date and Time API is used
 
 
 ## Download and Use in Projects
@@ -48,6 +49,7 @@ The [download page](https://search.maven.org/artifact/us.fatehi/creditcardnumber
 ### How to Get Bank Card Information
 
 To get bank card information, use code like:
+
 ```java
 System.out.println("# How to Get Bank Card Information\n");
 AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
@@ -57,7 +59,9 @@ ServiceCode serviceCode = new ServiceCode("225");
 BankCard card = new BankCard(pan, expiration, name, serviceCode);
 System.out.println(card);
 ```
+
 and you will get this output:
+
 ```
 Bank Card Information:
   Raw Account Number: 5266-0922-0141-6174
@@ -77,37 +81,48 @@ Bank Card Information:
     5 - Allowed Services: Goods and services only. PIN Requirements: PIN required.
 ```
 
+
 ### How to Secure the Credit Card Number
 
 If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
+
 ```java
 AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
 pan.dispose();
 System.out.println(pan.getAccountNumber());
 ```
+
 and you will get this output:
+
 ```
 null
+
 ```
 The account number is no longer retained in memory. Even though the memory has been cleared of
 the account number, you may want to allow the original reference to be garbage collected by
 doing this:
+
 ```java
 // (Call dispose() first)
 final AccountNumber securePan = pan.toSecureAccountNumber();
 ```
 
+
 ### Internationalization is Supported
 
 You can use code like:
+
 ```java
 AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
 System.out.println(pan.getAccountNumber());
 ```
+
 and you will get this output:
+
 ```
 5266092201416174
 ```
+
 
 ### Look-ahead Typing
 
@@ -115,11 +130,14 @@ The Credit Card Number library allows look-ahead typing and identifies the
 card brand by at least the first four digits of the card number.
 
 You can use code like:
+
 ```java
 CardBrand cardBrand = CardBrand.from("5366");
 System.out.println(cardBrand);
 ```
+
 and you will get this output:
+
 ```
 MasterCard
 ```
