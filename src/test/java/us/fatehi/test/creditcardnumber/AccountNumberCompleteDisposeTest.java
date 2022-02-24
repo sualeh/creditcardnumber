@@ -26,7 +26,7 @@ public class AccountNumberCompleteDisposeTest {
   @Test
   public void dispose() {
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumberComplete(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
@@ -47,7 +47,7 @@ public class AccountNumberCompleteDisposeTest {
   @Test
   public void disposeRawData() {
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumberComplete(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
@@ -75,7 +75,7 @@ public class AccountNumberCompleteDisposeTest {
   @Test
   public void pan_1() {
     final String rawAccountNumber = "573";
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumberComplete(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
@@ -98,7 +98,7 @@ public class AccountNumberCompleteDisposeTest {
   @Test
   public void pan_a() {
     final String rawAccountNumber = null;
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumberComplete(rawAccountNumber);
     assertThat(pan.hasAccountNumber(), is(false));
     pan.disposeRawData();
     assertThat(pan.hasAccountNumber(), is(false));
@@ -107,7 +107,7 @@ public class AccountNumberCompleteDisposeTest {
   @Test
   public void pan_b() {
     final String rawAccountNumber = "\t\t";
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.accountNumberComplete(rawAccountNumber);
     assertThat(pan.hasAccountNumber(), is(false));
     pan.disposeRawData();
     assertThat(pan.hasAccountNumber(), is(false));

@@ -20,9 +20,9 @@ public class AccountNumbersTest {
   private final AccountNumber empty = AccountNumbers.emptyAccountNumber();
   private final AccountNumber last4 = AccountNumbers.accountNumberLastFour("5266092201416174");
   private final AccountNumber secure = AccountNumbers.secureAccountNumber("5266092201416174");
-  private final AccountNumber pan1 = AccountNumbers.accountNumber("5266092201416174");
-  private final AccountNumber pan1a = AccountNumbers.accountNumber("5266092201416174");
-  private final AccountNumber pan2 = AccountNumbers.accountNumber("5266092201416173");
+  private final AccountNumber pan1 = AccountNumbers.accountNumberComplete("5266092201416174");
+  private final AccountNumber pan1a = AccountNumbers.accountNumberComplete("5266092201416174");
+  private final AccountNumber pan2 = AccountNumbers.accountNumberComplete("5266092201416173");
 
   @Test
   public void equals_Pan() {

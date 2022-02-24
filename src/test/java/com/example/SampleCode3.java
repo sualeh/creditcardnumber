@@ -7,14 +7,14 @@
  */
 package com.example;
 
-import static us.fatehi.creditcardnumber.AccountNumbers.accountNumber;
+import static us.fatehi.creditcardnumber.AccountNumbers.accountNumberComplete;
 
 import us.fatehi.creditcardnumber.AccountNumber;
 
 public class SampleCode3 {
 
   public static void main(final String[] args) {
-    final AccountNumber pan = accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
+    final AccountNumber pan = accountNumberComplete("५२६६ ०९२२ ०१४१ ६१७४");
     System.out.println(pan);
   }
 }
