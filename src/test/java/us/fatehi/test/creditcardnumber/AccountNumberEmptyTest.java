@@ -36,7 +36,13 @@ public class AccountNumberEmptyTest {
 
   @Test
   public void pan3() {
-    final AccountNumber pan = accountNumberLastFour(null);
+    final AccountNumber pan = accountNumberLastFour((String) null);
+    validateEmptyCard(pan);
+  }
+
+  @Test
+  public void pan4() {
+    final AccountNumber pan = accountNumberLastFour((AccountNumber) null);
     validateEmptyCard(pan);
   }
 

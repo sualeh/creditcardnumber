@@ -13,6 +13,7 @@ import static org.apache.commons.lang3.StringUtils.leftPad;
 import static org.apache.commons.lang3.StringUtils.right;
 import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
+import static us.fatehi.creditcardnumber.AccountNumbers.parseAccountNumber;
 
 final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
@@ -30,26 +31,7 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
     accountNumber = new DisposableStringData(accountNumberString);
 
-    // Secure information (metadata) that has no part of the actual account in it
-    final boolean passesLuhnCheck = luhnCheck();
-    final MajorIndustryIdentifier majorIndustryIdentifier =
-        MajorIndustryIdentifier.from(accountNumberString);
-    final CardBrand cardBrand = CardBrand.from(accountNumberString);
-    final int accountNumberLength = accountNumberString.length();
-    final boolean isLengthValid = cardBrand.isLengthValid(accountNumberLength);
-    final boolean isPrimaryAccountNumberValid =
-        isLengthValid && passesLuhnCheck && cardBrand != CardBrand.Unknown;
-    final boolean exceedsMaximumLength = accountNumberLength > 19;
-
-    panSecure =
-        new AccountNumberSecure(
-            cardBrand,
-            majorIndustryIdentifier,
-            passesLuhnCheck,
-            accountNumberLength,
-            isLengthValid,
-            isPrimaryAccountNumberValid,
-            exceedsMaximumLength);
+    panSecure = AccountNumbers.secureAccountNumber(rawAccountNumber);
   }
 
   @Override
@@ -133,36 +115,5 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     } else {
       return panSecure.toString();
     }
-  }
-
-  private boolean luhnCheck() {
-    final int length = accountNumber.length();
-    int sum = 0;
-    boolean alternate = false;
-    for (int i = length - 1; i >= 0; i--) {
-      int digit = Character.digit(accountNumber.charAt(i), 10);
-      if (alternate) {
-        digit = digit * 2;
-        digit = digit > 9 ? digit - 9 : digit;
-      }
-      sum = sum + digit;
-      alternate = !alternate;
-    }
-    final boolean passesLuhnCheck = sum % 10 == 0;
-    return passesLuhnCheck;
-  }
-
-  private String parseAccountNumber(final String rawAccountNumber) {
-    final StringBuilder builder = new StringBuilder();
-    final int length = rawAccountNumber.length();
-    for (int offset = 0; offset < length; ) {
-      final int codepoint = rawAccountNumber.codePointAt(offset);
-      if (Character.isDigit(codepoint)) {
-        final int digit = Character.digit(codepoint, 10);
-        builder.append(String.valueOf(digit));
-      }
-      offset += Character.charCount(codepoint);
-    }
-    return builder.toString();
   }
 }
