@@ -17,6 +17,12 @@ public final class AccountNumbers {
 
   private static final AccountNumber ACCOUNT_NUMBER_EMPTY = new AccountNumberEmpty();
 
+  /** @deprecated */
+  @Deprecated(forRemoval = true)
+  public static AccountNumber accountNumber(final String rawAccountNumber) {
+    return accountNumberComplete(rawAccountNumber);
+  }
+
   /**
    * Returns the complete account number.
    *
