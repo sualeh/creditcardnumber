@@ -9,6 +9,8 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
+import java.security.Key;
+
 import javax.crypto.Cipher;
 
 public final class AccountNumbers {
@@ -16,12 +18,38 @@ public final class AccountNumbers {
   private static final AccountNumber ACCOUNT_NUMBER_EMPTY = new AccountNumberEmpty();
 
   /**
+   * Returns the complete account number.
+   *
+   * @param accountNumber Primary account number
+   * @param key
+   * @return Complete account number
+   */
+  public static AccountNumber accountNumberComplete(
+      final AccountNumber accountNumber, final Key key) {
+    if (accountNumber == null) {
+      return ACCOUNT_NUMBER_EMPTY;
+    } else if (accountNumber instanceof AccountNumberSealed) {
+      AccountNumber completeAccountNumber;
+      try {
+        completeAccountNumber = ((AccountNumberSealed) accountNumber).toCompleteAccountNumber(key);
+      } catch (final Exception e) {
+        // TODO: Log exception - use plain Java logging?
+        return accountNumber;
+      }
+      return completeAccountNumber;
+    } else {
+      return accountNumber;
+    }
+  }
+
+  /**
    * Parses the primary account number of the bank card. Can accept card numbers with spaces or
    * dashes.
    *
    * @param rawAccountNumber Raw primary account number.
+   * @return Complete account number
    */
-  public static AccountNumber accountNumber(final String rawAccountNumber) {
+  public static AccountNumber accountNumberComplete(final String rawAccountNumber) {
     if (rawAccountNumber == null) {
       return ACCOUNT_NUMBER_EMPTY;
     } else {

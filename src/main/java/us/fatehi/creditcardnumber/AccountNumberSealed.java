@@ -12,6 +12,9 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.parseAccountNumber;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -111,6 +114,18 @@ final class AccountNumberSealed extends BaseRawData implements AccountNumber {
       return getAccountNumber();
     } else {
       return panSecure.toString();
+    }
+  }
+
+  AccountNumber toCompleteAccountNumber(final Key key) {
+    try {
+      final String accountNumberString = accountNumber.getObject(key).toString();
+      return new AccountNumberComplete(accountNumberString);
+    } catch (InvalidKeyException
+        | ClassNotFoundException
+        | NoSuchAlgorithmException
+        | IOException e) {
+      throw new RuntimeException("Could not get complete account number", e);
     }
   }
 }
