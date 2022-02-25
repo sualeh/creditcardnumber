@@ -24,6 +24,9 @@ public final class DisposableStringData implements CharSequence {
   /** {@inheritDoc} */
   @Override
   public char charAt(final int i) {
+    if (i < 0 || i >= length()) {
+      throw new ArrayIndexOutOfBoundsException(i);
+    }
     return data[i];
   }
 
@@ -86,7 +89,11 @@ public final class DisposableStringData implements CharSequence {
   /** {@inheritDoc} */
   @Override
   public int length() {
-    return data.length;
+    if (hasData()) {
+      return data.length;
+    } else {
+      return 0;
+    }
   }
 
   /** {@inheritDoc} */

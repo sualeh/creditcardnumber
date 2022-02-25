@@ -84,4 +84,14 @@ public class AccountNumberSecureTest {
     assertThat(securePan.getLastFourDigits(), is(nullValue()));
     assertThat(securePan.getIssuerIdentificationNumber(), is(nullValue()));
   }
+
+  @Test
+  public void unknownAccountNumber() {
+    final String rawAccountNumber = "33456789012";
+    final AccountNumber pan = AccountNumbers.secureAccountNumber(rawAccountNumber);
+    assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
+    assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
+    assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_3));
+    assertThat(pan.toString(), is(MajorIndustryIdentifier.mii_3.getDescription()));
+  }
 }

@@ -17,7 +17,6 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 
 final class AccountNumberSealed implements AccountNumber {
@@ -34,8 +33,8 @@ final class AccountNumberSealed implements AccountNumber {
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
     try {
       accountNumber = new SealedObject(accountNumberString, cipher);
-    } catch (IllegalBlockSizeException | IOException e) {
-      throw new UnsupportedOperationException("Cannot created sealed account number", e);
+    } catch (final Exception e) {
+      throw new RuntimeException("Cannot created sealed account number", e);
     }
 
     panSecure = AccountNumbers.secureAccountNumber(rawAccountNumber);

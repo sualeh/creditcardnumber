@@ -10,6 +10,7 @@ package us.fatehi.test.creditcardnumber;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
 
 import java.security.InvalidKeyException;
@@ -24,6 +25,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.function.Executable;
 
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumbers;
@@ -61,7 +63,8 @@ public class AccountNumberSealedTest {
     final AccountNumber completeAccountNumber = AccountNumbers.completeAccountNumber(pan, key);
     assertThat("Should not pass Luhn check", !completeAccountNumber.passesLuhnCheck(), is(true));
     assertThat(completeAccountNumber.getCardBrand(), is(CardBrand.MasterCard));
-    assertThat(completeAccountNumber.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
+    assertThat(
+        completeAccountNumber.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
     assertThat(completeAccountNumber.hasAccountNumber(), is(true));
     assertThat(completeAccountNumber.getAccountNumber(), is("5266092201416173"));
 
@@ -114,6 +117,25 @@ public class AccountNumberSealedTest {
   }
 
   @Test
+  public void sealedAccountNumberException()
+      throws NoSuchAlgorithmException, NoSuchPaddingException {
+    final Cipher cipher = Cipher.getInstance("AES");
+    final String rawAccountNumber = "5266092201416173";
+    final Exception exception =
+        assertThrows(
+            RuntimeException.class,
+            new Executable() {
+
+              @Override
+              public void execute() throws Throwable {
+                AccountNumbers.sealedAccountNumber(rawAccountNumber, cipher);
+              }
+            });
+    assertThat(exception.getMessage(), is("Cannot created sealed account number"));
+    assertThat(exception.getCause().getClass().getSimpleName(), is("IllegalStateException"));
+  }
+
+  @Test
   public void toSealedAccountNumber() {
 
     final String rawAccountNumber = "5266092201416173";
@@ -136,5 +158,23 @@ public class AccountNumberSealedTest {
     assertThat(securePan.hasAccountNumber(), is(false));
     assertThat(securePan.getLastFourDigits(), is(nullValue()));
     assertThat(securePan.getIssuerIdentificationNumber(), is(nullValue()));
+  }
+
+  @Test
+  public void unsealAccountNumberException() throws NoSuchAlgorithmException {
+
+    final String rawAccountNumber = "5266092201416173";
+    final AccountNumber securePan = AccountNumbers.sealedAccountNumber(rawAccountNumber, cipher);
+    assertThat("Should not pass Luhn check", !securePan.passesLuhnCheck(), is(true));
+    assertThat(securePan.getCardBrand(), is(CardBrand.MasterCard));
+    assertThat(securePan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
+
+    final KeyGenerator kgen = KeyGenerator.getInstance("DES");
+    kgen.init(56);
+    final Key key = kgen.generateKey();
+
+    final AccountNumber completeAccountNumber =
+        AccountNumbers.completeAccountNumber(securePan, key);
+    assertThat(securePan == completeAccountNumber, is(true));
   }
 }
