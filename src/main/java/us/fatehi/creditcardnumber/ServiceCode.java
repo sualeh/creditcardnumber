@@ -16,8 +16,6 @@ import java.util.Objects;
 /**
  * See <a href= "https://en.wikipedia.org/wiki/Magnetic_stripe_card#Financial_cards">Wikipedia:
  * Financial Cards</a>
- *
- * @author Sualeh Fatehi
  */
 public final class ServiceCode extends BaseRawData implements Serializable {
 
