@@ -51,7 +51,6 @@ The [download page](https://search.maven.org/artifact/us.fatehi/creditcardnumber
 To get bank card information, use code like:
 
 ```java
-System.out.println("# How to Get Bank Card Information\n");
 AccountNumber pan = AccountNumbers.completeAccountNumber("5266-0922-0141-6174");
 ExpirationDate expiration = new ExpirationDate(2015, 4);
 Name name = new Name("Sualeh", "Fatehi");
@@ -105,7 +104,7 @@ doing this:
 
 ```java
 // (Call dispose() first)
-final AccountNumber securePan = pan.toSecureAccountNumber();
+AccountNumber securePan = pan.toSecureAccountNumber();
 ```
 
 
