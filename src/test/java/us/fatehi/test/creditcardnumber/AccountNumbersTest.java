@@ -20,9 +20,9 @@ public class AccountNumbersTest {
   private final AccountNumber empty = AccountNumbers.emptyAccountNumber();
   private final AccountNumber last4 = AccountNumbers.accountNumberLastFour("5266092201416174");
   private final AccountNumber secure = AccountNumbers.secureAccountNumber("5266092201416174");
-  private final AccountNumber pan1 = AccountNumbers.accountNumber("5266092201416174");
-  private final AccountNumber pan1a = AccountNumbers.accountNumber("5266092201416174");
-  private final AccountNumber pan2 = AccountNumbers.accountNumber("5266092201416173");
+  private final AccountNumber pan1 = AccountNumbers.completeAccountNumber("5266092201416174");
+  private final AccountNumber pan1a = AccountNumbers.completeAccountNumber("5266092201416174");
+  private final AccountNumber pan2 = AccountNumbers.completeAccountNumber("5266092201416173");
 
   @Test
   public void equals_Pan() {
@@ -126,6 +126,35 @@ public class AccountNumbersTest {
   public void equalsNull3() {
     final boolean equals = AccountNumbers.equals(null, pan1);
     assertThat(equals, is(false));
+  }
+
+  @Test
+  public void nullArgs() {
+    AccountNumber accountNumber;
+
+    accountNumber = AccountNumbers.sealedAccountNumber((AccountNumber) null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.sealedAccountNumber((String) null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.secureAccountNumber((AccountNumber) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.secureAccountNumber((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.secureAccountNumber((AccountNumber) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.accountNumberLastFour((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.accountNumberLastFour((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.completeAccountNumber(null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
   }
 
   @Test

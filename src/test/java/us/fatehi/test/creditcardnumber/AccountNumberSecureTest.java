@@ -64,7 +64,7 @@ public class AccountNumberSecureTest {
   public void toSecureAccountNumber() {
 
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = AccountNumbers.accountNumber(rawAccountNumber);
+    final AccountNumber pan = AccountNumbers.completeAccountNumber(rawAccountNumber);
     assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
     assertThat(pan.getCardBrand(), is(CardBrand.MasterCard));
     assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_5));
@@ -83,5 +83,15 @@ public class AccountNumberSecureTest {
     assertThat(securePan.hasAccountNumber(), is(false));
     assertThat(securePan.getLastFourDigits(), is(nullValue()));
     assertThat(securePan.getIssuerIdentificationNumber(), is(nullValue()));
+  }
+
+  @Test
+  public void unknownAccountNumber() {
+    final String rawAccountNumber = "33456789012";
+    final AccountNumber pan = AccountNumbers.secureAccountNumber(rawAccountNumber);
+    assertThat("Should not pass Luhn check", !pan.passesLuhnCheck(), is(true));
+    assertThat(pan.getCardBrand(), is(CardBrand.Unknown));
+    assertThat(pan.getMajorIndustryIdentifier(), is(MajorIndustryIdentifier.mii_3));
+    assertThat(pan.toString(), is(MajorIndustryIdentifier.mii_3.getDescription()));
   }
 }

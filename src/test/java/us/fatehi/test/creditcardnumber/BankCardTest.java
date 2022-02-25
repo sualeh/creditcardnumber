@@ -27,7 +27,7 @@ public class BankCardTest {
 
   @Test
   public void bankCard() throws IOException {
-    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416173");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266092201416173");
     final ExpirationDate expirationDate = new ExpirationDate(2012, 12);
     final Name name = new Name("Sualeh", "Fatehi");
     final ServiceCode serviceCode = new ServiceCode("222");
@@ -52,7 +52,7 @@ public class BankCardTest {
 
   @Test
   public void bankCard1() throws IOException {
-    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416173");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266092201416173");
     final ExpirationDate expirationDate = new ExpirationDate(2012, 12);
     final Name name = new Name("Sualeh", "Fatehi");
 
@@ -75,7 +75,7 @@ public class BankCardTest {
 
   @Test
   public void bankCard2() throws IOException {
-    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416173");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266092201416173");
     final ExpirationDate expirationDate = new ExpirationDate(2012, 12);
 
     final BankCard bankCard = new BankCard(pan, expirationDate);
@@ -96,7 +96,7 @@ public class BankCardTest {
 
   @Test
   public void bankCard3() throws IOException {
-    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416173");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266092201416173");
 
     final BankCard bankCard = new BankCard(pan);
 
@@ -132,7 +132,7 @@ public class BankCardTest {
 
   @Test
   public void bankCard5() throws IOException {
-    final AccountNumber pan = AccountNumbers.accountNumber("5266092201416174");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266092201416174");
     final ExpirationDate expirationDate = new ExpirationDate(2030, 12);
     final Name name = new Name("Sualeh", "Fatehi");
     final ServiceCode serviceCode = new ServiceCode("222");

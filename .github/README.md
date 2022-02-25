@@ -52,7 +52,7 @@ To get bank card information, use code like:
 
 ```java
 System.out.println("# How to Get Bank Card Information\n");
-AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
+AccountNumber pan = AccountNumbers.completeAccountNumber("5266-0922-0141-6174");
 ExpirationDate expiration = new ExpirationDate(2015, 4);
 Name name = new Name("Sualeh", "Fatehi");
 ServiceCode serviceCode = new ServiceCode("225");
@@ -87,7 +87,7 @@ Bank Card Information:
 If you need the account number information, but want to be secure by not storing the actual primary account number in memory, you can use code like:
 
 ```java
-AccountNumber pan = AccountNumbers.accountNumber("5266-0922-0141-6174");
+AccountNumber pan = AccountNumbers.completeAccountNumber("5266-0922-0141-6174");
 pan.dispose();
 System.out.println(pan.getAccountNumber());
 ```
@@ -109,12 +109,38 @@ final AccountNumber securePan = pan.toSecureAccountNumber();
 ```
 
 
+### How to Encrypt the Credit Card Number
+
+If you need the account number information, but want to encrypt it using a cryptographic algorithm such as AES, you can use code like:
+
+```java
+AccountNumber sealedPan = AccountNumbers.sealedAccountNumber("5266-0922-0141-6174", cipher);
+System.out.println(sealedPan.getAccountNumber());
+```
+
+and you will get this output:
+
+```
+null
+
+```
+
+The account number can be decrypted by doing this:
+
+```java
+AccountNumber pan = AccountNumbers.completeAccountNumber(sealedPan, key);
+System.out.println(pan.getAccountNumber());
+```
+
+The cipher and key are from [javax.crypto and java.security](https://docs.oracle.com/en/java/javase/17/security/java-security-overview1.html).
+
+
 ### Internationalization is Supported
 
 You can use code like:
 
 ```java
-AccountNumber pan = AccountNumbers.accountNumber("५२६६ ०९२२ ०१४१ ६१७४");
+AccountNumber pan = AccountNumbers.completeAccountNumber("५२६६ ०९२२ ०१४१ ६१७४");
 System.out.println(pan.getAccountNumber());
 ```
 
