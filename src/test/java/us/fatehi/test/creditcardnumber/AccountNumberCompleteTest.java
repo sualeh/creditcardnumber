@@ -1,4 +1,3 @@
-
 /*
  *
  * Credit Card Number
@@ -15,15 +14,37 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
 import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
+
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.KeyGenerator;
+
 import org.junit.jupiter.api.Test;
+
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumberSecure;
+import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
 
 public class AccountNumberCompleteTest {
 
   private static final int IIN_LEN = 8;
+
+  @Test
+  public void completeAccountNumberWithLast4() throws NoSuchAlgorithmException {
+    final KeyGenerator kgen = KeyGenerator.getInstance("DES");
+    kgen.init(56);
+    final Key key = kgen.generateKey();
+
+    final String rawAccountNumber = "52660922014161747889";
+    final AccountNumber accountNumberLastFour =
+        AccountNumbers.accountNumberLastFour(rawAccountNumber);
+
+    final AccountNumber pan = completeAccountNumber(accountNumberLastFour, key);
+    assertThat(accountNumberLastFour == pan, is(true));
+  }
 
   @Test
   public void pan_1() {

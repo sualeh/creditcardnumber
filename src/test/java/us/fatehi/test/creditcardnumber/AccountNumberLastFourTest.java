@@ -10,6 +10,7 @@ package us.fatehi.test.creditcardnumber;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.nullValue;
+import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +58,32 @@ public class AccountNumberLastFourTest {
     assertThat(pan.getRawData(), is(nullValue()));
     assertThat(pan.getLastFourDigits(), is("6173"));
     assertThat(pan.getIssuerIdentificationNumber(), is(nullValue()));
+  }
+
+  @Test
+  public void accountNumberLastFourAdditional() {
+    final String rawAccountNumber = "5266092201416173";
+    final AccountNumber pan = AccountNumbers.accountNumberLastFour(rawAccountNumber);
+    final AccountNumber completeAccountNumber =
+        AccountNumbers.completeAccountNumber(rawAccountNumber);
+
+    final AccountNumber accountNumberLastFour1 = AccountNumbers.accountNumberLastFour(pan);
+    assertThat(accountNumberLastFour1 == pan, is(true));
+    assertThat(equivalent(accountNumberLastFour1, pan), is(true));
+
+    assertThat(completeAccountNumber.hasAccountNumber(), is(true));
+    final AccountNumber accountNumberLastFour2 =
+        AccountNumbers.accountNumberLastFour(completeAccountNumber);
+    assertThat(accountNumberLastFour2 == completeAccountNumber, is(false));
+    assertThat(equivalent(accountNumberLastFour2, completeAccountNumber), is(true));
+
+    // After dispose
+    completeAccountNumber.dispose();
+    assertThat(completeAccountNumber.hasAccountNumber(), is(false));
+    final AccountNumber accountNumberLastFour3 =
+        AccountNumbers.accountNumberLastFour(completeAccountNumber);
+    assertThat(accountNumberLastFour3 == completeAccountNumber, is(true));
+    assertThat(equivalent(accountNumberLastFour3, completeAccountNumber), is(true));
   }
 
   @Test

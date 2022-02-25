@@ -17,12 +17,6 @@ public final class AccountNumbers {
 
   private static final AccountNumber ACCOUNT_NUMBER_EMPTY = new AccountNumberEmpty();
 
-  /** @deprecated */
-  @Deprecated
-  public static AccountNumber accountNumber(final String rawAccountNumber) {
-    return completeAccountNumber(rawAccountNumber);
-  }
-
   /**
    * Return a an account number, metadata stored in memory, and the last 4 digits of the card number
    * if available.

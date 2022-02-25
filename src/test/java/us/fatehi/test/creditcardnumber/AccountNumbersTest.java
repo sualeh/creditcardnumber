@@ -144,7 +144,13 @@ public class AccountNumbersTest {
     accountNumber = AccountNumbers.secureAccountNumber((String) null);
     assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
 
-    accountNumber = AccountNumbers.completeAccountNumber((String) null);
+    accountNumber = AccountNumbers.secureAccountNumber((AccountNumber) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.accountNumberLastFour((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.accountNumberLastFour((String) null);
     assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
 
     accountNumber = AccountNumbers.completeAccountNumber(null, null);

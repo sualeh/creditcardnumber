@@ -17,34 +17,33 @@ import java.util.regex.Pattern;
  * done by checking if the number of digits is right (length check). Additionally, a Luhn check is
  * done on the account number as well.
  *
- * <p>
- * See:
- * <ul>
- * <li><a href= "http://www.regular-expressions.info/creditcard.html">Finding or Verifying Credit
- * Card Numbers</a></li>
- * <li><a href=
- * "http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
- * do you detect Credit card type based on number?</a></li
- * </ul>
+ * <p>See:
  *
- * @author Sualeh Fatehi
+ * <ul>
+ *   <li><a href= "http://www.regular-expressions.info/creditcard.html">Finding or Verifying Credit
+ *       Card Numbers</a>
+ *   <li><a href=
+ *       "http://stackoverflow.com/questions/72768/how-do-you-detect-credit-card-type-based-on-number">How
+ *       do you detect Credit card type based on number?</a>
  */
 public enum CardBrand {
-  Unknown("^unknown$", new Predicate<Integer>() {
+  Unknown(
+      "^unknown$",
+      new Predicate<Integer>() {
 
-    @Override
-    public boolean test(final Integer length) {
-      return length > 6;
-    }
-  }),
+        @Override
+        public boolean test(final Integer length) {
+          return length > 6;
+        }
+      }),
 
   // Visa numbers start with 4
   Visa("^4[0-9]{3,}$", new LengthCheck(13, 16, 19)),
 
   // MasterCard numbers start with the numbers 51 through 55, and 2221
   // through 2720
-  MasterCard("^(?:5[1-5][0-9]{2}|222[1-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]*$",
-      new LengthCheck(16)),
+  MasterCard(
+      "^(?:5[1-5][0-9]{2}|222[1-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]*$", new LengthCheck(16)),
 
   // American Express numbers start with 35 or 37
   AmericanExpress("^3[47][0-9]{2,}$", new LengthCheck(15)),
@@ -77,21 +76,6 @@ public enum CardBrand {
   // Universal Air Travel Plan numbers start with 1
   UATP("^1[0-9]{3,}$", new LengthCheck(15));
 
-  /**
-   * Java 8 forward-compatible version of what should be a lambda. Written to compile in Java 7 for
-   * use in Andriod projects.
-   */
-  private static interface Predicate<T> {
-
-    /**
-     * Evaluates this predicate on the given argument.
-     *
-     * @param t the input argument
-     * @return {@code true} if the input argument matches the predicate, otherwise {@code false}
-     */
-    boolean test(T t);
-  }
-
   private static final class LengthCheck implements Predicate<Integer> {
 
     private final int[] validLengths;
@@ -102,8 +86,8 @@ public enum CardBrand {
 
     @Override
     public boolean test(final Integer length) {
-      for (int i = 0; i < validLengths.length; i++) {
-        if (length == validLengths[i]) {
+      for (final int validLength : validLengths) {
+        if (length == validLength) {
           return true;
         }
       }
@@ -125,6 +109,21 @@ public enum CardBrand {
     public boolean test(final Integer length) {
       return length >= minLength && length <= maxLength;
     }
+  }
+
+  /**
+   * Java 8 forward-compatible version of what should be a lambda. Written to compile in Java 7 for
+   * use in Andriod projects.
+   */
+  private static interface Predicate<T> {
+
+    /**
+     * Evaluates this predicate on the given argument.
+     *
+     * @param t the input argument
+     * @return {@code true} if the input argument matches the predicate, otherwise {@code false}
+     */
+    boolean test(T t);
   }
 
   public static CardBrand from(final String accountNumber) {

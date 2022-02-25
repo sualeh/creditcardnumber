@@ -117,6 +117,26 @@ public class AccountNumberSealedTest {
   }
 
   @Test
+  public void sealedAccountNumberAdditionalCases() {
+    final String rawAccountNumber = "5266092201416173";
+
+    final AccountNumber accountNumberLastFour =
+        AccountNumbers.accountNumberLastFour(rawAccountNumber);
+    assertThat(accountNumberLastFour.hasAccountNumber(), is(false));
+    final AccountNumber securePan1 =
+        AccountNumbers.sealedAccountNumber(accountNumberLastFour, cipher);
+    assertThat(equivalent(accountNumberLastFour, securePan1), is(true));
+
+    final AccountNumber accountNumberDisposed =
+        AccountNumbers.completeAccountNumber(rawAccountNumber);
+    accountNumberDisposed.dispose();
+    assertThat(accountNumberDisposed.hasAccountNumber(), is(false));
+    final AccountNumber securePan2 =
+        AccountNumbers.sealedAccountNumber(accountNumberDisposed, cipher);
+    assertThat(equivalent(accountNumberDisposed, securePan2), is(true));
+  }
+
+  @Test
   public void sealedAccountNumberException()
       throws NoSuchAlgorithmException, NoSuchPaddingException {
     final Cipher cipher = Cipher.getInstance("AES");
