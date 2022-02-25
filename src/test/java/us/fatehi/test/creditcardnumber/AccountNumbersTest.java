@@ -129,6 +129,29 @@ public class AccountNumbersTest {
   }
 
   @Test
+  public void nullArgs() {
+    AccountNumber accountNumber;
+
+    accountNumber = AccountNumbers.sealedAccountNumber((AccountNumber) null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.sealedAccountNumber((String) null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.secureAccountNumber((AccountNumber) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.secureAccountNumber((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.completeAccountNumber((String) null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+
+    accountNumber = AccountNumbers.completeAccountNumber(null, null);
+    assertThat(accountNumber.getClass().getSimpleName(), is("AccountNumberEmpty"));
+  }
+
+  @Test
   public void selfEquals() {
     for (final AccountNumber accountNumber :
         new AccountNumber[] {pan1, pan2, secure, last4, empty}) {
