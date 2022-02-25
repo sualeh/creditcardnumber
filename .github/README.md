@@ -35,7 +35,7 @@ Some resources consulted are:
 - Internationalization of card numbers is supported
 - Validity is enforced by JUnit 5 tests
 - Java 8 or newer is required
-- Android friendly, even though Java 8 Date and Time API is used
+- Android friendly
 
 
 ## Download and Use in Projects

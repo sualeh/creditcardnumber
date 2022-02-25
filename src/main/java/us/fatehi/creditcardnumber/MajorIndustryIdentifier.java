@@ -16,8 +16,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
  * <p>See <a href=
  * "https://en.wikipedia.org/wiki/Bank_card_number#Major_Industry_Identifier_.28MII.29">Major
  * Industry Identifier</a>
- *
- * @author Sualeh Fatehi
  */
 public enum MajorIndustryIdentifier {
   unknown(-1, "unknown"),

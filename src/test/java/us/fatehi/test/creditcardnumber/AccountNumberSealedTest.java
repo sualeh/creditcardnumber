@@ -25,7 +25,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.function.Executable;
 
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumbers;
@@ -144,13 +143,7 @@ public class AccountNumberSealedTest {
     final Exception exception =
         assertThrows(
             RuntimeException.class,
-            new Executable() {
-
-              @Override
-              public void execute() throws Throwable {
-                AccountNumbers.sealedAccountNumber(rawAccountNumber, cipher);
-              }
-            });
+            () -> AccountNumbers.sealedAccountNumber(rawAccountNumber, cipher));
     assertThat(exception.getMessage(), is("Cannot created sealed account number"));
     assertThat(exception.getCause().getClass().getSimpleName(), is("IllegalStateException"));
   }
