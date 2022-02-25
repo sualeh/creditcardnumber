@@ -13,7 +13,7 @@ import static org.apache.commons.lang3.StringUtils.right;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static us.fatehi.creditcardnumber.AccountNumbers.accountNumberComplete;
+import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
 import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
 import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.AccountNumber;
@@ -28,7 +28,7 @@ public class AccountNumberCompleteTest {
   @Test
   public void pan_1() {
     final String rawAccountNumber = null;
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(pan.hasAccountNumber(), is(false));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));
@@ -38,7 +38,7 @@ public class AccountNumberCompleteTest {
   @Test
   public void pan_2() {
     final String rawAccountNumber = "\t\t";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(pan.hasAccountNumber(), is(false));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));
@@ -48,7 +48,7 @@ public class AccountNumberCompleteTest {
   @Test
   public void pan_3() {
     final String rawAccountNumber = "5266092201416173";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(pan.getRawData(), is(rawAccountNumber));
     assertThat(!pan.passesLuhnCheck(), is(true));
     assertThat(pan.getAccountNumberLength(), is(16));
@@ -59,7 +59,7 @@ public class AccountNumberCompleteTest {
   @Test
   public void pan1() {
     final String rawAccountNumber = "5266092201416174";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(pan.passesLuhnCheck(), is(true));
     assertThat(pan.isLengthValid(), is(true));
     assertThat(pan.isPrimaryAccountNumberValid(), is(true));
@@ -79,7 +79,7 @@ public class AccountNumberCompleteTest {
   public void pan2() {
     final String rawAccountNumber = "  5266-0922-0141-6174  ";
     final String accountNumber = "5266092201416174";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(pan.passesLuhnCheck(), is(true));
     assertThat(pan.isLengthValid(), is(true));
     assertThat(pan.isPrimaryAccountNumberValid(), is(true));
@@ -95,7 +95,7 @@ public class AccountNumberCompleteTest {
   public void pan3() {
     final String rawAccountNumber = "  5266-0922-0141-6174-7889  ";
     final String accountNumber = "52660922014161747889";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(!pan.passesLuhnCheck(), is(true));
     assertThat(pan.exceedsMaximumLength(), is(true));
     assertThat(pan.isLengthValid(), is(false));
@@ -108,7 +108,7 @@ public class AccountNumberCompleteTest {
   public void pan4() {
     final String rawAccountNumber = "  5266-0922  ";
     final String accountNumber = "52660922";
-    final AccountNumber pan = accountNumberComplete(rawAccountNumber);
+    final AccountNumber pan = completeAccountNumber(rawAccountNumber);
     assertThat(!pan.passesLuhnCheck(), is(true));
     assertThat(pan.isLengthValid(), is(false));
     assertThat(pan.isPrimaryAccountNumberValid(), is(false));

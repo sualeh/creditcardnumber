@@ -13,8 +13,6 @@ import java.io.Serializable;
  * Represents a bank card number.
  *
  * <p>See <a href="http://en.wikipedia.org/wiki/Bank_card_number">Bank card number</a>
- *
- * @author Sualeh Fatehi
  */
 public interface AccountNumber extends RawData, Serializable {
 

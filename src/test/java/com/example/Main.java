@@ -35,7 +35,7 @@ public class Main {
       System.out.print("Primary Account Number: ");
       final String line = in.readLine();
       if (!isBlank(line)) {
-        final AccountNumber pan = AccountNumbers.accountNumberComplete(line);
+        final AccountNumber pan = AccountNumbers.completeAccountNumber(line);
         final BankCard card = new BankCard(pan);
         System.out.println(card);
       }

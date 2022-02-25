@@ -31,7 +31,7 @@ public class ReadmeCode {
 
   private static void example1() {
     System.out.println("### How to Get Bank Card Information\n");
-    final AccountNumber pan = AccountNumbers.accountNumberComplete("5266-0922-0141-6174");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266-0922-0141-6174");
     final ExpirationDate expiration = new ExpirationDate(2015, 4);
     final Name name = new Name("Sualeh", "Fatehi");
     final ServiceCode serviceCode = new ServiceCode("225");
@@ -41,7 +41,7 @@ public class ReadmeCode {
 
   private static void example2() {
     System.out.println("### How to Secure the Credit Card Number\n");
-    final AccountNumber pan = AccountNumbers.accountNumberComplete("5266-0922-0141-6174");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("5266-0922-0141-6174");
     pan.dispose();
     System.out.println(pan.getAccountNumber());
 
@@ -53,7 +53,7 @@ public class ReadmeCode {
 
   private static void example3() {
     System.out.println("### Internationalization is Supported\n");
-    final AccountNumber pan = AccountNumbers.accountNumberComplete("५२६६ ०९२२ ०१४१ ६१७४");
+    final AccountNumber pan = AccountNumbers.completeAccountNumber("५२६६ ०९२२ ०१४१ ६१७४");
     System.out.println(pan.getAccountNumber());
   }
 

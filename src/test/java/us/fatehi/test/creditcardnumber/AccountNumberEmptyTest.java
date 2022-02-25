@@ -10,7 +10,7 @@ package us.fatehi.test.creditcardnumber;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.nullValue;
-import static us.fatehi.creditcardnumber.AccountNumbers.accountNumberComplete;
+import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.accountNumberLastFour;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
@@ -30,7 +30,7 @@ public class AccountNumberEmptyTest {
 
   @Test
   public void pan2() {
-    final AccountNumber pan = accountNumberComplete(null);
+    final AccountNumber pan = completeAccountNumber(null);
     validateEmptyCard(pan);
   }
 

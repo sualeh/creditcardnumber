@@ -20,7 +20,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 
-final class AccountNumberSealed extends BaseRawData implements AccountNumber {
+final class AccountNumberSealed implements AccountNumber {
 
   private static final long serialVersionUID = -7012531091389412459L;
 
@@ -28,8 +28,7 @@ final class AccountNumberSealed extends BaseRawData implements AccountNumber {
   private final AccountNumber panSecure;
 
   AccountNumberSealed(final String rawAccountNumber, final Cipher cipher) {
-    super(requireNonNull(rawAccountNumber, "No raw account number provided"));
-
+    requireNonNull(rawAccountNumber, "No raw account number provided");
     requireNonNull(cipher, "No cipher provided");
 
     final String accountNumberString = parseAccountNumber(trimToEmpty(rawAccountNumber));
@@ -44,8 +43,12 @@ final class AccountNumberSealed extends BaseRawData implements AccountNumber {
 
   @Override
   public void dispose() {
-    super.disposeRawData();
     // Note: Do not dispose off the sealed account data
+  }
+
+  @Override
+  public void disposeRawData() {
+    // No-op
   }
 
   @Override
@@ -84,7 +87,17 @@ final class AccountNumberSealed extends BaseRawData implements AccountNumber {
   }
 
   @Override
+  public String getRawData() {
+    return null;
+  }
+
+  @Override
   public boolean hasAccountNumber() {
+    return false;
+  }
+
+  @Override
+  public boolean hasRawData() {
     return false;
   }
 
@@ -110,11 +123,7 @@ final class AccountNumberSealed extends BaseRawData implements AccountNumber {
 
   @Override
   public String toString() {
-    if (hasAccountNumber()) {
-      return getAccountNumber();
-    } else {
-      return panSecure.toString();
-    }
+    return panSecure.toString();
   }
 
   AccountNumber toCompleteAccountNumber(final Key key) {
