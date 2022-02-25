@@ -13,7 +13,6 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import us.fatehi.creditcardnumber.DisposableStringData;
@@ -36,24 +35,8 @@ public class DisposableStringDataTest {
     assertThat(data.length(), is(8));
     assertThat(data.charAt(0), is('s'));
 
-    assertThrows(
-        ArrayIndexOutOfBoundsException.class,
-        new Executable() {
-
-          @Override
-          public void execute() throws Throwable {
-            data.charAt(-1);
-          }
-        });
-    assertThrows(
-        ArrayIndexOutOfBoundsException.class,
-        new Executable() {
-
-          @Override
-          public void execute() throws Throwable {
-            data.charAt(8);
-          }
-        });
+    assertThrows(ArrayIndexOutOfBoundsException.class, () -> data.charAt(-1));
+    assertThrows(ArrayIndexOutOfBoundsException.class, () -> data.charAt(8));
 
     data.disposeData();
     assertThat(data.hasData(), is(false));
@@ -61,15 +44,7 @@ public class DisposableStringDataTest {
     assertThat(data.toString(), is(""));
     assertThat(data.subSequence(0, 0).toString(), is(""));
     assertThat(data.length(), is(0));
-    assertThrows(
-        ArrayIndexOutOfBoundsException.class,
-        new Executable() {
-
-          @Override
-          public void execute() throws Throwable {
-            data.charAt(0);
-          }
-        });
+    assertThrows(ArrayIndexOutOfBoundsException.class, () -> data.charAt(0));
   }
 
   @Test
