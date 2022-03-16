@@ -10,11 +10,11 @@ credit card number.
 
 (Also see [Magnetic Track Parser](https://github.com/sualeh/magnetictrackparser).)
 
-
-## Resources
-
 > **The goal of this project is to use publicly and freely available documentation
 to create a reliable Java library to provide information about credit card numbers.**
+
+
+## Resources
 
 Some resources consulted are:
 
