@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -39,7 +40,9 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
   public ExpirationDate(final Date date) {
     super(null);
     if (date != null) {
-      expirationDate = YearMonth.of(date.getYear() + 1900, date.getMonth() + 1);
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
+      expirationDate = YearMonth.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
     } else {
       expirationDate = null;
     }

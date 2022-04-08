@@ -10,6 +10,7 @@ package us.fatehi.creditcardnumber;
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Represents a bank card, and contains information about the card number, cardholder's name,
@@ -174,7 +175,7 @@ public final class BankCard implements Serializable {
     final String NEWLINE = System.getProperty("line.separator");
     final StringBuilder buffer = new StringBuilder();
 
-    buffer.append("Bank Card Information: ").append(NEWLINE);
+    buffer.append("Bank Card Information:").append(NEWLINE);
     if (hasAccountNumber()) {
       buffer.append("  Raw Account Number: ");
       buffer.append(pan.getRawData()).append(NEWLINE);
@@ -192,6 +193,24 @@ public final class BankCard implements Serializable {
       buffer.append(pan.passesLuhnCheck() ? "Yes" : "No").append(NEWLINE);
       buffer.append("    Is Primary Account Number Valid? ");
       buffer.append(pan.isPrimaryAccountNumberValid() ? "Yes" : "No").append(NEWLINE);
+      if (Objects.nonNull(pan.getBinCode())){
+        BinCode binCode = pan.getBinCode();
+        buffer.append("    Card Type: ");
+        buffer.append(binCode.getType()).append(NEWLINE);
+        buffer.append("  Bank Issuer Information: ");
+        buffer.append(binCode.getIssuer()).append(NEWLINE);
+        buffer.append("    Bank Country: ");
+        buffer.append(binCode.getCountry())
+          .append(" (").append(binCode.getAlpha2()).append(", ").append(binCode.getAlpha3()).append(")").append(NEWLINE);
+        if (!binCode.getBankPhone().isEmpty()) {
+          buffer.append("    Bank Phone: ");
+          buffer.append(binCode.getBankPhone()).append(NEWLINE);
+        }
+        if (!binCode.getBankUrl().isEmpty()) {
+          buffer.append("    Bank Website: ");
+          buffer.append(binCode.getBankUrl()).append(NEWLINE);
+        }
+      }
     }
     if (hasExpirationDate()) {
       buffer.append("  Expiration Date: ");
@@ -205,7 +224,7 @@ public final class BankCard implements Serializable {
     }
     if (hasServiceCode()) {
       final ServiceCode serviceCode = getServiceCode();
-      buffer.append("  Service Code: ");
+      buffer.append("  Service Code:");
       buffer.append(NEWLINE);
       buffer.append("    ");
       buffer.append(serviceCode.getServiceCode1()).append(NEWLINE);

@@ -1,4 +1,4 @@
-Bank Card Information: 
+Bank Card Information:
   Raw Account Number: 5266092201416174
   Primary Account Number: 5266092201416174
     Major Industry Identifier: 5 - Banking and financial
@@ -7,11 +7,13 @@ Bank Card Information:
     Last Four Digits: 6174
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
+    Card Type: CREDIT
+  Bank Issuer Information: EUROPAY AUSTRIA ZAHlanGSVERKEHRSSYSTEME GMBH
+    Bank Country: Austria (AT, AUT)
   Expiration Date: 2030-12
     Is Expired? No
   Name: Sualeh Fatehi
-  Service Code: 
+  Service Code:
     2 - Interchange: International interchange. Technology: Integrated circuit card.
     2 - Authorization Processing: By issuer.
     2 - Allowed Services: Goods and services only. PIN Requirements: None.
-

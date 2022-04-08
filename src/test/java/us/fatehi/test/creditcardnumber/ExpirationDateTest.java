@@ -105,7 +105,7 @@ public class ExpirationDateTest {
 
   @Test
   public void expirationDate2() {
-    final Date date = new Date(112, 11, 1);
+    final Date date = new Date(1354320000000L);
     final ExpirationDate expirationDate = new ExpirationDate(date);
     assertThat(expirationDate.hasRawData(), is(false));
     assertThat(expirationDate.exceedsMaximumLength(), is(false));

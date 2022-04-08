@@ -7,6 +7,8 @@
  */
 package us.fatehi.creditcardnumber;
 
+import java.util.Optional;
+
 import static java.util.Objects.requireNonNull;
 import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.leftPad;
@@ -21,9 +23,11 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
   // See https://www.iso.org/news/2016/11/Ref2146.html
   private static final int IIN_LEN = 8;
+  private static final int BIN_LEN = 6;
 
   private final DisposableStringData accountNumber;
   private final AccountNumber panSecure;
+  private final BinCode binCode;
 
   AccountNumberComplete(final String rawAccountNumber) {
     super(requireNonNull(rawAccountNumber, "No raw account number provided"));
@@ -32,6 +36,8 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     accountNumber = new DisposableStringData(accountNumberString);
 
     panSecure = AccountNumbers.secureAccountNumber(rawAccountNumber);
+    Optional<Integer> code = getBin();
+    binCode = code.flatMap(BinCodeReader::getByCode).orElse(null);
   }
 
   @Override
@@ -67,6 +73,15 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
     }
     final String accountNumberString = accountNumber.getData();
     return rightPad(left(accountNumberString, IIN_LEN), IIN_LEN, "0");
+  }
+
+  private Optional<Integer> getBin() {
+    if (!hasAccountNumber()) {
+      return Optional.empty();
+    }
+    final String accountNumberString = accountNumber.getData();
+    return Optional.ofNullable(rightPad(left(accountNumberString, BIN_LEN), BIN_LEN, "0"))
+      .map(Integer::parseInt);
   }
 
   @Override
@@ -106,6 +121,11 @@ final class AccountNumberComplete extends BaseRawData implements AccountNumber {
   @Override
   public AccountNumber toSecureAccountNumber() {
     return panSecure;
+  }
+
+  @Override
+  public BinCode getBinCode()  {
+    return binCode;
   }
 
   @Override

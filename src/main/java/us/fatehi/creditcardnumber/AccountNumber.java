@@ -89,4 +89,11 @@ public interface AccountNumber extends RawData, Serializable {
    * @return Secure account number
    */
   AccountNumber toSecureAccountNumber();
+
+  /**
+   * Return information of Bank Issuer.
+   *
+   * @return Bin Code
+   */
+  BinCode getBinCode();
 }

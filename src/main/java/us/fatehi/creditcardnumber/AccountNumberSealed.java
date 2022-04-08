@@ -121,6 +121,11 @@ final class AccountNumberSealed implements AccountNumber {
   }
 
   @Override
+  public BinCode getBinCode()  {
+    return null;
+  }
+
+  @Override
   public String toString() {
     return panSecure.toString();
   }

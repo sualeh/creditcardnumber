@@ -107,6 +107,11 @@ final class AccountNumberLastFour implements AccountNumber {
   }
 
   @Override
+  public BinCode getBinCode()  {
+    return null;
+  }
+
+  @Override
   public String toString() {
     return String.format("%s-%s", getCardBrand(), last4);
   }

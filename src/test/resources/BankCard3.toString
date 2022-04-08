@@ -1,4 +1,4 @@
-Bank Card Information: 
+Bank Card Information:
   Raw Account Number: 5266092201416173
   Primary Account Number: 5266092201416173
     Major Industry Identifier: 5 - Banking and financial
@@ -7,4 +7,6 @@ Bank Card Information:
     Last Four Digits: 6173
     Passes Luhn Check? No
     Is Primary Account Number Valid? No
-
+    Card Type: CREDIT
+  Bank Issuer Information: EUROPAY AUSTRIA ZAHlanGSVERKEHRSSYSTEME GMBH
+    Bank Country: Austria (AT, AUT)
