@@ -11,7 +11,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.nullValue;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -105,7 +107,8 @@ public class ExpirationDateTest {
 
   @Test
   public void expirationDate2() {
-    final Date date = new Date(112, 11, 1);
+    final LocalDate localDate = LocalDate.of(2012, 12, 12);
+    final Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     final ExpirationDate expirationDate = new ExpirationDate(date);
     assertThat(expirationDate.hasRawData(), is(false));
     assertThat(expirationDate.exceedsMaximumLength(), is(false));

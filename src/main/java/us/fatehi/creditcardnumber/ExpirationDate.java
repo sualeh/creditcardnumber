@@ -32,10 +32,13 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
   }
 
   /**
-   * Expiration date from date.
+   * Expiration date from date. (Deprecated, since it uses a deprecated API. Use other constructors
+   * instead.)
    *
    * @param date Date
+   * @deprecated Use {@link ExpirationDate#ExpirationDate(int, int)}
    */
+  @Deprecated
   public ExpirationDate(final Date date) {
     super(null);
     if (date != null) {
