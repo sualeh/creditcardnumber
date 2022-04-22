@@ -15,7 +15,6 @@ import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
 import org.junit.jupiter.api.Test;
 
 import us.fatehi.creditcardnumber.AccountNumber;
-import us.fatehi.creditcardnumber.AccountNumberSecure;
 import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
@@ -55,8 +54,8 @@ public class AccountNumberSecureTest {
     assertThat(pan == securePan1, is(true));
     assertThat(equivalent(pan, securePan1), is(true));
 
-    final AccountNumber securePan2 = new AccountNumberSecure(pan);
-    assertThat(pan != securePan2, is(true));
+    final AccountNumber securePan2 = AccountNumbers.secureAccountNumber(pan);
+    assertThat(securePan2, is(pan));
     assertThat(equivalent(pan, securePan2), is(true));
   }
 

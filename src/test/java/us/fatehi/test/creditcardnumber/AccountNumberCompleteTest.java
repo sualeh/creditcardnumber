@@ -13,6 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static us.fatehi.creditcardnumber.AccountNumbers.completeAccountNumber;
+import static us.fatehi.creditcardnumber.AccountNumbers.secureAccountNumber;
 import static us.fatehi.test.utility.AccountNumbersTestUtility.equivalent;
 
 import java.security.Key;
@@ -23,7 +24,6 @@ import javax.crypto.KeyGenerator;
 import org.junit.jupiter.api.Test;
 
 import us.fatehi.creditcardnumber.AccountNumber;
-import us.fatehi.creditcardnumber.AccountNumberSecure;
 import us.fatehi.creditcardnumber.AccountNumbers;
 import us.fatehi.creditcardnumber.CardBrand;
 import us.fatehi.creditcardnumber.MajorIndustryIdentifier;
@@ -91,7 +91,7 @@ public class AccountNumberCompleteTest {
     assertThat(pan != securePan1, is(true));
     assertThat(equivalent(pan, securePan1), is(true));
 
-    final AccountNumber securePan2 = new AccountNumberSecure(pan);
+    final AccountNumber securePan2 = secureAccountNumber(pan);
     assertThat(pan != securePan2, is(true));
     assertThat(equivalent(pan, securePan2), is(true));
   }
