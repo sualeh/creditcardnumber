@@ -107,9 +107,7 @@ public class ExpirationDateTest {
 
   @Test
   public void expirationDate2() {
-    final LocalDate localDate = LocalDate.of(2012, 12, 12);
-    final Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    final ExpirationDate expirationDate = new ExpirationDate(date);
+    final ExpirationDate expirationDate = new ExpirationDate(2012, 12);
     assertThat(expirationDate.hasRawData(), is(false));
     assertThat(expirationDate.exceedsMaximumLength(), is(false));
     assertThat(expirationDate.getRawData(), is(nullValue()));
@@ -120,7 +118,7 @@ public class ExpirationDateTest {
 
   @Test
   public void expirationDate3() {
-    final ExpirationDate expirationDate = new ExpirationDate((Date) null);
+    final ExpirationDate expirationDate = new ExpirationDate(-1, 0);
     assertThat(expirationDate.hasRawData(), is(false));
     assertThat(expirationDate.exceedsMaximumLength(), is(false));
     assertThat(expirationDate.getRawData(), is(nullValue()));
