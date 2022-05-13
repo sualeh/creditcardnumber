@@ -12,23 +12,23 @@ import java.util.Optional;
 import static org.apache.commons.lang3.StringUtils.left;
 import static org.apache.commons.lang3.StringUtils.rightPad;
 
-public class DefaultBinCodeReader implements BinCodeReader {
+public class DefaultBinCodeReader implements BinCodeReader<DefaultBinCode> {
 
-  private final CsvToBean<BinCode> csvReader;
+  private final CsvToBean<DefaultBinCode> csvReader;
 
   private static final int BIN_LEN = 6;
 
   public DefaultBinCodeReader() throws Exception {
     Reader reader = Files.newBufferedReader(getCsvPath());
 
-    this.csvReader = new CsvToBeanBuilder<BinCode>(reader)
-      .withType(BinCode.class)
+    this.csvReader = new CsvToBeanBuilder<DefaultBinCode>(reader)
+      .withType(DefaultBinCode.class)
       .withSeparator(',')
       .withIgnoreLeadingWhiteSpace(true)
       .build();
   }
 
-  public Optional<BinCode> getBin(AccountNumber accountNumber) {
+  public Optional<DefaultBinCode> getBin(AccountNumber accountNumber) {
     if (!accountNumber.hasAccountNumber()) {
       return Optional.empty();
     }

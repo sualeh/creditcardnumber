@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 import java.util.Objects;
 
-public class BinCode {
+public class DefaultBinCode {
   @CsvBindByName
   private int bin;
   @CsvBindByName
@@ -30,7 +30,7 @@ public class BinCode {
   @CsvBindByName(column = "bank_url")
   private String bankUrl;
 
-  public BinCode() {
+  public DefaultBinCode() {
   }
 
   public int getBin() {
@@ -133,7 +133,7 @@ public class BinCode {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    BinCode binCode = (BinCode) o;
+    DefaultBinCode binCode = (DefaultBinCode) o;
     return getBin() == binCode.getBin() && Objects.equals(getBrand(), binCode.getBrand()) && Objects.equals(getType(), binCode.getType()) && Objects.equals(getCategory(), binCode.getCategory()) && Objects.equals(getIssuer(), binCode.getIssuer()) && Objects.equals(getAlpha2(), binCode.getAlpha2()) && Objects.equals(getAlpha3(), binCode.getAlpha3()) && Objects.equals(getCountry(), binCode.getCountry()) && Objects.equals(getLatitude(), binCode.getLatitude()) && Objects.equals(getLongitude(), binCode.getLongitude()) && Objects.equals(getBankPhone(), binCode.getBankPhone()) && Objects.equals(getBankUrl(), binCode.getBankUrl());
   }
 

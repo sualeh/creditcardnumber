@@ -160,7 +160,7 @@ public final class AccountNumbers {
   /**
    * Return a secure account number, with only metadata stored in memory.
    *
-   * @param AccountNumber Primary account number
+   * @param accountNumber Primary account number
    * @return Secure account number
    */
   public static AccountNumber secureAccountNumber(final AccountNumber accountNumber) {

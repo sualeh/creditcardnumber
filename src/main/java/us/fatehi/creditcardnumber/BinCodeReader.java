@@ -2,7 +2,7 @@ package us.fatehi.creditcardnumber;
 
 import java.util.Optional;
 
-public interface BinCodeReader {
+public interface BinCodeReader<T> {
 
-  Optional<BinCode> getBin(AccountNumber accountNumber);
+  Optional<T> getBin(AccountNumber accountNumber);
 }

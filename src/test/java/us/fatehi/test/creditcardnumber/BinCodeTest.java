@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import us.fatehi.creditcardnumber.AccountNumber;
 import us.fatehi.creditcardnumber.AccountNumbers;
-import us.fatehi.creditcardnumber.BinCode;
-import us.fatehi.creditcardnumber.BinCodeReader;
+import us.fatehi.creditcardnumber.DefaultBinCode;
 import us.fatehi.creditcardnumber.DefaultBinCodeReader;
 
 public class BinCodeTest {
@@ -15,10 +14,10 @@ public class BinCodeTest {
     final String rawAccountNumber = "5266092201416173";
     final AccountNumber pan = AccountNumbers.completeAccountNumber(rawAccountNumber);
 
-    final BinCodeReader binCodeReader = new DefaultBinCodeReader();
-    BinCode actual = binCodeReader.getBin(pan).get();
+    final DefaultBinCodeReader binCodeReader = new DefaultBinCodeReader();
+    DefaultBinCode actual = binCodeReader.getBin(pan).get();
 
-    BinCode expected = new BinCode();
+    DefaultBinCode expected = new DefaultBinCode();
     expected.setBin(526609);
     expected.setBrand("MASTERCARD");
     expected.setType("CREDIT");
