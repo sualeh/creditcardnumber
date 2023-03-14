@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD040 MD041 MD004 MD012 -->
-[![Quick Build](https://github.com/sualeh/creditcardnumber/workflows/Quick%20Build/badge.svg)](https://github.com/sualeh/creditcardnumber/actions?query=workflow%3A%22Quick+Build%22)
+[![Quick Build](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/creditcardnumber.svg)](https://search.maven.org/search?q=g:us.fatehi%20creditcardnumber*)
 
 
