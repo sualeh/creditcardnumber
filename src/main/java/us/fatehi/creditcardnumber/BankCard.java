@@ -124,7 +124,9 @@ public final class BankCard implements Serializable {
     return name;
   }
 
-  /** @return the serviceCode */
+  /**
+   * @return the serviceCode
+   */
   public ServiceCode getServiceCode() {
     return serviceCode;
   }

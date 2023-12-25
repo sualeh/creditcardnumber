@@ -64,18 +64,10 @@ public final class Name extends BaseRawData implements Serializable {
       return false;
     }
     final Name other = (Name) obj;
-    if (firstName == null) {
-      if (other.firstName != null) {
-        return false;
-      }
-    } else if (!firstName.equalsIgnoreCase(other.firstName)) {
+    if (!equalsFirstName(other)) {
       return false;
     }
-    if (lastName == null) {
-      if (other.lastName != null) {
-        return false;
-      }
-    } else if (!lastName.equalsIgnoreCase(other.lastName)) {
+    if (!equalsLastName(other)) {
       return false;
     }
     return true;
@@ -148,8 +140,7 @@ public final class Name extends BaseRawData implements Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + (firstName == null ? 0 : firstName.toUpperCase().hashCode());
-    result = prime * result + (lastName == null ? 0 : lastName.toUpperCase().hashCode());
-    return result;
+    return prime * result + (lastName == null ? 0 : lastName.toUpperCase().hashCode());
   }
 
   /**
@@ -174,6 +165,28 @@ public final class Name extends BaseRawData implements Serializable {
   @Override
   public String toString() {
     return getFullName();
+  }
+
+  private boolean equalsFirstName(final Name other) {
+    if (firstName == null) {
+      if (other.firstName != null) {
+        return false;
+      }
+    } else if (!firstName.equalsIgnoreCase(other.firstName)) {
+      return false;
+    }
+    return true;
+  }
+
+  private boolean equalsLastName(final Name other) {
+    if (lastName == null) {
+      if (other.lastName != null) {
+        return false;
+      }
+    } else if (!lastName.equalsIgnoreCase(other.lastName)) {
+      return false;
+    }
+    return true;
   }
 
   private String name(final String[] splitName, final int position) {
