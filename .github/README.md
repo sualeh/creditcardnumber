@@ -71,9 +71,9 @@ Bank Card Information:
     Last Four Digits: 6174
     Passes Luhn Check? Yes
     Is Primary Account Number Valid? Yes
+  Name: Sualeh Fatehi
   Expiration Date: 2015-04
     Is Expired? Yes
-  Name: Sualeh Fatehi
   Service Code:
     2 - Interchange: International interchange. Technology: Integrated circuit card.
     2 - Authorization Processing: By issuer.
