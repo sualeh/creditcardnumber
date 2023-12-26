@@ -33,4 +33,5 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
+        workingDirectory: ${{github.workspace}}
         coverageLocations: ${{github.workspace}}/target/site/jacoco/jacoco.xml:jacoco
