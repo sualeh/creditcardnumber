@@ -1,8 +1,7 @@
 <!-- markdownlint-disable MD040 MD041 MD004 MD012 -->
 [![Quick Build](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml)
 [![Code Climate](https://codeclimate.com/github/sualeh/creditcardnumber.png)](https://codeclimate.com/github/sualeh/creditcardnumber)
-[![Code Coverage]
-(https://img.shields.io/codeclimate/coverage/sualeh/creditcardnumber)](https://codeclimate.com/github/sualeh/creditcardnumber)
+[![Code Coverage](https://img.shields.io/codeclimate/coverage/sualeh/creditcardnumber)](https://codeclimate.com/github/sualeh/creditcardnumber)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/creditcardnumber.svg)](https://search.maven.org/search?q=g:us.fatehi%20creditcardnumber*)
 
 
