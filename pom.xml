@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>creditcardnumber</artifactId>
   <version>4.0.3</version>
   <packaging>jar</packaging>
   <name>Credit Card Number</name>
-  <description>Credit Card Number is a library that can provide details of a bank issued credit card number. All classes are immutable and thread-safe. The standard `toString()` function formats data in a readable form.</description>
+  <description>Credit Card Number is a library that can provide details of a
+    bank issued credit card number. All classes are immutable and thread-safe.
+    The standard `toString()` function formats data in a readable form.</description>
   <url>https://github.com/sualeh/creditcardnumber</url>
   <licenses>
     <license>
@@ -148,6 +152,11 @@
           <artifactId>nexus-staging-maven-plugin</artifactId>
           <version>1.6.13</version>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.11</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -215,6 +224,24 @@
                 rights reserved.</bottom>
               <doctitle>Credit Card Number ${project.version}</doctitle>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

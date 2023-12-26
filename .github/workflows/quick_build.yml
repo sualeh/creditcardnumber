@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -28,3 +28,9 @@ jobs:
           --no-transfer-progress \
           --batch-mode \
           package
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v5.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      with:
+      coverageLocations: ${{github.workspace}}/target/site/jacoco/jacoco.xml:jacoco
