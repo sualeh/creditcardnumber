@@ -46,11 +46,7 @@ public class CardBrandTest {
   @Test
   public void mir() {
     final long[] longCardNumbers = {
-      2200155625277062L,
-      2201024313392493L,
-      2202037066066964L,
-      2203328875927137L,
-      2204773387264946L
+      2200155625277062L, 2201024313392493L, 2202037066066964L, 2203328875927137L, 2204773387264946L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.MIR);
@@ -60,9 +56,7 @@ public class CardBrandTest {
   @Test
   public void jcb() {
     final long[] longCardNumbers = {
-      180072013113445L,
-      180015253702997L,
-        213140806417574L, 213174314120578L
+      180072013113445L, 180015253702997L, 213140806417574L, 213174314120578L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
@@ -71,7 +65,7 @@ public class CardBrandTest {
 
   @Test
   public void jcb16digit() {
-    final long[] longCardNumbers = {3530111333300000L,3566002020360505L};
+    final long[] longCardNumbers = {3530111333300000L, 3566002020360505L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
     }
@@ -79,7 +73,7 @@ public class CardBrandTest {
 
   @Test
   public void jcb19digit() {
-    final long[] longCardNumbers = {3530253533895208350L,3589962713967657076L};
+    final long[] longCardNumbers = {3530253533895208350L, 3589962713967657076L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.JCB);
     }
@@ -102,12 +96,7 @@ public class CardBrandTest {
 
   @Test
   public void maestro13digit() {
-    final long[] longCardNumbers = {
-      5038827764320L,
-      5038877268248L,
-      6304305000689L,
-      6763614233226L
-    };
+    final long[] longCardNumbers = {5038827764320L, 5038877268248L, 6304305000689L, 6763614233226L};
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Maestro);
     }
@@ -116,10 +105,7 @@ public class CardBrandTest {
   @Test
   public void maestro15digit() {
     final long[] longCardNumbers = {
-      502093431938115L,
-      501837269893631L,
-      503874834497950L,
-      630497884045549L
+      502093431938115L, 501837269893631L, 503874834497950L, 630497884045549L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Maestro);
@@ -129,10 +115,7 @@ public class CardBrandTest {
   @Test
   public void maestro19digit() {
     final long[] longCardNumbers = {
-      5020199451495212630L,
-      6763577441211256926L,
-      5038363563196126588L,
-      6304126516377184290L
+      5020199451495212630L, 6763577441211256926L, 5038363563196126588L, 6304126516377184290L
     };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Maestro);
@@ -211,7 +194,9 @@ public class CardBrandTest {
 
   @Test
   public void visa19digit() {
-    final long[] longCardNumbers = {4916656927157289574L, 4024007121577965158L, 4556980068526399611L};
+    final long[] longCardNumbers = {
+      4916656927157289574L, 4024007121577965158L, 4556980068526399611L
+    };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.Visa);
     }
@@ -221,8 +206,8 @@ public class CardBrandTest {
     final String cardNumber = String.valueOf(longCardNumber);
     final CardBrand cardBrand = CardBrand.from(cardNumber);
     assertThat(cardNumber, cardBrand, is(sameInstance(expectedCardBrand)));
-    assertThat(cardNumber, cardBrand.isLengthValid(String.valueOf(longCardNumber).length()),
-        is(true));
+    assertThat(
+        cardNumber, cardBrand.isLengthValid(String.valueOf(longCardNumber).length()), is(true));
     // Allow look-ahead typing and try to identify the card brand by the first four digits of the
     // card number
     assertThat(cardNumber.substring(0, 4), cardBrand, is(sameInstance(expectedCardBrand)));
