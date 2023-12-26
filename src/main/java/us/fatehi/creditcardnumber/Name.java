@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2023, Sualeh Fatehi.
+ * Copyright (c) 2014-2024, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
@@ -12,6 +12,8 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.text.WordUtils.capitalizeFully;
 
 import java.io.Serializable;
+
+import org.apache.commons.lang3.StringUtils;
 
 /** Parses and represents the cardholder's name. */
 public final class Name extends BaseRawData implements Serializable {
@@ -64,10 +66,10 @@ public final class Name extends BaseRawData implements Serializable {
       return false;
     }
     final Name other = (Name) obj;
-    if (!equalsFirstName(other)) {
+    if (!StringUtils.equalsIgnoreCase(firstName, other.firstName)) {
       return false;
     }
-    if (!equalsLastName(other)) {
+    if (!StringUtils.equalsIgnoreCase(lastName, other.lastName)) {
       return false;
     }
     return true;
@@ -165,28 +167,6 @@ public final class Name extends BaseRawData implements Serializable {
   @Override
   public String toString() {
     return getFullName();
-  }
-
-  private boolean equalsFirstName(final Name other) {
-    if (firstName == null) {
-      if (other.firstName != null) {
-        return false;
-      }
-    } else if (!firstName.equalsIgnoreCase(other.firstName)) {
-      return false;
-    }
-    return true;
-  }
-
-  private boolean equalsLastName(final Name other) {
-    if (lastName == null) {
-      if (other.lastName != null) {
-        return false;
-      }
-    } else if (!lastName.equalsIgnoreCase(other.lastName)) {
-      return false;
-    }
-    return true;
   }
 
   private String name(final String[] splitName, final int position) {
