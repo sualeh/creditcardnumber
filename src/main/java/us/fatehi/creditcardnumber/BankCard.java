@@ -195,15 +195,15 @@ public final class BankCard implements Serializable {
       buffer.append("    Is Primary Account Number Valid? ");
       buffer.append(pan.isPrimaryAccountNumberValid() ? "Yes" : "No").append(NEWLINE);
     }
+    if (hasName()) {
+      buffer.append("  Name: ");
+      buffer.append(getName()).append(NEWLINE);
+    }
     if (hasExpirationDate()) {
       buffer.append("  Expiration Date: ");
       buffer.append(expirationDate).append(NEWLINE);
       buffer.append("    Is Expired? ");
       buffer.append(expirationDate.isExpired() ? "Yes" : "No").append(NEWLINE);
-    }
-    if (hasName()) {
-      buffer.append("  Name: ");
-      buffer.append(getName()).append(NEWLINE);
     }
     if (hasServiceCode()) {
       final ServiceCode serviceCode = getServiceCode();
