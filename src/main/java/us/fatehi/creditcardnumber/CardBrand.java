@@ -131,9 +131,9 @@ public enum CardBrand {
       return Unknown;
     }
     for (final CardBrand cardBrand : values()) {
-      if (cardBrand.pattern.matcher(accountNumber).matches()) {
-        return cardBrand;
-      }
+       if (cardBrand.isLengthValid(accountNumber.length()) && cardBrand.pattern.matcher(accountNumber).matches()) {
+         return cardBrand;
+        }
     }
     return Unknown;
   }
