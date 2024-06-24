@@ -1,43 +1,43 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-  "name":"Credit Card Number",
-  "build":{
-    "dockerfile":"Dockerfile",
-    "args":{
-      "INSTALL_MAVEN":"true",
-      "INSTALL_GRADLE":"true",
-      "NODE_VERSION":"none"
-    }
-  },
-  "settings":{
-    "java.home":"/docker-java-home",
-    "java.import.gradle.java.home":"/usr/local/sdkman/candidates/java/current",
-    "java.configuration.runtimes":[
-      {
-        "default":true,
-        "name":"JavaSE-1.8",
-        "path":"/usr/local/sdkman/candidates/java/current"
-      }
-    ],
-    "files.exclude":{
-      "workspace":true
-    },
-    "java.configuration.updateBuildConfiguration":"automatic",
-    "java.format.settings.profile":"GoogleStyle",
-    "java.format.settings.url":"https://gist.github.com/sualeh/470c0954b597f1c717baa1ae64a80013",
-    "editor.tabSize":2,
-    "editor.foldingImportsByDefault": true,
-    "files.trimTrailingWhitespace":true,
-    "git.enableCommitSigning":true
-  },
-  "extensions":[
-    "vscjava.vscode-java-pack",
-    "shengchen.vscode-checkstyle",
-    "editorconfig.editorconfig",
-    "pivotal.vscode-boot-dev-pack",
-    "pivotal.vscode-spring-boot",
-    "redhat.vscode-xml",
-    "jebbs.markdown-extended",
-    "davidanson.vscode-markdownlint"
-  ],
-  "remoteUser":"vscode"
+	"name": "Java",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/java:1-8-buster",
+
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "true",
+			"installGradle": "false"
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		}
+	},
+	"runArgs": [
+		"--env",
+		"GPG_AGENT_INFO",
+		"--env",
+		"GPG_TTY",
+		"--env",
+		"SSH_AUTH_SOCK"
+	],
+	"remoteEnv": {
+		"GPG_AGENT_INFO": "${localEnv:GPG_AGENT_INFO}",
+		"GPG_TTY": "${localEnv:GPG_TTY}",
+		"SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
+}
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "java -version",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
