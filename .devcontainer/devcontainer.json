@@ -1,43 +1,23 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-	"name": "Java",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/java:1-8-buster",
-
-	"features": {
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "none",
-			"installMaven": "true",
-			"installGradle": "false"
-		},
-		"ghcr.io/devcontainers/features/github-cli:1": {
-			"installDirectlyFromGitHubRelease": true,
-			"version": "latest"
-		}
-	},
-	"runArgs": [
-		"--env",
-		"GPG_AGENT_INFO",
-		"--env",
-		"GPG_TTY",
-		"--env",
-		"SSH_AUTH_SOCK"
-	],
-	"remoteEnv": {
-		"GPG_AGENT_INFO": "${localEnv:GPG_AGENT_INFO}",
-		"GPG_TTY": "${localEnv:GPG_TTY}",
-		"SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
-}
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "java -version",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "name": "creditcardnumber"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "true"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-test",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+  "postCreateCommand": "mvn clean install"
 }
