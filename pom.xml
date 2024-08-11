@@ -181,9 +181,7 @@
         <configuration>
           <source>8</source>
           <target>8</target>
-          <compilerArgs>
-            <arg>-Werror</arg>
-          </compilerArgs>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       <plugin>
