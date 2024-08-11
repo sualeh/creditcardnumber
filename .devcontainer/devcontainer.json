@@ -13,7 +13,7 @@
         "java.configuration.runtimes": [
           {
             "name": "Java-21",
-            "path": "/usr/local/sdkman/candidates/java/current",
+            "path": "/usr/local/sdkman/candidates/java/current/bin",
             "default": true
           }
         ]
