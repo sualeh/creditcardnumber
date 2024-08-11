@@ -1,6 +1,5 @@
 {
-  "name": "creditcardnumber"
-  },
+  "name": "creditcardnumber",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21",
