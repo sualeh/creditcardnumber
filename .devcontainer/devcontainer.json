@@ -5,11 +5,19 @@
       "version": "21",
       "installMaven": "true"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-    }
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "customizations": {
     "vscode": {
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/usr/local/openjdk-21",
+            "default": true
+          }
+        ]
+      },
       "extensions": [
         "vscjava.vscode-java-pack",
         "vscjava.vscode-maven",
@@ -18,5 +26,5 @@
       ]
     }
   },
-  "postCreateCommand": "mvn clean install"
+  "postCreateCommand": "mvn dependency:resolve"
 }
