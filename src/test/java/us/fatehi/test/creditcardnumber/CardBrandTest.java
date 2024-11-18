@@ -132,7 +132,9 @@ public class CardBrandTest {
 
   @Test
   public void masterCard2Series() {
-    final long[] longCardNumbers = {2221000000000009L, 2223000048400011L, 2223016768739313L};
+    final long[] longCardNumbers = {
+      2221000000000009L, 2223000048400011L, 2223016768739313L, 2235579080595222L
+    };
     for (final long longCardNumber : longCardNumbers) {
       test(longCardNumber, CardBrand.MasterCard);
     }

@@ -8,7 +8,6 @@
 package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-
 import java.util.regex.Pattern;
 
 /**
@@ -43,7 +42,7 @@ public enum CardBrand {
   // MasterCard numbers start with the numbers 51 through 55, and 2221
   // through 2720
   MasterCard(
-      "^(?:5[1-5][0-9]{2}|222[1-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]*$", new LengthCheck(16)),
+      "^(?:5[1-5][0-9]{2}|222[1-9]|2[2-6][0-9]{2}|27[01][0-9]|2720)[0-9]*$", new LengthCheck(16)),
 
   // American Express numbers start with 35 or 37
   AmericanExpress("^3[47][0-9]{2,}$", new LengthCheck(15)),
@@ -142,7 +141,7 @@ public enum CardBrand {
   private final Predicate<Integer> lengthCheck;
 
   CardBrand(final String patternRegEx, final Predicate<Integer> lengthCheck) {
-    this.pattern = Pattern.compile(patternRegEx);
+    pattern = Pattern.compile(patternRegEx);
     this.lengthCheck = lengthCheck;
   }
 
