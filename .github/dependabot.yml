@@ -17,7 +17,7 @@ updates:
     labels:
       - "dependencies"
       - ":children_crossing: dependencies"
- - package-ecosystem: "devcontainers"
-   directory: "/"
-   schedule:
-     interval: weekly
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: weekly
