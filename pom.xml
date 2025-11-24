@@ -217,7 +217,7 @@
               <additionalOptions>
                 <additionalOption>-Xdoclint:none</additionalOption>
               </additionalOptions>
-              <bottom>Copyright © 2014-2025 {organizationName}. All
+              <bottom>Copyright © 2014-2026 {organizationName}. All
                 rights reserved.</bottom>
               <doctitle>${project.name} ${project.version}</doctitle>
             </configuration>
