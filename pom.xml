@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>creditcardnumber</artifactId>
   <version>5.0.1</version>
   <packaging>jar</packaging>
+
   <name>Credit Card Number</name>
   <description>Credit Card Number is a library that can provide details of a
     bank issued credit card number. All classes are immutable and thread-safe.
     The standard `toString()` function formats data in a readable form.</description>
+
   <url>https://github.com/sualeh/creditcardnumber</url>
+  <organization>
+    <name>Sualeh Fatehi</name>
+  </organization>
   <licenses>
     <license>
       <name>Eclipse Public License - v 1.0</name>
@@ -33,13 +39,9 @@
       <timezone>-5</timezone>
     </developer>
   </developers>
-  <organization>
-    <name>Sualeh Fatehi</name>
-  </organization>
   <scm>
     <url>https://github.com/sualeh/creditcardnumber</url>
     <connection>scm:git:git@github.com:sualeh/creditcardnumber.git</connection>
-    <developerConnection>scm:git:git@github.com:sualeh/creditcardnumber.git</developerConnection>
   </scm>
   <distributionManagement>
     <snapshotRepository>
@@ -75,7 +77,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.4</version>
+      <version>4.2.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -121,13 +123,16 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.11.2</version>
+          <version>3.12.0</version>
           <configuration>
+            <encoding>UTF-8</encoding>
+            <docencoding>UTF-8</docencoding>
+            <charset>UTF-8</charset>
             <source>17</source>
           </configuration>
         </plugin>
@@ -139,7 +144,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.2.7</version>
+          <version>3.2.8</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -147,9 +152,9 @@
           <version>3.1.4</version>
         </plugin>
         <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.7.0</version>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.9.0</version>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
@@ -168,6 +173,7 @@
               <directory>.</directory>
               <includes>
                 <include>pom.xml.versionsBackup</include>
+                <include>dependency-reduced-pom.xml</include>
               </includes>
             </fileset>
           </filesets>
@@ -178,6 +184,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
+          <compilerArgs>
+            <arg>-parameters</arg>
+            <arg>-g</arg>
+          </compilerArgs>
           <encoding>UTF-8</encoding>
           <release>17</release>
         </configuration>
@@ -265,21 +275,13 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <serverId>sonatype-nexus</serverId>
-          <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          <keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
-          <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
-          <stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
-          <stagingProgressPauseDurationSeconds>10</stagingProgressPauseDurationSeconds>
+          <publishingServerId>central</publishingServerId>
+          <autoPublish>true</autoPublish>
+          <waitUntil>validated</waitUntil>
         </configuration>
       </plugin>
     </plugins>
