@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.fatehi</groupId>
   <artifactId>creditcardnumber</artifactId>
-  <version>4.0.5</version>
+  <version>5.0.1</version>
   <packaging>jar</packaging>
   <name>Credit Card Number</name>
   <description>Credit Card Number is a library that can provide details of a
