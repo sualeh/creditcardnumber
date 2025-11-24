@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD040 MD041 MD004 MD012 -->
 **:star: Star it :arrow_heading_up: if you love it!**
 
-[![Quick Build](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml/badge.svg)](https://github.com/sualeh/creditcardnumber/actions/workflows/quick_build.yml)
+[![Quick Build](https://github.com/sualeh/creditcardnumber/actions/workflows/quick-build.yml/badge.svg)](https://github.com/sualeh/creditcardnumber/actions/workflows/quick-build.yml)
 [![The Central Repository](https://img.shields.io/maven-central/v/us.fatehi/creditcardnumber.svg)](https://search.maven.org/search?q=g:us.fatehi%20creditcardnumber*)
 
 
@@ -169,5 +169,6 @@ and you will get this output:
 ```
 MasterCard
 ```
+
 
 
