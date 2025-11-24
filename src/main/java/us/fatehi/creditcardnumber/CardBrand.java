@@ -9,6 +9,7 @@ package us.fatehi.creditcardnumber;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
@@ -111,21 +112,6 @@ public enum CardBrand {
     }
   }
 
-  /**
-   * Java 8 forward-compatible version of what should be a lambda. Written to compile in Java 7 for
-   * use in Andriod projects.
-   */
-  private static interface Predicate<T> {
-
-    /**
-     * Evaluates this predicate on the given argument.
-     *
-     * @param t the input argument
-     * @return {@code true} if the input argument matches the predicate, otherwise {@code false}
-     */
-    boolean test(T t);
-  }
-
   public static CardBrand from(final String accountNumber) {
     if (isBlank(accountNumber)) {
       return Unknown;
@@ -142,7 +128,7 @@ public enum CardBrand {
   private final Predicate<Integer> lengthCheck;
 
   CardBrand(final String patternRegEx, final Predicate<Integer> lengthCheck) {
-    this.pattern = Pattern.compile(patternRegEx);
+    pattern = Pattern.compile(patternRegEx);
     this.lengthCheck = lengthCheck;
   }
 
