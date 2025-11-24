@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
@@ -10,6 +10,7 @@ package us.fatehi.creditcardnumber;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.Utility.non_digit;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -22,7 +23,7 @@ public final class ExpirationDate extends BaseRawData implements Serializable {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMM");
 
-  private static final long serialVersionUID = 422773685360335298L;
+  @Serial private static final long serialVersionUID = 422773685360335298L;
 
   private final YearMonth expirationDate;
 

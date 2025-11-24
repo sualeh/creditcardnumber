@@ -22,6 +22,8 @@ jobs:
     - id: prepare-maven-build
       name: Prepare Maven build
       uses: sualeh/prepare-maven-build@v1.6.1
+      with:
+        java-version: 17
 
 # BUILD FOR DISTRIBUTION
     - id: build

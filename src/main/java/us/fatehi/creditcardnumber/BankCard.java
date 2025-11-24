@@ -2,13 +2,14 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
 
 import static us.fatehi.creditcardnumber.AccountNumbers.emptyAccountNumber;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -17,7 +18,7 @@ import java.io.Serializable;
  */
 public final class BankCard implements Serializable {
 
-  private static final long serialVersionUID = 6253084852668206154L;
+  @Serial private static final long serialVersionUID = 6253084852668206154L;
 
   private final AccountNumber pan;
   private final Name name;

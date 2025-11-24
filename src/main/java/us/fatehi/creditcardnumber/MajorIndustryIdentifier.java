@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
@@ -78,6 +78,6 @@ public enum MajorIndustryIdentifier {
   /** See java.lang.Enum#toString() */
   @Override
   public String toString() {
-    return String.format("%d - %s", value, description);
+    return "%d - %s".formatted(value, description);
   }
 }

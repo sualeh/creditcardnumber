@@ -2,7 +2,7 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
@@ -11,14 +11,14 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static org.apache.commons.text.WordUtils.capitalizeFully;
 
+import java.io.Serial;
 import java.io.Serializable;
-
 import org.apache.commons.lang3.StringUtils;
 
 /** Parses and represents the cardholder's name. */
 public final class Name extends BaseRawData implements Serializable {
 
-  private static final long serialVersionUID = 6735627336462134892L;
+  @Serial private static final long serialVersionUID = 6735627336462134892L;
 
   private final String firstName;
   private final String lastName;

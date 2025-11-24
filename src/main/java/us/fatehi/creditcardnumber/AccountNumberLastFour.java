@@ -2,14 +2,16 @@
  *
  * Credit Card Number
  * https://github.com/sualeh/credit_card_number
- * Copyright (c) 2014-2025, Sualeh Fatehi.
+ * Copyright (c) 2014-2026, Sualeh Fatehi.
  *
  */
 package us.fatehi.creditcardnumber;
 
+import java.io.Serial;
+
 final class AccountNumberLastFour implements AccountNumber {
 
-  private static final long serialVersionUID = -7012531091389412459L;
+  @Serial private static final long serialVersionUID = -7012531091389412459L;
 
   private final AccountNumber panSecure;
   private final String last4;
@@ -108,6 +110,6 @@ final class AccountNumberLastFour implements AccountNumber {
 
   @Override
   public String toString() {
-    return String.format("%s-%s", getCardBrand(), last4);
+    return "%s-%s".formatted(getCardBrand(), last4);
   }
 }
