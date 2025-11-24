@@ -9,9 +9,11 @@ package us.fatehi.creditcardnumber;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.Serial;
+
 final class AccountNumberSecure implements AccountNumber {
 
-  private static final long serialVersionUID = 2002490292247684624L;
+  @Serial private static final long serialVersionUID = 2002490292247684624L;
 
   private final CardBrand cardBrand;
   private final MajorIndustryIdentifier majorIndustryIdentifier;

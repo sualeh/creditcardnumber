@@ -10,7 +10,6 @@ package us.fatehi.creditcardnumber;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 
 import java.security.Key;
-
 import javax.crypto.Cipher;
 
 public final class AccountNumbers {
@@ -62,10 +61,10 @@ public final class AccountNumbers {
       final AccountNumber accountNumber, final Key key) {
     if (accountNumber == null) {
       return ACCOUNT_NUMBER_EMPTY;
-    } else if (accountNumber instanceof AccountNumberSealed) {
+    } else if (accountNumber instanceof AccountNumberSealed sealed) {
       AccountNumber completeAccountNumber;
       try {
-        completeAccountNumber = ((AccountNumberSealed) accountNumber).toCompleteAccountNumber(key);
+        completeAccountNumber = sealed.toCompleteAccountNumber(key);
       } catch (final Exception e) {
         // TODO: Log exception - use plain Java logging?
         return accountNumber;

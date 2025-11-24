@@ -1,8 +1,10 @@
 package us.fatehi.creditcardnumber;
 
+import java.io.Serial;
+
 final class AccountNumberEmpty implements AccountNumber {
 
-  private static final long serialVersionUID = 3873941867937638049L;
+  @Serial private static final long serialVersionUID = 3873941867937638049L;
 
   @Override
   public void dispose() {

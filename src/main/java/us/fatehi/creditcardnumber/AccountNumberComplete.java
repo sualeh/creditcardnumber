@@ -15,9 +15,11 @@ import static org.apache.commons.lang3.StringUtils.rightPad;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.parseAccountNumber;
 
+import java.io.Serial;
+
 final class AccountNumberComplete extends BaseRawData implements AccountNumber {
 
-  private static final long serialVersionUID = -7012531091389412459L;
+  @Serial private static final long serialVersionUID = -7012531091389412459L;
 
   // See https://www.iso.org/news/2016/11/Ref2146.html
   private static final int IIN_LEN = 8;

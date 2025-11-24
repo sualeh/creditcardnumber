@@ -78,6 +78,6 @@ public enum MajorIndustryIdentifier {
   /** See java.lang.Enum#toString() */
   @Override
   public String toString() {
-    return String.format("%d - %s", value, description);
+    return "%d - %s".formatted(value, description);
   }
 }

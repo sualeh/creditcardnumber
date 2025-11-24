@@ -10,6 +10,7 @@ package us.fatehi.creditcardnumber;
 import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.Utility.non_digit;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import java.util.Objects;
  */
 public final class ServiceCode extends BaseRawData implements Serializable {
 
-  private static final long serialVersionUID = -5127753346282374841L;
+  @Serial private static final long serialVersionUID = -5127753346282374841L;
 
   private final String serviceCode;
   private final ServiceCode1 serviceCode1;

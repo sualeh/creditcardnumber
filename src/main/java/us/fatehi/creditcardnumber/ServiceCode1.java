@@ -31,7 +31,7 @@ public enum ServiceCode1 implements ServiceCodeType {
   /** See ServiceCodeType#getDescription() */
   @Override
   public String getDescription() {
-    return String.format("Interchange: %s. Technology: %s.", interchange, technology);
+    return "Interchange: %s. Technology: %s.".formatted(interchange, technology);
   }
 
   /**
@@ -61,6 +61,6 @@ public enum ServiceCode1 implements ServiceCodeType {
   /** See Object#toString() */
   @Override
   public String toString() {
-    return String.format("%d - %s", value, getDescription());
+    return "%d - %s".formatted(value, getDescription());
   }
 }

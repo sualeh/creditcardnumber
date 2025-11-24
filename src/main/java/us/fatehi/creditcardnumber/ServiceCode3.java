@@ -42,8 +42,8 @@ public enum ServiceCode3 implements ServiceCodeType {
   /** See ServiceCodeType#getDescription() */
   @Override
   public String getDescription() {
-    return String.format(
-        "Allowed Services: %s. PIN Requirements: %s.", allowedServices, pinRequirements);
+    return "Allowed Services: %s. PIN Requirements: %s."
+        .formatted(allowedServices, pinRequirements);
   }
 
   /**
@@ -64,6 +64,6 @@ public enum ServiceCode3 implements ServiceCodeType {
   /** See Object#toString() */
   @Override
   public String toString() {
-    return String.format("%d - %s", value, getDescription());
+    return "%d - %s".formatted(value, getDescription());
   }
 }

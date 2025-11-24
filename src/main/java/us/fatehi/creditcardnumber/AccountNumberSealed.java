@@ -12,16 +12,16 @@ import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static us.fatehi.creditcardnumber.AccountNumbers.parseAccountNumber;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-
 import javax.crypto.Cipher;
 import javax.crypto.SealedObject;
 
 final class AccountNumberSealed implements AccountNumber {
 
-  private static final long serialVersionUID = -7012531091389412459L;
+  @Serial private static final long serialVersionUID = -7012531091389412459L;
 
   private final SealedObject accountNumber;
   private final AccountNumber panSecure;
